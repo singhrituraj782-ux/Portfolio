@@ -643,7 +643,7 @@ export default function Portfolio() {
   }, [filtered]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen portfolio-grain">
       <SiteHeader />
       <main>
         <Hero />
