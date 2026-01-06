@@ -134,7 +134,7 @@ export const work = [
     category: "Product Research",
     tags: ["Insights", "Retention", "Pricing"],
     cover:
-      "https://images.unsplash.com/photo-1524594150409-7b1b8d1f06a0?auto=format&fit=crop&fm=jpg&w=1400&q=70",
+      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&fm=jpg&w=1400&q=70",
     impact: "Optimized pricing + messaging based on performance",
     overview:
       "Concept work for a smart plant monitoring app: customer behavior analysis, pricing sensitivity, and acquisition assumptions.",
