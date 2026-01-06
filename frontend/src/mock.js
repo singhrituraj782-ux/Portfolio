@@ -70,7 +70,7 @@ export const work = [
     category: "Brand Strategy",
     tags: ["Research", "Positioning", "Go-to-market"],
     cover:
-      "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1400&q=70",
+      "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&fm=jpg&w=1400&q=70",
     impact: "Improved launch readiness by 20–25%",
     overview:
       "A strategy sprint focused on a sustainable paint brand. Defined target customers, competitive frame, positioning, and launch narrative.",
@@ -89,9 +89,9 @@ export const work = [
       },
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=1600&q=70",
-      "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1600&q=70",
-      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=70",
+      "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+      "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&fm=jpg&w=1600&q=70",
     ],
   },
   {
@@ -102,7 +102,7 @@ export const work = [
     category: "Marketing Analytics",
     tags: ["Pricing", "Promotion", "Messaging"],
     cover:
-      "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=1400&q=70",
+      "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&fm=jpg&w=1400&q=70",
     impact: "Improved profitability and brand performance",
     overview:
       "A simulation project: adjusted product mix, pricing, and acquisition levers to improve sales and profitability.",
@@ -121,9 +121,9 @@ export const work = [
       },
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=70",
-      "https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&w=1600&q=70",
-      "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1600&q=70",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+      "https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+      "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&fm=jpg&w=1600&q=70",
     ],
   },
   {
@@ -134,7 +134,7 @@ export const work = [
     category: "Product Research",
     tags: ["Insights", "Retention", "Pricing"],
     cover:
-      "https://images.unsplash.com/photo-1524594150409-7b1b8d1f06a0?auto=format&fit=crop&w=1400&q=70",
+      "https://images.unsplash.com/photo-1524594150409-7b1b8d1f06a0?auto=format&fit=crop&fm=jpg&w=1400&q=70",
     impact: "Optimized pricing + messaging based on performance",
     overview:
       "Concept work for a smart plant monitoring app: customer behavior analysis, pricing sensitivity, and acquisition assumptions.",
@@ -153,9 +153,9 @@ export const work = [
       },
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=70",
-      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=70",
-      "https://images.unsplash.com/photo-1454165205744-3b78555e5572?auto=format&fit=crop&w=1600&q=70",
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+      "https://images.unsplash.com/photo-1454165205744-3b78555e5572?auto=format&fit=crop&fm=jpg&w=1600&q=70",
     ],
   },
   {
@@ -166,7 +166,7 @@ export const work = [
     category: "Motion Design",
     tags: ["Editing", "Sound", "Rhythm"],
     cover:
-      "https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?auto=format&fit=crop&w=1400&q=70",
+      "https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?auto=format&fit=crop&fm=jpg&w=1400&q=70",
     impact: "A tight 45–60s reel concept",
     overview:
       "A placeholder project card for future motion work. Replace with your actual reel frames and links.",
@@ -177,8 +177,8 @@ export const work = [
       },
     ],
     gallery: [
-      "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1600&q=70",
-      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1600&q=70",
+      "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&fm=jpg&w=1600&q=70",
     ],
   },
 ];
@@ -188,25 +188,25 @@ export const visualDiary = [
     id: "vd-01",
     title: "Light Studies",
     caption: "Neutral tones, soft shadows, sharp type.",
-    url: "https://images.unsplash.com/photo-1483058712412-4245e9b90334?auto=format&fit=crop&w=1600&q=70",
+    url: "https://images.unsplash.com/photo-1483058712412-4245e9b90334?auto=format&fit=crop&fm=jpg&w=1600&q=70",
   },
   {
     id: "vd-02",
     title: "Street Geometry",
     caption: "Lines, grids, and the calm of repetition.",
-    url: "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=1600&q=70",
+    url: "https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&fm=jpg&w=1600&q=70",
   },
   {
     id: "vd-03",
     title: "Objects with Intent",
     caption: "Everyday things, framed like products.",
-    url: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=70",
+    url: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&fm=jpg&w=1600&q=70",
   },
   {
     id: "vd-04",
     title: "Paper & Ink",
     caption: "Texture first. Type follows.",
-    url: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1600&q=70",
+    url: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&fm=jpg&w=1600&q=70",
   },
 ];
 
@@ -218,7 +218,7 @@ export const motionWorks = [
       "A placeholder set for motion projects — edits, kinetic typography, and short narratives.",
     duration: "00:45",
     cover:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=70",
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&fm=jpg&w=1400&q=70",
   },
   {
     id: "mw-02",
@@ -227,7 +227,7 @@ export const motionWorks = [
       "Letterform rhythm, spacing, and tempo experiments.",
     duration: "00:18",
     cover:
-      "https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?auto=format&fit=crop&w=1400&q=70",
+      "https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?auto=format&fit=crop&fm=jpg&w=1400&q=70",
   },
 ];
 
@@ -241,7 +241,7 @@ export const blogPosts = [
     excerpt:
       "A simple checklist to keep positioning crisp: who, why now, and what we refuse to be.",
     cover:
-      "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=1400&q=70",
+      "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&fm=jpg&w=1400&q=70",
     content: [
       {
         h: "The problem",
@@ -266,7 +266,7 @@ export const blogPosts = [
     excerpt:
       "A repeatable approach: 8 interviews, 1 journey map, 3 insights you can act on.",
     cover:
-      "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1400&q=70",
+      "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&fm=jpg&w=1400&q=70",
     content: [
       {
         h: "Start with a decision",
