@@ -1,36 +1,35 @@
 import React, { useMemo, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { ContactShadows, Float, Environment } from "@react-three/drei";
 import * as THREE from "three";
 
-function FloatingMark({ accent = "#b7ff5a" }) {
-  const groupRef = useRef(null);
+function Mark({ accent = "#b7ff5a" }) {
+  const meshRef = useRef(null);
 
-  const geometry = useMemo(() => new THREE.TorusKnotGeometry(1, 0.32, 220, 24), []);
+  const geometry = useMemo(
+    () => new THREE.TorusKnotGeometry(1, 0.32, 220, 24),
+    []
+  );
   const material = useMemo(
     () =>
       new THREE.MeshStandardMaterial({
         color: "#101114",
-        metalness: 0.6,
+        metalness: 0.65,
         roughness: 0.25,
         emissive: new THREE.Color(accent),
-        emissiveIntensity: 0.08,
+        emissiveIntensity: 0.09,
       }),
     [accent]
   );
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
-    if (!groupRef.current) return;
-    groupRef.current.rotation.y = t * 0.22;
-    groupRef.current.rotation.x = t * 0.12;
-    groupRef.current.position.y = Math.sin(t * 0.9) * 0.15;
+    if (!meshRef.current) return;
+    meshRef.current.rotation.y = t * 0.2;
+    meshRef.current.rotation.x = t * 0.11;
   });
 
-  return (
-    <group ref={groupRef}>
-      <mesh geometry={geometry} material={material} />
-    </group>
-  );
+  return <mesh ref={meshRef} geometry={geometry} material={material} />;
 }
 
 function Dust({ count = 900, accent = "#b7ff5a" }) {
@@ -62,6 +61,7 @@ function Dust({ count = 900, accent = "#b7ff5a" }) {
     if (!points.current) return;
     const t = state.clock.getElapsedTime();
     points.current.rotation.y = t * 0.03;
+    points.current.rotation.x = Math.sin(t * 0.11) * 0.04;
   });
 
   return (
@@ -81,10 +81,10 @@ function Dust({ count = 900, accent = "#b7ff5a" }) {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.02}
+        size={0.018}
         vertexColors
         transparent
-        opacity={0.55}
+        opacity={0.6}
         sizeAttenuation
       />
     </points>
@@ -96,16 +96,33 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
     <div className={className} aria-hidden>
       <Canvas
         dpr={[1, 1.5]}
-        camera={{ position: [0, 0.2, 4.6], fov: 42 }}
+        camera={{ position: [0, 0.2, 4.8], fov: 42 }}
         gl={{ antialias: true, alpha: true }}
       >
         <color attach="background" args={["transparent"]} />
-        <ambientLight intensity={0.55} />
-        <directionalLight position={[3, 2, 4]} intensity={0.85} />
+        <ambientLight intensity={0.45} />
+        <directionalLight position={[3, 2, 4]} intensity={0.9} />
         <pointLight position={[-4, -2, 2]} intensity={0.35} color={accent} />
 
+        <Environment preset="city" />
+
         <Dust accent={accent} />
-        <FloatingMark accent={accent} />
+        <Float
+          speed={1.1}
+          rotationIntensity={0.35}
+          floatIntensity={0.45}
+          position={[0, -0.05, 0]}
+        >
+          <Mark accent={accent} />
+        </Float>
+
+        <ContactShadows
+          position={[0, -1.3, 0]}
+          opacity={0.22}
+          blur={2.8}
+          far={3.3}
+          scale={7}
+        />
       </Canvas>
     </div>
   );
