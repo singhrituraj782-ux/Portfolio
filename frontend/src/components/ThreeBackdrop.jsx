@@ -1,115 +1,137 @@
-import React, { useMemo, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 
-function FloatingMark({ accent = "#b7ff5a" }) {
-  const groupRef = useRef(null);
+/**
+ * NOTE: We intentionally use vanilla three.js (not react-three-fiber) in this project.
+ * Emergent’s dev build injects debug props like `x-line-number` into JSX.
+ * Those props break react-three-fiber because it interprets dashed prop names as nested setters.
+ */
+export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
+  const canvasRef = useRef(null);
 
-  const geometry = useMemo(
-    () => new THREE.TorusKnotGeometry(1, 0.32, 220, 24),
-    []
-  );
-  const material = useMemo(
-    () =>
-      new THREE.MeshStandardMaterial({
-        color: "#101114",
-        metalness: 0.6,
-        roughness: 0.25,
-        emissive: new THREE.Color(accent),
-        emissiveIntensity: 0.08,
-      }),
-    [accent]
-  );
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return undefined;
 
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-    if (!groupRef.current) return;
-    groupRef.current.rotation.y = t * 0.22;
-    groupRef.current.rotation.x = t * 0.12;
-    groupRef.current.position.y = Math.sin(t * 0.9) * 0.15;
-  });
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: true,
+      powerPreference: "high-performance",
+    });
+    renderer.setClearColor(0x000000, 0);
 
-  return (
-    <group ref={groupRef}>
-      <mesh geometry={geometry} material={material} />
-    </group>
-  );
-}
+    const scene = new THREE.Scene();
 
-function Dust({ count = 900, accent = "#b7ff5a" }) {
-  const points = useRef(null);
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 50);
+    camera.position.set(0, 0.15, 4.8);
 
-  const { positions, colors } = useMemo(() => {
-    const pos = new Float32Array(count * 3);
-    const col = new Float32Array(count * 3);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.7);
+    scene.add(ambient);
+
+    const dir = new THREE.DirectionalLight(0xffffff, 0.9);
+    dir.position.set(3, 2, 4);
+    scene.add(dir);
+
+    const accentLight = new THREE.PointLight(new THREE.Color(accent), 0.4, 12);
+    accentLight.position.set(-4, -2, 2);
+    scene.add(accentLight);
+
+    // Floating mark
+    const knotGeo = new THREE.TorusKnotGeometry(1, 0.32, 220, 24);
+    const knotMat = new THREE.MeshStandardMaterial({
+      color: "#101114",
+      metalness: 0.6,
+      roughness: 0.25,
+      emissive: new THREE.Color(accent),
+      emissiveIntensity: 0.08,
+    });
+    const knot = new THREE.Mesh(knotGeo, knotMat);
+    scene.add(knot);
+
+    // Dust points
+    const dustCount = 900;
+    const positions = new Float32Array(dustCount * 3);
+    const colors = new Float32Array(dustCount * 3);
     const base = new THREE.Color("#0f1116");
-    const a = new THREE.Color(accent);
+    const acc = new THREE.Color(accent);
 
-    for (let i = 0; i < count; i += 1) {
+    for (let i = 0; i < dustCount; i += 1) {
       const i3 = i * 3;
-      pos[i3] = (Math.random() - 0.5) * 12;
-      pos[i3 + 1] = (Math.random() - 0.5) * 6;
-      pos[i3 + 2] = (Math.random() - 0.5) * 10;
+      positions[i3] = (Math.random() - 0.5) * 12;
+      positions[i3 + 1] = (Math.random() - 0.5) * 6;
+      positions[i3 + 2] = (Math.random() - 0.5) * 10;
 
       const mix = 0.35 + Math.random() * 0.25;
-      const c = base.clone().lerp(a, mix);
-      col[i3] = c.r;
-      col[i3 + 1] = c.g;
-      col[i3 + 2] = c.b;
+      const c = base.clone().lerp(acc, mix);
+      colors[i3] = c.r;
+      colors[i3 + 1] = c.g;
+      colors[i3 + 2] = c.b;
     }
 
-    return { positions: pos, colors: col };
-  }, [count, accent]);
+    const dustGeo = new THREE.BufferGeometry();
+    dustGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    dustGeo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
 
-  useFrame((state) => {
-    if (!points.current) return;
-    const t = state.clock.getElapsedTime();
-    points.current.rotation.y = t * 0.03;
-  });
+    const dustMat = new THREE.PointsMaterial({
+      size: 0.02,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.55,
+      sizeAttenuation: true,
+      depthWrite: false,
+    });
 
-  return (
-    <points ref={points}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={positions.length / 3}
-          array={positions}
-          itemSize={3}
-        />
-        <bufferAttribute
-          attach="attributes-color"
-          count={colors.length / 3}
-          array={colors}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.02}
-        vertexColors
-        transparent
-        opacity={0.55}
-        sizeAttenuation
-      />
-    </points>
-  );
-}
+    const dust = new THREE.Points(dustGeo, dustMat);
+    scene.add(dust);
 
-export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
+    // Resize handling
+    const setSize = () => {
+      const { clientWidth, clientHeight } = canvas;
+      const w = Math.max(1, clientWidth);
+      const h = Math.max(1, clientHeight);
+      renderer.setPixelRatio(Math.min(1.5, window.devicePixelRatio || 1));
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    };
+
+    setSize();
+
+    const ro = new ResizeObserver(() => setSize());
+    ro.observe(canvas);
+
+    let raf = 0;
+    const clock = new THREE.Clock();
+
+    const animate = () => {
+      const t = clock.getElapsedTime();
+      knot.rotation.y = t * 0.2;
+      knot.rotation.x = t * 0.11;
+      knot.position.y = Math.sin(t * 0.9) * 0.15;
+
+      dust.rotation.y = t * 0.03;
+
+      renderer.render(scene, camera);
+      raf = window.requestAnimationFrame(animate);
+    };
+
+    raf = window.requestAnimationFrame(animate);
+
+    return () => {
+      window.cancelAnimationFrame(raf);
+      ro.disconnect();
+      knotGeo.dispose();
+      knotMat.dispose();
+      dustGeo.dispose();
+      dustMat.dispose();
+      renderer.dispose();
+    };
+  }, [accent]);
+
   return (
     <div className={className} aria-hidden>
-      <Canvas
-        dpr={[1, 1.5]}
-        camera={{ position: [0, 0.2, 4.6], fov: 42 }}
-        gl={{ antialias: true, alpha: true }}
-      >
-        <color attach="background" args={["transparent"]} />
-        <ambientLight intensity={0.55} />
-        <directionalLight position={[3, 2, 4]} intensity={0.85} />
-        <pointLight position={[-4, -2, 2]} intensity={0.35} color={accent} />
-
-        <Dust accent={accent} />
-        <FloatingMark accent={accent} />
-      </Canvas>
+      <canvas ref={canvasRef} className="h-full w-full" />
     </div>
   );
 }
