@@ -231,17 +231,79 @@ function Hero() {
                 {profile.location}
               </span>
             </div>
+
+            {/* Move Snapshot into the empty space under the CTA (no photo here) */}
+            <Card className="mt-8 bg-background/80 backdrop-blur">
+              <CardHeader>
+                <CardTitle className="font-display text-xl">Snapshot</CardTitle>
+                <CardDescription>Fast facts + skills.</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div className="rounded-lg border bg-background px-3 py-2">
+                    <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                      Email
+                    </div>
+                    <div className="mt-1 truncate font-medium">{profile.email}</div>
+                  </div>
+                  <a
+                    href={profile.social.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-lg border bg-background px-3 py-2 transition-colors hover:bg-secondary"
+                  >
+                    <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                      LinkedIn
+                    </div>
+                    <div className="mt-1 inline-flex items-center gap-2 font-medium">
+                      View profile <ArrowUpRight className="h-4 w-4" />
+                    </div>
+                  </a>
+                </div>
+
+                <div>
+                  <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                    Skills
+                  </div>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {skills.highlights.slice(0, 6).map((s) => (
+                      <Badge
+                        key={s}
+                        variant="secondary"
+                        className="rounded-full"
+                      >
+                        {s}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                <Separator />
+
+                <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                  {skills.languages.map((l) => (
+                    <span
+                      key={l}
+                      className="inline-flex items-center rounded-full border bg-background px-3 py-1"
+                    >
+                      {l}
+                    </span>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
-          <Card className="bg-background/80 backdrop-blur overflow-hidden md:mt-2">
-            <div className="relative aspect-[6/7]">
+          {/* Portrait card (reduced ~1.5x) */}
+          <Card className="bg-background/80 backdrop-blur overflow-hidden md:mt-2 md:ml-auto md:max-w-[360px]">
+            <div className="relative aspect-[3/4]">
               <img
                 src={profile.photoUrl}
                 alt={profile.name}
                 className="h-full w-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4">
                 <div className="text-xs tracking-[0.22em] uppercase text-white/70">
                   {profile.roleTagline}
@@ -257,71 +319,17 @@ function Hero() {
                     </Button>
                   </a>
                   <a href={profile.social.linkedin} target="_blank" rel="noreferrer">
-                    <Button size="sm" variant="outline" className="rounded-full bg-white/10 text-white border-white/30 hover:bg-white/15">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="rounded-full bg-white/10 text-white border-white/30 hover:bg-white/15"
+                    >
                       LinkedIn <ArrowUpRight className="ml-2 h-4 w-4" />
                     </Button>
                   </a>
                 </div>
               </div>
             </div>
-
-            <CardHeader className="pt-5">
-              <CardTitle className="font-display text-xl">Snapshot</CardTitle>
-              <CardDescription>Fast facts + skills.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                <div className="rounded-lg border bg-background px-3 py-2">
-                  <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-                    Email
-                  </div>
-                  <div className="mt-1 truncate font-medium">{profile.email}</div>
-                </div>
-                <a
-                  href={profile.social.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-lg border bg-background px-3 py-2 transition-colors hover:bg-secondary"
-                >
-                  <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-                    LinkedIn
-                  </div>
-                  <div className="mt-1 inline-flex items-center gap-2 font-medium">
-                    View profile <ArrowUpRight className="h-4 w-4" />
-                  </div>
-                </a>
-              </div>
-
-              <div>
-                <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-                  Skills
-                </div>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {skills.highlights.slice(0, 6).map((s) => (
-                    <Badge
-                      key={s}
-                      variant="secondary"
-                      className="rounded-full"
-                    >
-                      {s}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-
-              <Separator />
-
-              <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-                {skills.languages.map((l) => (
-                  <span
-                    key={l}
-                    className="inline-flex items-center rounded-full border bg-background px-3 py-1"
-                  >
-                    {l}
-                  </span>
-                ))}
-              </div>
-            </CardContent>
           </Card>
         </div>
       </div>
