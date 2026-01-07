@@ -142,11 +142,20 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
     const mouse = new THREE.Vector2(0, 0);
     const targetMouse = new THREE.Vector2(0, 0);
 
+    const raycaster = new THREE.Raycaster();
+    const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+    const mouseWorldTarget = new THREE.Vector3(0, 0, 0);
+    const mouseWorld = new THREE.Vector3(0, 0, 0);
+
     const onPointerMove = (ev) => {
       const rect = canvas.getBoundingClientRect();
       const nx = ((ev.clientX - rect.left) / rect.width) * 2 - 1;
       const ny = -(((ev.clientY - rect.top) / rect.height) * 2 - 1);
       targetMouse.set(nx, ny);
+
+      // Convert cursor to a world point on z=0 plane
+      raycaster.setFromCamera({ x: nx, y: ny }, camera);
+      raycaster.ray.intersectPlane(plane, mouseWorldTarget);
     };
 
     const onPointerLeave = () => {
