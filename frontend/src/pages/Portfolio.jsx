@@ -200,7 +200,7 @@ function Hero() {
       </div>
 
       <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-12 md:pt-20 md:pb-16">
-        <div className="grid gap-10 md:grid-cols-[1.3fr_0.7fr] md:items-end">
+        <div className="grid gap-10 md:grid-cols-[1.12fr_0.88fr] md:items-end">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border bg-background/80 px-3 py-1 text-xs tracking-[0.22em] uppercase text-muted-foreground backdrop-blur">
               <Sparkles className="h-4 w-4" />
@@ -233,10 +233,41 @@ function Hero() {
             </div>
           </div>
 
-          <Card className="bg-background/80 backdrop-blur">
-            <CardHeader>
+          <Card className="bg-background/80 backdrop-blur overflow-hidden">
+            <div className="relative aspect-[4/5]">
+              <img
+                src={profile.photoUrl}
+                alt={profile.name}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4">
+                <div className="text-xs tracking-[0.22em] uppercase text-white/70">
+                  {profile.roleTagline}
+                </div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
+                    <Button
+                      size="sm"
+                      className="rounded-full"
+                      style={{ backgroundColor: "rgba(16,17,20,0.88)", color: "#f7f7f2" }}
+                    >
+                      Resume <ArrowUpRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </a>
+                  <a href={profile.social.linkedin} target="_blank" rel="noreferrer">
+                    <Button size="sm" variant="outline" className="rounded-full bg-white/10 text-white border-white/30 hover:bg-white/15">
+                      LinkedIn <ArrowUpRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <CardHeader className="pt-5">
               <CardTitle className="font-display text-xl">Snapshot</CardTitle>
-              <CardDescription>{profile.roleTagline}</CardDescription>
+              <CardDescription>Fast facts + skills.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-2 text-sm">
