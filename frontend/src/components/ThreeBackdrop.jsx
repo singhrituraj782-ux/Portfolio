@@ -18,6 +18,7 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
       antialias: true,
       alpha: true,
       powerPreference: "high-performance",
+      preserveDrawingBuffer: false,
     });
     renderer.setClearColor(0x000000, 0);
 
