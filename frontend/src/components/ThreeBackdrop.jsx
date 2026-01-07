@@ -62,10 +62,10 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
         uAccent: { value: new THREE.Color(accent) },
         uPixelRatio: { value: 1 },
         uMouse: { value: new THREE.Vector2(0, 0) },
-        uMouseStrength: { value: 0.5 },
+        uMouseStrength: { value: 0.35 },
         uMouseWorld: { value: new THREE.Vector3(0, 0, 0) },
         uMouseMix: { value: 0.0 },
-        uInfluenceRadius: { value: 3.8 },
+        uInfluenceRadius: { value: 5.8 },
       },
       vertexShader: `
         uniform float uTime;
@@ -94,12 +94,13 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
           vec3 pw = p;
           float dMouse = length(pw.xy - uMouseWorld.xy);
           float influence = smoothstep(uInfluenceRadius, 0.0, dMouse);
+          influence = pow(influence, 2.2);
 
-          // Parallax from screen-space cursor
-          vec2 par = uMouse * uMouseStrength * (0.45 + aScale * 0.25);
+          // Parallax from screen-space cursor (kept subtle)
+          vec2 par = uMouse * uMouseStrength * (0.22 + aScale * 0.18);
 
-          // Attraction towards cursor in world space
-          vec2 attract = (uMouseWorld.xy - pw.xy) * (0.35 * influence);
+          // Magnetic pull towards cursor (stronger + closer falloff)
+          vec2 attract = (uMouseWorld.xy - pw.xy) * (1.15 * influence) * (0.55 + aScale * 0.25);
 
           vec2 total = mix(par, par + attract, uMouseMix);
           p.x += total.x;
