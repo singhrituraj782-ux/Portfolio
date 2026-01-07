@@ -215,15 +215,6 @@ function Hero() {
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
-                <Button
-                  className="rounded-full"
-                  style={{ backgroundColor: "#101114", color: "#f7f7f2" }}
-                >
-                  View resume <FileText className="ml-2 h-4 w-4" />
-                </Button>
-              </a>
-
               <Button
                 variant="outline"
                 className="rounded-full"
