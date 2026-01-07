@@ -187,7 +187,7 @@ function SiteHeader() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden -mt-8 md:-mt-10">
       <div className="absolute inset-0">
         <div
           className="absolute inset-0 opacity-[0.55]"
