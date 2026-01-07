@@ -131,11 +131,8 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
 
     const animate = () => {
       const t = clock.getElapsedTime();
-      knot.rotation.y = t * 0.2;
-      knot.rotation.x = t * 0.11;
-      knot.position.y = Math.sin(t * 0.9) * 0.15;
 
-      dust.rotation.y = t * 0.03;
+      fireflyMat.uniforms.uTime.value = t;
 
       renderer.render(scene, camera);
       raf = window.requestAnimationFrame(animate);
@@ -146,10 +143,8 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
     return () => {
       window.cancelAnimationFrame(raf);
       ro.disconnect();
-      knotGeo.dispose();
-      knotMat.dispose();
-      dustGeo.dispose();
-      dustMat.dispose();
+      fireflyGeo.dispose();
+      fireflyMat.dispose();
       renderer.dispose();
     };
   }, [accent]);
