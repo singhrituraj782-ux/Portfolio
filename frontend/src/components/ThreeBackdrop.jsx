@@ -121,6 +121,24 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
     const fireflies = new THREE.Points(fireflyGeo, fireflyMat);
     scene.add(fireflies);
 
+    // Cursor interaction
+    const mouse = new THREE.Vector2(0, 0);
+    const targetMouse = new THREE.Vector2(0, 0);
+
+    const onPointerMove = (ev) => {
+      const rect = canvas.getBoundingClientRect();
+      const nx = ((ev.clientX - rect.left) / rect.width) * 2 - 1;
+      const ny = -(((ev.clientY - rect.top) / rect.height) * 2 - 1);
+      targetMouse.set(nx, ny);
+    };
+
+    const onPointerLeave = () => {
+      targetMouse.set(0, 0);
+    };
+
+    canvas.addEventListener("pointermove", onPointerMove, { passive: true });
+    canvas.addEventListener("pointerleave", onPointerLeave, { passive: true });
+
     // Resize handling
     const setSize = () => {
       const { clientWidth, clientHeight } = canvas;
@@ -145,6 +163,9 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
     const animate = () => {
       const t = clock.getElapsedTime();
 
+      // smooth cursor
+      mouse.lerp(targetMouse, 0.06);
+      fireflyMat.uniforms.uMouse.value.copy(mouse);
       fireflyMat.uniforms.uTime.value = t;
 
       renderer.render(scene, camera);
