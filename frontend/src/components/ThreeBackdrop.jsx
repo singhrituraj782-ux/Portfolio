@@ -23,67 +23,92 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
 
     const scene = new THREE.Scene();
 
-    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 50);
-    camera.position.set(0, 0.15, 4.8);
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 60);
+    camera.position.set(0, 0, 6.2);
 
-    const ambient = new THREE.AmbientLight(0xffffff, 0.7);
-    scene.add(ambient);
+    // Fireflies (green) — additive glowing particles via a tiny shader
+    const flyCount = 650;
+    const positions = new Float32Array(flyCount * 3);
+    const scales = new Float32Array(flyCount);
+    const phases = new Float32Array(flyCount);
 
-    const dir = new THREE.DirectionalLight(0xffffff, 0.9);
-    dir.position.set(3, 2, 4);
-    scene.add(dir);
-
-    const accentLight = new THREE.PointLight(new THREE.Color(accent), 0.4, 12);
-    accentLight.position.set(-4, -2, 2);
-    scene.add(accentLight);
-
-    // Floating mark
-    const knotGeo = new THREE.TorusKnotGeometry(1, 0.32, 220, 24);
-    const knotMat = new THREE.MeshStandardMaterial({
-      color: "#101114",
-      metalness: 0.6,
-      roughness: 0.25,
-      emissive: new THREE.Color(accent),
-      emissiveIntensity: 0.08,
-    });
-    const knot = new THREE.Mesh(knotGeo, knotMat);
-    scene.add(knot);
-
-    // Dust points
-    const dustCount = 900;
-    const positions = new Float32Array(dustCount * 3);
-    const colors = new Float32Array(dustCount * 3);
-    const base = new THREE.Color("#0f1116");
-    const acc = new THREE.Color(accent);
-
-    for (let i = 0; i < dustCount; i += 1) {
+    for (let i = 0; i < flyCount; i += 1) {
       const i3 = i * 3;
-      positions[i3] = (Math.random() - 0.5) * 12;
-      positions[i3 + 1] = (Math.random() - 0.5) * 6;
-      positions[i3 + 2] = (Math.random() - 0.5) * 10;
+      // Wider X, modest Y, depth spread
+      positions[i3] = (Math.random() - 0.5) * 14;
+      positions[i3 + 1] = (Math.random() - 0.5) * 7;
+      positions[i3 + 2] = (Math.random() - 0.5) * 8;
 
-      const mix = 0.35 + Math.random() * 0.25;
-      const c = base.clone().lerp(acc, mix);
-      colors[i3] = c.r;
-      colors[i3 + 1] = c.g;
-      colors[i3 + 2] = c.b;
+      scales[i] = 0.6 + Math.random() * 1.6;
+      phases[i] = Math.random() * Math.PI * 2;
     }
 
-    const dustGeo = new THREE.BufferGeometry();
-    dustGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    dustGeo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+    const fireflyGeo = new THREE.BufferGeometry();
+    fireflyGeo.setAttribute(
+      "position",
+      new THREE.BufferAttribute(positions, 3)
+    );
+    fireflyGeo.setAttribute("aScale", new THREE.BufferAttribute(scales, 1));
+    fireflyGeo.setAttribute("aPhase", new THREE.BufferAttribute(phases, 1));
 
-    const dustMat = new THREE.PointsMaterial({
-      size: 0.02,
-      vertexColors: true,
+    const fireflyMat = new THREE.ShaderMaterial({
       transparent: true,
-      opacity: 0.55,
-      sizeAttenuation: true,
       depthWrite: false,
+      blending: THREE.AdditiveBlending,
+      uniforms: {
+        uTime: { value: 0 },
+        uAccent: { value: new THREE.Color(accent) },
+        uPixelRatio: { value: 1 },
+      },
+      vertexShader: `
+        uniform float uTime;
+        uniform float uPixelRatio;
+        attribute float aScale;
+        attribute float aPhase;
+
+        varying float vTwinkle;
+
+        void main() {
+          vec3 p = position;
+
+          // Small organic drift (kept subtle so it feels like “fireflies”, not snow)
+          float t = uTime * 0.6;
+          p.x += sin(t + aPhase) * 0.25;
+          p.y += cos(t * 1.1 + aPhase) * 0.18;
+          p.z += sin(t * 0.8 + aPhase) * 0.12;
+
+          // Twinkle intensity
+          vTwinkle = 0.35 + 0.65 * sin(uTime * (1.2 + aScale * 0.15) + aPhase);
+
+          vec4 mvPosition = modelViewMatrix * vec4(p, 1.0);
+          gl_Position = projectionMatrix * mvPosition;
+
+          float size = (5.0 + 8.0 * aScale) * uPixelRatio;
+          size *= (1.0 / -mvPosition.z);
+          gl_PointSize = size;
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 uAccent;
+        varying float vTwinkle;
+
+        void main() {
+          // soft circular sprite
+          vec2 uv = gl_PointCoord - 0.5;
+          float d = length(uv);
+          float core = smoothstep(0.5, 0.0, d);
+          float halo = smoothstep(0.5, 0.15, d);
+
+          float alpha = (core * 0.9 + halo * 0.4) * (0.25 + 0.75 * vTwinkle);
+          vec3 col = mix(vec3(1.0), uAccent, 0.85);
+
+          gl_FragColor = vec4(col, alpha);
+        }
+      `,
     });
 
-    const dust = new THREE.Points(dustGeo, dustMat);
-    scene.add(dust);
+    const fireflies = new THREE.Points(fireflyGeo, fireflyMat);
+    scene.add(fireflies);
 
     // Resize handling
     const setSize = () => {
