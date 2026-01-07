@@ -62,7 +62,10 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
         uAccent: { value: new THREE.Color(accent) },
         uPixelRatio: { value: 1 },
         uMouse: { value: new THREE.Vector2(0, 0) },
-        uMouseStrength: { value: 0.38 },
+        uMouseStrength: { value: 0.5 },
+        uMouseWorld: { value: new THREE.Vector3(0, 0, 0) },
+        uMouseMix: { value: 0.0 },
+        uInfluenceRadius: { value: 3.8 },
       },
       vertexShader: `
         uniform float uTime;
@@ -72,6 +75,9 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
 
         uniform vec2 uMouse;
         uniform float uMouseStrength;
+        uniform vec3 uMouseWorld;
+        uniform float uMouseMix;
+        uniform float uInfluenceRadius;
 
         varying float vTwinkle;
 
