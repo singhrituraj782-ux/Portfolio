@@ -115,10 +115,12 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
       const { clientWidth, clientHeight } = canvas;
       const w = Math.max(1, clientWidth);
       const h = Math.max(1, clientHeight);
-      renderer.setPixelRatio(Math.min(1.5, window.devicePixelRatio || 1));
+      const dpr = Math.min(1.6, window.devicePixelRatio || 1);
+      renderer.setPixelRatio(dpr);
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
+      fireflyMat.uniforms.uPixelRatio.value = dpr;
     };
 
     setSize();
