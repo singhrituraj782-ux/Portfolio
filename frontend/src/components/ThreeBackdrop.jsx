@@ -85,7 +85,7 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
           vec4 mvPosition = modelViewMatrix * vec4(p, 1.0);
           gl_Position = projectionMatrix * mvPosition;
 
-          float size = (10.0 + 16.0 * aScale) * uPixelRatio;
+          float size = (14.0 + 22.0 * aScale) * uPixelRatio;
           size *= (1.0 / -mvPosition.z);
           gl_PointSize = size;
         }
