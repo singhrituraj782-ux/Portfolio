@@ -164,8 +164,25 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
       mouseWorldTarget.set(0, 0, 0);
     };
 
-    canvas.addEventListener("pointermove", onPointerMove, { passive: true });
-    canvas.addEventListener("pointerleave", onPointerLeave, { passive: true });
+    // We listen on window so the interaction works even when the cursor is over
+    // hero content (text/buttons) that sits above the canvas.
+    const onWindowPointerMove = (ev) => {
+      const rect = canvas.getBoundingClientRect();
+      const inside =
+        ev.clientX >= rect.left &&
+        ev.clientX <= rect.right &&
+        ev.clientY >= rect.top &&
+        ev.clientY <= rect.bottom;
+
+      if (!inside) {
+        onPointerLeave();
+        return;
+      }
+
+      onPointerMove(ev);
+    };
+
+    window.addEventListener("pointermove", onWindowPointerMove, { passive: true });
 
     // Resize handling
     const setSize = () => {
@@ -210,8 +227,7 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
     return () => {
       window.cancelAnimationFrame(raf);
       ro.disconnect();
-      canvas.removeEventListener("pointermove", onPointerMove);
-      canvas.removeEventListener("pointerleave", onPointerLeave);
+      window.removeEventListener("pointermove", onWindowPointerMove);
       fireflyGeo.dispose();
       fireflyMat.dispose();
       renderer.dispose();
@@ -220,7 +236,7 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
 
   return (
     <div className={className} aria-hidden>
-      <canvas ref={canvasRef} className="h-full w-full" />
+      <canvas ref={canvasRef} className="h-full w-full pointer-events-none" />
     </div>
   );
 }
