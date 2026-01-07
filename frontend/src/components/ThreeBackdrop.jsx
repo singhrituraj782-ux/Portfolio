@@ -160,6 +160,7 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
 
     const onPointerLeave = () => {
       targetMouse.set(0, 0);
+      mouseWorldTarget.set(0, 0, 0);
     };
 
     canvas.addEventListener("pointermove", onPointerMove, { passive: true });
