@@ -191,8 +191,12 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
       const t = clock.getElapsedTime();
 
       // smooth cursor
-      mouse.lerp(targetMouse, 0.06);
+      mouse.lerp(targetMouse, 0.07);
+      mouseWorld.lerp(mouseWorldTarget, 0.07);
+
       fireflyMat.uniforms.uMouse.value.copy(mouse);
+      fireflyMat.uniforms.uMouseWorld.value.copy(mouseWorld);
+      fireflyMat.uniforms.uMouseMix.value = mouse.length() > 0.002 ? 1.0 : 0.0;
       fireflyMat.uniforms.uTime.value = t;
 
       renderer.render(scene, camera);
