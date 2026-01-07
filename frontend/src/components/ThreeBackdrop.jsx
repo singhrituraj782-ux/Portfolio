@@ -27,7 +27,7 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
     camera.position.set(0, 0, 6.2);
 
     // Fireflies (green) — additive glowing particles via a tiny shader
-    const flyCount = 650;
+    const flyCount = 900;
     const positions = new Float32Array(flyCount * 3);
     const scales = new Float32Array(flyCount);
     const phases = new Float32Array(flyCount);
