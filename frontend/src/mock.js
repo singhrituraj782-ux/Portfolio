@@ -11,9 +11,16 @@ export const profile = {
   summary:
     "Master in Management student at emlyon business school with hands-on experience in brand strategy, consumer research, and data-driven marketing decisions. I translate customer insights into clear positioning, messaging, and execution.",
   availability: "Internship (Branding / Brand Strategy) — Starting March",
+
+  // Assets
+  photoUrl:
+    "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/u841goea_ae278b49-c13b-4fa5-84c7-cbbca4ff075e.JPG",
+  resumeUrl:
+    "https://customer-assets.emergentagent.com/job_b9ee181e-369a-4019-80f3-ae9b35c0c8c9/artifacts/xvjziauj_BRANDIN%20CV_%20Rituraj%20Rituraj%202026.pdf",
+
   social: {
     email: "mailto:singhrituraj782@gmail.com",
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/rituraj-rituraj-352bba229/",
     behance: "#",
   },
 };
@@ -22,6 +29,7 @@ export const navigation = [
   { label: "Work", href: "#work" },
   { label: "Case Studies", href: "#case-studies" },
   { label: "Services", href: "#services" },
+  { label: "Resume", href: "#resume" },
   { label: "Blog", href: "#blog" },
   { label: "Visual Diary", href: "#visual-diary" },
   { label: "Motion Design", href: "#motion" },
