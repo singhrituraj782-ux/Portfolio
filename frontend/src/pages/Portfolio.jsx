@@ -246,6 +246,32 @@ function Hero() {
               <CardDescription>{profile.roleTagline}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="relative h-14 w-14 overflow-hidden rounded-2xl border bg-background">
+                  <img
+                    src={profile.photoUrl}
+                    alt={profile.name}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                    Based in
+                  </div>
+                  <div className="mt-1 truncate font-medium">{profile.location}</div>
+                </div>
+                <a
+                  href={profile.social.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-2 text-sm transition-colors hover:bg-secondary"
+                >
+                  <Linkedin className="h-4 w-4" />
+                  <span>LinkedIn</span>
+                </a>
+              </div>
+
               <div className="grid grid-cols-2 gap-2 text-sm">
                 <div className="rounded-lg border bg-background px-3 py-2">
                   <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
@@ -253,12 +279,19 @@ function Hero() {
                   </div>
                   <div className="mt-1 truncate font-medium">{profile.email}</div>
                 </div>
-                <div className="rounded-lg border bg-background px-3 py-2">
+                <a
+                  href={profile.resumeUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-lg border bg-background px-3 py-2 transition-colors hover:bg-secondary"
+                >
                   <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-                    Phone
+                    Resume
                   </div>
-                  <div className="mt-1 truncate font-medium">{profile.phone}</div>
-                </div>
+                  <div className="mt-1 inline-flex items-center gap-2 font-medium">
+                    Open PDF <ArrowUpRight className="h-4 w-4" />
+                  </div>
+                </a>
               </div>
 
               <div>
