@@ -61,6 +61,8 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
         uTime: { value: 0 },
         uAccent: { value: new THREE.Color(accent) },
         uPixelRatio: { value: 1 },
+        uMouse: { value: new THREE.Vector2(0, 0) },
+        uMouseStrength: { value: 0.38 },
       },
       vertexShader: `
         uniform float uTime;
