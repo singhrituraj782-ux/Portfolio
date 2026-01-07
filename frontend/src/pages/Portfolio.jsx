@@ -815,6 +815,90 @@ export default function Portfolio() {
           </div>
         </section>
 
+        <section id="resume" className="border-y bg-secondary/30">
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+            <SectionHeading
+              kicker="Resume"
+              title="A simple, readable snapshot"
+              description="Open the PDF, or skim the essentials here. (PDF is the source of truth.)"
+              icon={FileText}
+            />
+
+            <div className="mt-8 grid gap-4 md:grid-cols-[1.1fr_0.9fr]">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-display">Highlights</CardTitle>
+                  <CardDescription>Quick overview.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4 text-sm text-muted-foreground">
+                  <div className="rounded-xl border bg-background p-4">
+                    <div className="text-xs tracking-[0.22em] uppercase">Profile</div>
+                    <div className="mt-2 text-foreground">{profile.summary}</div>
+                  </div>
+
+                  <div className="rounded-xl border bg-background p-4">
+                    <div className="text-xs tracking-[0.22em] uppercase">Core skills</div>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {skills.highlights.map((s) => (
+                        <Badge key={s} variant="secondary" className="rounded-full">
+                          {s}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
+                      <Button className="rounded-full" style={{ backgroundColor: "#101114", color: "#f7f7f2" }}>
+                        View full resume <ArrowUpRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </a>
+                    <a href={profile.social.linkedin} target="_blank" rel="noreferrer">
+                      <Button variant="outline" className="rounded-full">
+                        LinkedIn <ArrowUpRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-display">Details</CardTitle>
+                  <CardDescription>Kept minimal on purpose.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm text-muted-foreground">
+                  <div className="rounded-xl border bg-background p-4">
+                    <div className="text-xs tracking-[0.22em] uppercase">Education</div>
+                    <div className="mt-2 text-foreground">
+                      EM-Lyon Business School — Masters in Management (2024–Present)
+                    </div>
+                    <div className="mt-1">
+                      Amity University — Bachelor of Journalism and Mass Communication (2019–2022)
+                    </div>
+                  </div>
+
+                  <div className="rounded-xl border bg-background p-4">
+                    <div className="text-xs tracking-[0.22em] uppercase">Tools</div>
+                    <div className="mt-2">Excel, Tableau, Figma, Canva, Adobe Creative Suite</div>
+                  </div>
+
+                  <div className="rounded-xl border bg-background p-4">
+                    <div className="text-xs tracking-[0.22em] uppercase">Languages</div>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {skills.languages.map((l) => (
+                        <span key={l} className="rounded-full border bg-background px-3 py-1 text-xs">
+                          {l}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         <section id="blog" className="border-y bg-secondary/30">
           <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
             <SectionHeading
