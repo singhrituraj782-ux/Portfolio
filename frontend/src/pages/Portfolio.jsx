@@ -199,15 +199,15 @@ function Hero() {
         <ThreeBackdrop className="absolute inset-0" accent={ACCENT} />
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-4 pt-2 pb-10 md:pt-6 md:pb-14">
+      <div className="relative mx-auto max-w-6xl px-4 pt-0 pb-10 md:pt-2 md:pb-14">
         <div className="grid gap-10 md:grid-cols-[1.12fr_0.88fr] md:items-start">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border bg-background/80 px-3 py-1 text-xs tracking-[0.22em] uppercase text-muted-foreground backdrop-blur mt-1 md:mt-2">
+            <div className="inline-flex items-center gap-2 rounded-full border bg-background/80 px-3 py-1 text-xs tracking-[0.22em] uppercase text-muted-foreground backdrop-blur">
               <Sparkles className="h-4 w-4" />
               <span>Brand strategy + marketing analytics</span>
             </div>
 
-            <h1 className="mt-2 font-display text-5xl leading-[0.95] tracking-tight md:text-7xl">
+            <h1 className="mt-1 font-display text-5xl leading-[0.95] tracking-tight md:text-7xl">
               {profile.name}
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
