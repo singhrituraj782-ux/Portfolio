@@ -21,6 +21,7 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
       preserveDrawingBuffer: false,
     });
     renderer.setClearColor(0x000000, 0);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
 
     const scene = new THREE.Scene();
 
