@@ -27,7 +27,7 @@ export const profile = {
 
 export const navigation = [
   { label: "Work", href: "#work" },
-  { label: "Case Studies", href: "#case-studies" },
+  { label: "Projects", href: "#case-studies" },
   { label: "Services", href: "#services" },
   { label: "Resume", href: "#resume" },
   { label: "Blog", href: "#blog" },

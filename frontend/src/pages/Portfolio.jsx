@@ -136,18 +136,8 @@ function SiteHeader() {
           ))}
 
           <a
-            href={profile.resumeUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="ml-1 inline-flex items-center gap-2 rounded-full border bg-background px-3 py-2 text-sm transition-colors hover:bg-secondary"
-          >
-            <FileText className="h-4 w-4" />
-            <span>Resume</span>
-          </a>
-
-          <a
             href={profile.social.email}
-            className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-2 text-sm transition-colors hover:bg-secondary"
+            className="ml-1 inline-flex items-center gap-2 rounded-full border bg-background px-3 py-2 text-sm transition-colors hover:bg-secondary"
           >
             <Mail className="h-4 w-4" />
             <span>Email</span>
@@ -180,15 +170,6 @@ function SiteHeader() {
                   {item.label}
                 </Button>
               ))}
-
-              <a
-                href={profile.resumeUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="col-span-2 inline-flex items-center justify-center rounded-md border bg-background px-3 py-2 text-sm transition-colors hover:bg-secondary"
-              >
-                Resume (PDF)
-              </a>
 
               <a
                 href={profile.social.email}
