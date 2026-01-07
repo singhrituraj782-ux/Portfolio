@@ -177,6 +177,8 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
     return () => {
       window.cancelAnimationFrame(raf);
       ro.disconnect();
+      canvas.removeEventListener("pointermove", onPointerMove);
+      canvas.removeEventListener("pointerleave", onPointerLeave);
       fireflyGeo.dispose();
       fireflyMat.dispose();
       renderer.dispose();
