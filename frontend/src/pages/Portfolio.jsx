@@ -202,7 +202,7 @@ function Hero() {
       <div className="relative mx-auto max-w-6xl px-4 pt-6 pb-12 md:pt-10 md:pb-16">
         <div className="grid gap-10 md:grid-cols-[1.12fr_0.88fr] md:items-start">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border bg-background/80 px-3 py-1 text-xs tracking-[0.22em] uppercase text-muted-foreground backdrop-blur mt-6 md:mt-8">
+            <div className="inline-flex items-center gap-2 rounded-full border bg-background/80 px-3 py-1 text-xs tracking-[0.22em] uppercase text-muted-foreground backdrop-blur mt-3 md:mt-4">
               <Sparkles className="h-4 w-4" />
               <span>Brand strategy + marketing analytics</span>
             </div>
