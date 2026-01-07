@@ -70,6 +70,9 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
         attribute float aScale;
         attribute float aPhase;
 
+        uniform vec2 uMouse;
+        uniform float uMouseStrength;
+
         varying float vTwinkle;
 
         void main() {
@@ -80,6 +83,10 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
           p.x += sin(t + aPhase) * 0.25;
           p.y += cos(t * 1.1 + aPhase) * 0.18;
           p.z += sin(t * 0.8 + aPhase) * 0.12;
+
+          // Cursor interaction (subtle parallax + attraction)
+          p.x += uMouse.x * uMouseStrength * (0.35 + aScale * 0.22);
+          p.y += uMouse.y * uMouseStrength * (0.35 + aScale * 0.22);
 
           // Twinkle intensity (stronger)
           vTwinkle = 0.45 + 0.85 * sin(uTime * (1.35 + aScale * 0.18) + aPhase);
