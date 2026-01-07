@@ -90,9 +90,20 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
           p.y += cos(t * 1.1 + aPhase) * 0.18;
           p.z += sin(t * 0.8 + aPhase) * 0.12;
 
-          // Cursor interaction (subtle parallax + attraction)
-          p.x += uMouse.x * uMouseStrength * (0.35 + aScale * 0.22);
-          p.y += uMouse.y * uMouseStrength * (0.35 + aScale * 0.22);
+          // Cursor interaction (parallax + mild attraction)
+          vec3 pw = p;
+          float dMouse = length(pw.xy - uMouseWorld.xy);
+          float influence = smoothstep(uInfluenceRadius, 0.0, dMouse);
+
+          // Parallax from screen-space cursor
+          vec2 par = uMouse * uMouseStrength * (0.45 + aScale * 0.25);
+
+          // Attraction towards cursor in world space
+          vec2 attract = (uMouseWorld.xy - pw.xy) * (0.35 * influence);
+
+          vec2 total = mix(par, par + attract, uMouseMix);
+          p.x += total.x;
+          p.y += total.y;
 
           // Twinkle intensity (stronger)
           vTwinkle = 0.45 + 0.85 * sin(uTime * (1.35 + aScale * 0.18) + aPhase);
