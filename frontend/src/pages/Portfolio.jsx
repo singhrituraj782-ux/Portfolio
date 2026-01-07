@@ -199,8 +199,8 @@ function Hero() {
         <ThreeBackdrop className="absolute inset-0" accent={ACCENT} />
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-12 md:pt-20 md:pb-16">
-        <div className="grid gap-10 md:grid-cols-[1.12fr_0.88fr] md:items-end">
+      <div className="relative mx-auto max-w-6xl px-4 pt-8 pb-12 md:pt-12 md:pb-16">
+        <div className="grid gap-10 md:grid-cols-[1.12fr_0.88fr] md:items-start">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border bg-background/80 px-3 py-1 text-xs tracking-[0.22em] uppercase text-muted-foreground backdrop-blur">
               <Sparkles className="h-4 w-4" />
