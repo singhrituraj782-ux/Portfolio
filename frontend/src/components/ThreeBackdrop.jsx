@@ -99,7 +99,7 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
           float core = smoothstep(0.5, 0.0, d);
           float halo = smoothstep(0.5, 0.15, d);
 
-          float alpha = (core * 0.9 + halo * 0.4) * (0.25 + 0.75 * vTwinkle);
+          float alpha = (core * 1.05 + halo * 0.7) * (0.35 + 0.9 * vTwinkle);
           vec3 col = mix(vec3(1.0), uAccent, 0.85);
 
           gl_FragColor = vec4(col, alpha);
