@@ -207,7 +207,7 @@ function Hero() {
               <span>Brand strategy + marketing analytics</span>
             </div>
 
-            <h1 className="mt-4 font-display text-5xl leading-[0.95] tracking-tight md:text-7xl">
+            <h1 className="mt-3 font-display text-5xl leading-[0.95] tracking-tight md:text-7xl">
               {profile.name}
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
