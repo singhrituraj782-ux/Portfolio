@@ -197,6 +197,7 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
 
       fireflyMat.uniforms.uMouse.value.copy(mouse);
       fireflyMat.uniforms.uMouseWorld.value.copy(mouseWorld);
+      // Only enable attraction when cursor is active
       fireflyMat.uniforms.uMouseMix.value = mouse.length() > 0.002 ? 1.0 : 0.0;
       fireflyMat.uniforms.uTime.value = t;
 
