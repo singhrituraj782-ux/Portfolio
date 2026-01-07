@@ -26,7 +26,7 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
     const scene = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 60);
-    camera.position.set(0, 0, 6.2);
+    camera.position.set(0, 0, 7.2);
 
     // Fireflies (green) — additive glowing particles via a tiny shader
     const flyCount = 900;
