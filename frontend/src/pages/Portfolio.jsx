@@ -234,7 +234,7 @@ function Hero() {
           </div>
 
           <Card className="bg-background/80 backdrop-blur overflow-hidden md:mt-2">
-            <div className="relative aspect-[4/5]">
+            <div className="relative aspect-[6/7]">
               <img
                 src={profile.photoUrl}
                 alt={profile.name}
