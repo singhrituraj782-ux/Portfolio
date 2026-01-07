@@ -180,6 +180,16 @@ function SiteHeader() {
                   {item.label}
                 </Button>
               ))}
+
+              <a
+                href={profile.resumeUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="col-span-2 inline-flex items-center justify-center rounded-md border bg-background px-3 py-2 text-sm transition-colors hover:bg-secondary"
+              >
+                Resume (PDF)
+              </a>
+
               <a
                 href={profile.social.email}
                 className="col-span-2 inline-flex items-center justify-center rounded-md border bg-background px-3 py-2 text-sm transition-colors hover:bg-secondary"
