@@ -77,8 +77,8 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
           p.y += cos(t * 1.1 + aPhase) * 0.18;
           p.z += sin(t * 0.8 + aPhase) * 0.12;
 
-          // Twinkle intensity
-          vTwinkle = 0.35 + 0.65 * sin(uTime * (1.2 + aScale * 0.15) + aPhase);
+          // Twinkle intensity (stronger)
+          vTwinkle = 0.45 + 0.85 * sin(uTime * (1.35 + aScale * 0.18) + aPhase);
 
           vec4 mvPosition = modelViewMatrix * vec4(p, 1.0);
           gl_Position = projectionMatrix * mvPosition;
