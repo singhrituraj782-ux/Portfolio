@@ -187,7 +187,7 @@ function SiteHeader() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden -mt-8 md:-mt-10">
+    <section className="relative overflow-hidden">
       <div className="absolute inset-0">
         <div
           className="absolute inset-0 opacity-[0.55]"
@@ -199,7 +199,7 @@ function Hero() {
         <ThreeBackdrop className="absolute inset-0" accent={ACCENT} />
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-4 pt-0 pb-10 md:pt-2 md:pb-14">
+      <div className="relative mx-auto max-w-6xl px-4 pt-8 pb-10 md:pt-10 md:pb-14">
         <div className="grid gap-10 md:grid-cols-[1.12fr_0.88fr] md:items-start">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border bg-background/80 px-3 py-1 text-xs tracking-[0.22em] uppercase text-muted-foreground backdrop-blur">
