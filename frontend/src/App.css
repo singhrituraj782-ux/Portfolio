@@ -24,3 +24,35 @@
     opacity: 0.14;
     mix-blend-mode: screen;
 }
+
+/* Dark mode: subtle aurora wash (kept under 20% complexity by using a light overlay) */
+.dark body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        radial-gradient(900px 520px at 18% 15%, rgba(168, 227, 111, 0.10), transparent 60%),
+        radial-gradient(800px 520px at 82% 22%, rgba(230, 188, 132, 0.10), transparent 60%),
+        radial-gradient(700px 420px at 55% 85%, rgba(120, 160, 220, 0.06), transparent 60%);
+    opacity: 0.9;
+}
+
+body {
+    position: relative;
+}
+
+.App {
+    position: relative;
+    z-index: 1;
+}
+
+.theme-toggle {
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.dark .theme-toggle {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.18);
+}
