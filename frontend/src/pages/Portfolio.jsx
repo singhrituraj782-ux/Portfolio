@@ -897,7 +897,7 @@ export default function Portfolio() {
         >
           <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
             <SectionHeading
-              kicker="Case studies"
+              kicker="Selected work"
               title="From insight to execution"
               description="Clear problem framing, lightweight research, and decisions you can trace.
               "
