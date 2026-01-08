@@ -1024,35 +1024,102 @@ export default function Portfolio() {
         </section>
       </main>
 
-      <footer className="border-t">
-        <div className="mx-auto max-w-6xl px-4 py-10">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="space-y-1">
-              <div className="font-display text-lg">{profile.name}</div>
-              <div className="text-sm text-muted-foreground">
-                {profile.roleTagline}
+      <footer className="border-t bg-background/60 backdrop-blur">
+        <div className="mx-auto max-w-6xl px-4 py-12">
+          {/* Big name footer treatment (reference-inspired) */}
+          <div className="relative overflow-hidden rounded-2xl border bg-card/60 p-8 md:p-10">
+            <div
+              className="absolute inset-0 opacity-70"
+              style={{
+                background:
+                  "radial-gradient(900px 520px at 12% 20%, rgba(168,227,111,0.12), transparent 60%), radial-gradient(900px 520px at 85% 15%, rgba(230,188,132,0.12), transparent 60%)",
+              }}
+            />
+            <div className="relative">
+              <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                    Portfolio
+                  </div>
+                  <div className="mt-3 font-display text-5xl leading-[0.85] tracking-tight md:text-7xl">
+                    Rituraj
+                    <br />
+                    Rituraj
+                  </div>
+                  <div className="mt-4 max-w-xl text-sm text-muted-foreground md:text-base">
+                    {profile.roleTagline}
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  <a
+                    href={profile.resumeUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center rounded-full border bg-background/50 px-4 py-2 text-sm transition-colors hover:bg-secondary"
+                  >
+                    Resume <ArrowUpRight className="ml-2 h-4 w-4" />
+                  </a>
+                  <a
+                    href={profile.social.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center rounded-full border bg-background/50 px-4 py-2 text-sm transition-colors hover:bg-secondary"
+                  >
+                    LinkedIn <ArrowUpRight className="ml-2 h-4 w-4" />
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                    className="inline-flex items-center justify-center rounded-full border bg-background/50 px-4 py-2 text-sm transition-colors hover:bg-secondary"
+                  >
+                    Back to top <ArrowUpRight className="ml-2 h-4 w-4 rotate-[-45deg]" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="mt-10 grid gap-6 border-t pt-6 md:grid-cols-3">
+                <div className="space-y-2">
+                  <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                    Contact
+                  </div>
+                  <a className="text-sm hover:underline" href={profile.social.email}>
+                    {profile.email}
+                  </a>
+                  <div className="text-sm text-muted-foreground">{profile.location}</div>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                    Explore
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {navigation.slice(0, 6).map((n) => (
+                      <button
+                        key={n.href}
+                        type="button"
+                        onClick={() => {
+                          const el = document.querySelector(n.href);
+                          if (el) el.scrollIntoView({ behavior: "smooth" });
+                        }}
+                        className="rounded-full border bg-background/50 px-3 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground hover:bg-secondary"
+                      >
+                        {n.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                    Note
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    Built as a portfolio MVP. Work images are placeholders for now.
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="flex flex-wrap items-center gap-2">
-              <a
-                href={profile.social.email}
-                className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-2 text-sm transition-colors hover:bg-secondary"
-              >
-                <Mail className="h-4 w-4" />
-                Email
-              </a>
-              <button
-                type="button"
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-2 text-sm transition-colors hover:bg-secondary"
-              >
-                <ArrowUpRight className="h-4 w-4 rotate-[-45deg]" />
-                Back to top
-              </button>
-            </div>
-          </div>
-          <div className="mt-6 text-xs text-muted-foreground">
-            Built as a portfolio MVP. Work images are placeholders for now.
           </div>
         </div>
       </footer>
