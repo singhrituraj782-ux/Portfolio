@@ -236,7 +236,7 @@ export default function Product3DPreview({ imageUrl, accent = "#A8E36F" }) {
       <canvas ref={canvasRef} className="h-[56vh] w-full" />
       <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-3">
         <div className="rounded-full border bg-background/30 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
-          Drag or move cursor
+          Drag / move / scroll to zoom
         </div>
         <div
           className="h-2 w-2 rounded-full"
