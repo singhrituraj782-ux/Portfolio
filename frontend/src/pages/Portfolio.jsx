@@ -899,8 +899,7 @@ export default function Portfolio() {
             <SectionHeading
               kicker="Selected work"
               title="From insight to execution"
-              description="Clear problem framing, lightweight research, and decisions you can trace.
-              "
+              description="Clear problem framing, lightweight research, and decisions you can trace."
               icon={Sparkles}
             />
 
