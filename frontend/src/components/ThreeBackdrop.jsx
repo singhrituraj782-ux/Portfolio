@@ -128,8 +128,9 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
           float core = smoothstep(0.5, 0.0, d);
           float halo = smoothstep(0.5, 0.15, d);
 
-          float alpha = (core * 1.15 + halo * 0.85) * (0.45 + 1.0 * vTwinkle);
-          vec3 col = mix(vec3(1.0), uAccent, 0.92);
+          // Softer glow (still readable, less neon)
+          float alpha = (core * 1.0 + halo * 0.65) * (0.28 + 0.75 * vTwinkle);
+          vec3 col = mix(uAccent, vec3(1.0), 0.16);
 
           gl_FragColor = vec4(col, alpha);
         }

@@ -53,7 +53,7 @@ import {
 import ThreeBackdrop from "@/components/ThreeBackdrop";
 
 const ACCENT = "#7AAE5E"; // subtle sage for UI accents
-const FIRE_ACCENT = "#b7ff5a"; // brighter for fireflies
+const FIRE_ACCENT = "#A8E36F"; // softer chartreuse for fireflies (still visible, less neon)
 
 function useFilteredWork(query) {
   return useMemo(() => {
@@ -194,7 +194,7 @@ function Hero() {
           className="absolute inset-0 opacity-[0.55]"
           style={{
             background:
-              "radial-gradient(900px 420px at 20% 20%, rgba(122,174,94,0.18), transparent 60%), radial-gradient(600px 320px at 82% 8%, rgba(0,0,0,0.10), transparent 60%)",
+              "radial-gradient(900px 420px at 18% 18%, rgba(230,188,132,0.14), transparent 62%), radial-gradient(900px 520px at 26% 30%, rgba(122,174,94,0.14), transparent 62%), radial-gradient(650px 320px at 82% 10%, rgba(0,0,0,0.08), transparent 60%)",
           }}
         />
         <ThreeBackdrop className="absolute inset-0" accent={FIRE_ACCENT} />
