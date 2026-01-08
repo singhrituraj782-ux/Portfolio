@@ -57,6 +57,7 @@ import {
 
 import ThreeBackdrop from "@/components/ThreeBackdrop";
 import ThemeToggle from "@/components/ThemeToggle";
+import Product3DPreview from "@/components/Product3DPreview";
 
 const ACCENT = "#7AAE5E"; // subtle sage for UI accents
 const FIRE_ACCENT = "#A8E36F"; // softer chartreuse for fireflies (still visible, less neon)
