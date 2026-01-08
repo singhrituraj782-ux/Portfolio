@@ -44,6 +44,7 @@ import {
   FileText,
   Film,
   Linkedin,
+  Mail,
   MapPin,
   Search,
   Sparkles,
