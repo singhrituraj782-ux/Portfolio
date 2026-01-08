@@ -546,54 +546,81 @@ function ProductStudiesGrid() {
                 <DialogDescription>{item.caption}</DialogDescription>
               </DialogHeader>
 
-              <div className="mt-4 grid gap-4 md:grid-cols-[1.35fr_0.65fr]">
-                <div className="overflow-hidden rounded-2xl border bg-card/60">
-                  <img
-                    src={item.url}
-                    alt={item.title}
-                    className="h-[60vh] w-full object-contain bg-black/30"
-                  />
-                </div>
+              <div className="mt-4">
+                <Tabs defaultValue="preview" className="w-full">
+                  <TabsList className="h-auto flex-wrap justify-start gap-2 bg-transparent p-0">
+                    <TabsTrigger
+                      value="details"
+                      className="rounded-full border bg-background/60 px-4 py-2 data-[state=active]:bg-foreground data-[state=active]:text-background"
+                    >
+                      Product details
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="preview"
+                      className="rounded-full border bg-background/60 px-4 py-2 data-[state=active]:bg-foreground data-[state=active]:text-background"
+                    >
+                      3D preview
+                    </TabsTrigger>
+                  </TabsList>
 
-                <Card className="bg-secondary/20">
-                  <CardHeader>
-                    <CardTitle className="font-display">Shot notes</CardTitle>
-                    <CardDescription>Commercial-style breakdown</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-3 text-sm">
-                    <div className="flex items-center justify-between gap-4 rounded-xl border bg-background/40 px-4 py-3">
-                      <span className="text-muted-foreground">Client</span>
-                      <span className="font-medium text-foreground">{item.meta?.client || "—"}</span>
-                    </div>
-                    <div className="flex items-center justify-between gap-4 rounded-xl border bg-background/40 px-4 py-3">
-                      <span className="text-muted-foreground">Format</span>
-                      <span className="font-medium text-foreground">{item.meta?.format || "—"}</span>
-                    </div>
-                    <div className="flex items-center justify-between gap-4 rounded-xl border bg-background/40 px-4 py-3">
-                      <span className="text-muted-foreground">Lighting</span>
-                      <span className="font-medium text-foreground">{item.meta?.lighting || "—"}</span>
-                    </div>
-                    <div className="flex items-center justify-between gap-4 rounded-xl border bg-background/40 px-4 py-3">
-                      <span className="text-muted-foreground">Focus</span>
-                      <span className="font-medium text-foreground">{item.meta?.focus || "—"}</span>
-                    </div>
-
-                    <div className="rounded-xl border bg-background/40 px-4 py-3">
-                      <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">Deliverables</div>
-                      <div className="mt-2 flex flex-wrap gap-2">
-                        {(item.meta?.deliverables || []).map((d) => (
-                          <Badge key={d} variant="secondary" className="rounded-full">
-                            {d}
-                          </Badge>
-                        ))}
+                  <TabsContent value="details" className="mt-4">
+                    <div className="grid gap-4 md:grid-cols-[1.25fr_0.75fr]">
+                      <div className="overflow-hidden rounded-2xl border bg-card/60">
+                        <img
+                          src={item.url}
+                          alt={item.title}
+                          className="h-[60vh] w-full object-contain bg-black/30"
+                        />
                       </div>
-                    </div>
 
-                    <div className="rounded-xl border bg-background/40 px-4 py-3 text-muted-foreground">
-                      Presented like a commercial asset: clear framing, intentional lighting, and crops that can ship into a campaign.
+                      <Card className="bg-secondary/20">
+                        <CardHeader>
+                          <CardTitle className="font-display">Product details</CardTitle>
+                          <CardDescription>Commercial-style breakdown</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-3 text-sm">
+                          <div className="flex items-center justify-between gap-4 rounded-xl border bg-background/40 px-4 py-3">
+                            <span className="text-muted-foreground">Client</span>
+                            <span className="font-medium text-foreground">{item.meta?.client || "—"}</span>
+                          </div>
+                          <div className="flex items-center justify-between gap-4 rounded-xl border bg-background/40 px-4 py-3">
+                            <span className="text-muted-foreground">Format</span>
+                            <span className="font-medium text-foreground">{item.meta?.format || "—"}</span>
+                          </div>
+                          <div className="flex items-center justify-between gap-4 rounded-xl border bg-background/40 px-4 py-3">
+                            <span className="text-muted-foreground">Lighting</span>
+                            <span className="font-medium text-foreground">{item.meta?.lighting || "—"}</span>
+                          </div>
+                          <div className="flex items-center justify-between gap-4 rounded-xl border bg-background/40 px-4 py-3">
+                            <span className="text-muted-foreground">Focus</span>
+                            <span className="font-medium text-foreground">{item.meta?.focus || "—"}</span>
+                          </div>
+
+                          <div className="rounded-xl border bg-background/40 px-4 py-3">
+                            <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                              Deliverables
+                            </div>
+                            <div className="mt-2 flex flex-wrap gap-2">
+                              {(item.meta?.deliverables || []).map((d) => (
+                                <Badge key={d} variant="secondary" className="rounded-full">
+                                  {d}
+                                </Badge>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="rounded-xl border bg-background/40 px-4 py-3 text-muted-foreground">
+                            Presented like a commercial asset: clear framing, intentional lighting, and crops that can ship into a campaign.
+                          </div>
+                        </CardContent>
+                      </Card>
                     </div>
-                  </CardContent>
-                </Card>
+                  </TabsContent>
+
+                  <TabsContent value="preview" className="mt-4">
+                    <Product3DPreview imageUrl={item.url} accent={FIRE_ACCENT} />
+                  </TabsContent>
+                </Tabs>
               </div>
             </DialogContent>
           </Dialog>
