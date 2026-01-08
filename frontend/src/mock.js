@@ -547,6 +547,7 @@ export const productStudies = [
     caption: "Layered ingredients and center framing — built for attention.",
     url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/uii24vmv_Haldiram%20Raj%20kachori%202.png",
     meta: {
+      client: "Haldiram's (spec)" ,
       brand: "Food photography",
       format: "Product close-up",
       lighting: "Balanced",
