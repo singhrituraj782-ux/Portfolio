@@ -201,6 +201,10 @@ export default function Product3DPreview({ imageUrl, accent = "#A8E36F" }) {
       group.rotation.y = rot.y;
       group.position.y = Math.sin(t * 0.9) * 0.02;
 
+      // Smooth zoom
+      zoom = THREE.MathUtils.lerp(zoom, zoomTarget, 0.09);
+      camera.position.z = zoom;
+
       renderer.render(scene, camera);
       raf = window.requestAnimationFrame(animate);
     };
