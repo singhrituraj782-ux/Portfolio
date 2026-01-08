@@ -30,7 +30,7 @@ export default function ThemeToggle({ variant = "ghost", className = "" }) {
       type="button"
       variant={variant}
       onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
-      className={className}
+      className={`theme-toggle ${className}`}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
