@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Portfolio from "@/pages/Portfolio";
 import WorkDetail from "@/pages/WorkDetail";
 import BlogDetail from "@/pages/BlogDetail";
+import Projects from "@/pages/Projects";
+import ProjectDetail from "@/pages/ProjectDetail";
 import { Toaster } from "@/components/ui/toaster";
 
 function App() {
