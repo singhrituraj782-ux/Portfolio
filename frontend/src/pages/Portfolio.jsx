@@ -1004,10 +1004,14 @@ export default function Portfolio() {
                   <div className="rounded-xl border bg-background p-4">
                     <div className="text-xs tracking-[0.22em] uppercase">Core skills</div>
                     <div className="mt-2 flex flex-wrap gap-2">
-                      {skills.highlights.map((s) => (
-                        <Badge key={s} variant="secondary" className="rounded-full">
-                          {s}
-                        </Badge>
+                      {Object.entries(skills.groups).map(([group, items]) => (
+                        <React.Fragment key={group}>
+                          {items.map((s) => (
+                            <Badge key={`${group}:${s}`} variant="secondary" className="rounded-full">
+                              {s}
+                            </Badge>
+                          ))}
+                        </React.Fragment>
                       ))}
                     </div>
                   </div>
