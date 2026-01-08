@@ -1160,8 +1160,7 @@ export default function Portfolio() {
             <SectionHeading
               kicker="Product studies"
               title="Product storyboards"
-              description="Your product photography, styled like brand assets and treated with the same care as a campaign.
-              "
+              description="Your product photography, styled like brand assets and treated with the same care as a campaign."
               icon={Camera}
             />
             <div className="mt-8">
