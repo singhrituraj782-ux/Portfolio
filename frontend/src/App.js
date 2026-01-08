@@ -17,6 +17,8 @@ function App() {
           <Route path="/" element={<Portfolio />} />
           <Route path="/work/:id" element={<WorkDetail />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:id" element={<ProjectDetail />} />
         </Routes>
       </BrowserRouter>
       <Toaster />
