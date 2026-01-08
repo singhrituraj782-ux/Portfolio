@@ -136,13 +136,10 @@ function SiteHeader() {
             </button>
           ))}
 
-          <a
-            href={profile.social.email}
-            className="ml-1 inline-flex items-center gap-2 rounded-full border bg-background px-3 py-2 text-sm transition-colors hover:bg-secondary"
-          >
-            <Mail className="h-4 w-4" />
-            <span>Email</span>
-          </a>
+          <ThemeToggle
+            variant="outline"
+            className="ml-1 rounded-full bg-background/70 backdrop-blur"
+          />
         </nav>
 
         <div className="md:hidden">
