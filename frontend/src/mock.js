@@ -342,23 +342,6 @@ export const projects = [
   },
 ];
 
-      "Excel + Tableau KPI tracking",
-      "Python/R basics for analysis",
-    ],
-    "Sales & Business": [
-      "Lead qualification & pipeline discipline",
-      "Negotiation and client communication",
-      "Business decision-making under pressure",
-    ],
-    "Creative & Communication": [
-      "Storytelling & content strategy",
-      "Visual communication (Figma/Canva/Adobe)",
-      "Clear writing and structured narratives",
-    ],
-  },
-  languages: ["English (Fluent)", "Hindi (Native)", "French (A1)"],
-};
-
 export const workExperience = [
   {
     id: "inside-sales",
