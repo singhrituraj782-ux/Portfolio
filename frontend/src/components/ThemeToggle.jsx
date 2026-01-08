@@ -8,9 +8,8 @@ function getInitialTheme() {
   const saved = window.localStorage.getItem("theme");
   if (saved === "dark" || saved === "light") return saved;
 
-  const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)")
-    ?.matches;
-  return prefersDark ? "dark" : "light";
+  // Default to dark for this portfolio.
+  return "dark";
 }
 
 export default function ThemeToggle({ variant = "ghost", className = "" }) {
