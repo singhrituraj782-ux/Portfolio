@@ -10,6 +10,9 @@ import {
   skills,
   visualDiary,
   motionWorks,
+  workExperience,
+  howIThink,
+  education,
   work,
 } from "@/mock";
 
