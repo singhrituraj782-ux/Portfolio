@@ -382,7 +382,7 @@ export const workExperience = [
   },
 ];
 
-export const projects = export const projects = [
+export const work = [
   {
     id: "cowlor",
     title: "Cowlor",
