@@ -143,6 +143,7 @@ export default function Product3DPreview({ imageUrl, accent = "#A8E36F" }) {
 
       if (!inside) {
         targetRot.set(0, 0);
+        zoomTarget = defaultZ;
         return;
       }
 
