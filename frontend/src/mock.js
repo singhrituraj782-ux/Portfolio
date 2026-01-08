@@ -85,14 +85,6 @@ export const skills = {
   languages: ["English (Fluent)", "Hindi (Native)", "French (A1)"],
 };
 
-export const howIThink = {
-  title: "How I think",
-  paragraphs: [
-    "I start with the problem, not the output. Before I optimize a campaign or build a model, I ask: what decision are we trying to make — and what would ‘better’ actually change?",
-    "I like using data to validate direction, not to decorate it. Even lightweight analysis can reduce uncertainty: a simple regression, a clear KPI structure, or a controlled comparison can make decisions easier to defend.",
-    "Creativity is how I communicate strategy. A good insight is useless if it can’t travel — so I focus on framing, narrative, and clarity that helps teams execute.",
-  ],
-};
 
 export const howIThink = {
   title: "How I think",
