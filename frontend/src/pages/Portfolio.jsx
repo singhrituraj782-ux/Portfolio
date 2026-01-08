@@ -835,7 +835,7 @@ export default function Portfolio() {
           />
 
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {howIThink.paragraphs.map((p, idx) => (
+            {(howIThink?.paragraphs || []).map((p, idx) => (
               <Card key={idx} className="bg-card/60">
                 <CardContent className="p-6 text-sm leading-relaxed text-muted-foreground">
                   {p}
