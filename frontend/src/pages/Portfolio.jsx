@@ -890,44 +890,6 @@ export default function Portfolio() {
           </div>
         </section>
 
-          <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="relative max-w-md flex-1">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search work (pricing, research, messaging…)"
-                className="pl-9"
-              />
-            </div>
-            <div className="text-sm text-muted-foreground">
-              Showing <span className="font-medium text-foreground">{filtered.length}</span> items
-            </div>
-          </div>
-
-          <Tabs defaultValue="All" className="mt-6">
-            <TabsList className="flex h-auto flex-wrap justify-start gap-2 bg-transparent p-0">
-              {Object.keys(byCategory).map((key) => (
-                <TabsTrigger
-                  key={key}
-                  value={key}
-                  className="rounded-full border bg-background px-4 py-2 data-[state=active]:bg-foreground data-[state=active]:text-background"
-                >
-                  {key}
-                  <span className="ml-2 text-xs opacity-70">
-                    {byCategory[key].length}
-                  </span>
-                </TabsTrigger>
-              ))}
-            </TabsList>
-
-            {Object.entries(byCategory).map(([key, items]) => (
-              <TabsContent key={key} value={key} className="mt-6">
-                <WorkGrid items={items} />
-              </TabsContent>
-            ))}
-          </Tabs>
-        </section>
 
         <section
           id="case-studies"
