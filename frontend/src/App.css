@@ -19,3 +19,8 @@
     opacity: 0.08;
     mix-blend-mode: multiply;
 }
+
+.dark .portfolio-grain::after {
+    opacity: 0.14;
+    mix-blend-mode: screen;
+}
