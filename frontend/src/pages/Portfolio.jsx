@@ -806,7 +806,7 @@ export default function Portfolio() {
             />
 
             <div className="mt-8 grid gap-4 md:grid-cols-2">
-              {workExperience.map((r) => (
+              {(workExperience || []).map((r) => (
                 <Card key={r.id} className="bg-card/60">
                   <CardHeader>
                     <CardTitle className="font-display text-2xl">{r.title}</CardTitle>
