@@ -521,6 +521,7 @@ export const productStudies = [
     caption: "Comfort food, framed like a hero product shot.",
     url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/5o3el7mi_Chole%20BHature.png",
     meta: {
+      client: "Personal (spec)",
       brand: "Food photography",
       format: "Menu hero",
       lighting: "Warm, high-contrast",
