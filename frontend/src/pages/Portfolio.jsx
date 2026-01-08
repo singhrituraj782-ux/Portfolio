@@ -493,7 +493,7 @@ function VisualDiaryGrid() {
 function MotionGrid() {
   return (
     <div className="grid gap-4 md:grid-cols-2">
-      {motionWorks.map((m) => (
+      {(motionWorks || []).map((m) => (
         <Card key={m.id} className="overflow-hidden">
           <div className="relative aspect-[16/9] overflow-hidden">
             <img
