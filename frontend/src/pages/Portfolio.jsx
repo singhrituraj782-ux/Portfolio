@@ -728,11 +728,167 @@ export default function Portfolio() {
 
         <section id="work" className="mx-auto max-w-6xl px-4 py-14 md:py-20">
           <SectionHeading
-            kicker="Selected work"
-            title="Projects that start with a question"
-            description="A curated set of strategy and research-led projects. Search by theme, then open a case study for the full story."
+            kicker="What I bring"
+            title="Clarity, creativity, and a bias for outcomes"
+            description="I combine insight, analysis, and storytelling to help teams make better decisions — and execute them with confidence."
             icon={Briefcase}
           />
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <Card className="bg-card/60">
+              <CardHeader>
+                <CardTitle className="font-display text-2xl">Problem-first</CardTitle>
+                <CardDescription>
+                  I start with the decision: what are we trying to choose and what changes if we’re right?
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                Strong strategy is a filter. It reduces noise, creates alignment, and keeps execution focused.
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/60">
+              <CardHeader>
+                <CardTitle className="font-display text-2xl">Data to validate</CardTitle>
+                <CardDescription>
+                  Enough analysis to reduce uncertainty — without turning work into dashboards for their own sake.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                I use practical measurement, simple models, and structured KPIs to support confident decisions.
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/60">
+              <CardHeader>
+                <CardTitle className="font-display text-2xl">Storytelling to move teams</CardTitle>
+                <CardDescription>
+                  Insights only matter when they travel: clear narrative, crisp messaging, and execution-ready outputs.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                My background in communication helps strategy land across stakeholders.
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-10 rounded-2xl border bg-secondary/25 p-5 md:p-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div className="text-sm text-muted-foreground">
+                Want the full case-study view?
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Link to="/projects">
+                  <Button className="rounded-full">
+                    Browse projects <ArrowUpRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+                <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
+                  <Button variant="outline" className="rounded-full">
+                    Resume <ArrowUpRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="work-experience" className="border-y bg-secondary/20">
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+            <SectionHeading
+              kicker="Work experience"
+              title="Work Experience"
+              description="Narratives from roles where decisions, communication, and outcomes mattered."
+              icon={Wand2}
+            />
+
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {workExperience.map((r) => (
+                <Card key={r.id} className="bg-card/60">
+                  <CardHeader>
+                    <CardTitle className="font-display text-2xl">{r.title}</CardTitle>
+                    <CardDescription>
+                      {r.location} • {r.duration}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+                    <p>{r.narrative}</p>
+                    <div className="rounded-xl border bg-background/40 p-4 text-foreground">
+                      {r.impact}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="how-i-think" className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+          <SectionHeading
+            kicker="How I think"
+            title={howIThink.title}
+            description="The principles I return to when the work gets complex."
+            icon={Wand2}
+          />
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {howIThink.paragraphs.map((p, idx) => (
+              <Card key={idx} className="bg-card/60">
+                <CardContent className="p-6 text-sm leading-relaxed text-muted-foreground">
+                  {p}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <section id="projects" className="border-y bg-secondary/20">
+          <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+            <SectionHeading
+              kicker="Projects"
+              title="Projects"
+              description="Structured case studies, grouped by category."
+              icon={Sparkles}
+            />
+
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              <Card className="bg-card/60">
+                <CardHeader>
+                  <CardTitle className="font-display text-2xl">Marketing & Strategy</CardTitle>
+                  <CardDescription>Brand, messaging, go-to-market</CardDescription>
+                </CardHeader>
+              </Card>
+              <Card className="bg-card/60">
+                <CardHeader>
+                  <CardTitle className="font-display text-2xl">Analytics & ML</CardTitle>
+                  <CardDescription>Measurement, modeling, insights</CardDescription>
+                </CardHeader>
+              </Card>
+              <Card className="bg-card/60">
+                <CardHeader>
+                  <CardTitle className="font-display text-2xl">Business & Sales</CardTitle>
+                  <CardDescription>Conversion, negotiation, pipeline</CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
+
+            <div className="mt-6 rounded-2xl border bg-card/60 p-6">
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <div className="font-display text-2xl">Browse the full Projects page</div>
+                  <div className="mt-2 text-sm text-muted-foreground">
+                    Each case study includes: overview, goal, my role, approach, outcome, and learnings.
+                  </div>
+                </div>
+                <Link to="/projects">
+                  <Button className="rounded-full">
+                    Open Projects <ArrowUpRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
 
           <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="relative max-w-md flex-1">
