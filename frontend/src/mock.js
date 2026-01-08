@@ -366,7 +366,7 @@ export const workExperience = [
     location: "Client-facing role",
     duration: "Experience",
     narrative:
-      "In a client-facing inside sales role, I worked at the point where interest becomes revenue. I handled inbound leads, qualified fit, and moved conversations forward through clear discovery, fast follow-ups, and structured next steps. The work demanded tight communication, negotiation, and comfort with real-world pressure — because a delayed response or weak qualification directly impacts conversion.",
+      "In a client-facing inside sales role, I worked at the point where interest becomes revenue. I handled inbound leads, qualified fit, and moved conversations forward through clear discovery, fast follow-ups, and structured next steps. The work demanded tight communication, negotiation, and comfort with real-world pressure — because speed and clarity directly impact conversion.",
     impact:
       "Focused on conversion discipline: lead qualification, pipeline hygiene, and outcome-driven communication.",
   },
@@ -382,7 +382,7 @@ export const workExperience = [
   },
 ];
 
-export const work = [
+export const projects = export const projects = [
   {
     id: "cowlor",
     title: "Cowlor",
