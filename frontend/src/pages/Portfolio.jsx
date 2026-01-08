@@ -402,7 +402,7 @@ function WorkGrid({ items }) {
 function BlogGrid() {
   return (
     <div className="grid gap-4 md:grid-cols-2">
-      {blogPosts.map((p) => (
+      {(blogPosts || []).map((p) => (
         <Link key={p.slug} to={`/blog/${p.slug}`} className="group">
           <Card className="h-full overflow-hidden transition-shadow hover:shadow-lg">
             <div className="relative aspect-[16/9] overflow-hidden">
