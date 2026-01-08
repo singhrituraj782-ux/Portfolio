@@ -218,6 +218,7 @@ export default function Product3DPreview({ imageUrl, accent = "#A8E36F" }) {
       window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointerup", onUp);
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("wheel", onWheel);
 
       // dispose
       if (mat.map) mat.map.dispose();
