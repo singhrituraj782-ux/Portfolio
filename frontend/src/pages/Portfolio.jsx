@@ -1124,7 +1124,7 @@ export default function Portfolio() {
           />
 
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {interests.map((i) => (
+            {(interests || []).map((i) => (
               <Card key={i.title} className="h-full">
                 <CardHeader>
                   <CardTitle className="font-display text-2xl">
