@@ -85,6 +85,29 @@ export const skills = {
   languages: ["English (Fluent)", "Hindi (Native)", "French (A1)"],
 };
 
+export const workExperience = [
+  {
+    id: "inside-sales",
+    title: "Business Development / Inside Sales",
+    location: "Client-facing role",
+    duration: "Experience",
+    narrative:
+      "In a client-facing inside sales role, I worked at the point where interest becomes revenue. I handled inbound leads, qualified fit, and moved conversations forward through clear discovery, fast follow-ups, and structured next steps. The work demanded tight communication, negotiation, and comfort with real-world pressure — because a delayed response or weak qualification directly impacts conversion.",
+    impact:
+      "Focused on conversion discipline: lead qualification, pipeline hygiene, and outcome-driven communication.",
+  },
+  {
+    id: "la-maison-upcycling",
+    title: "Community & Social Impact — La Maison Upcycling (Lyon)",
+    location: "Lyon, France",
+    duration: "50 hours volunteering",
+    narrative:
+      "Over 50 hours, I supported textile upcycling workshops and sustainability education sessions. I guided participants of different ages through hands-on making, explained the ‘why’ behind reuse, and helped keep workshops flowing smoothly. It’s a different kind of responsibility: facilitation, patience, and the ability to communicate simply — while ensuring people feel confident and included.",
+    impact:
+      "Strengthened facilitation, workshop leadership, and sustainability communication in real community settings.",
+  },
+];
+
 export const work = [
   {
     id: "cowlor",
