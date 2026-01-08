@@ -514,6 +514,39 @@ export const visualDiary = [
   },
 ];
 
+export const productStudies = [
+  {
+    id: "ps-01",
+    title: "Chole Bhature",
+    caption: "Comfort food, framed like a product shot.",
+    url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/5o3el7mi_Chole%20BHature.png",
+  },
+  {
+    id: "ps-02",
+    title: "Dosa",
+    caption: "Geometry, texture, and a clean top-down composition.",
+    url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/71d2kj8v_Dosa_.png",
+  },
+  {
+    id: "ps-03",
+    title: "Raj Kachori",
+    caption: "Layered detail, strong center focus.",
+    url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/uii24vmv_Haldiram%20Raj%20kachori%202.png",
+  },
+  {
+    id: "ps-04",
+    title: "Kaju Katli",
+    caption: "Minimal palette, sharp cuts, graphic repetition.",
+    url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/li94p09k_kaju%20katli%20%2011.png",
+  },
+  {
+    id: "ps-05",
+    title: "Ras Malai",
+    caption: "Warm tone, soft highlights, premium dessert styling.",
+    url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/hyf6p9tf_ras%20malai%202.png",
+  },
+];
+
 export const motionWorks = [
   {
     id: "mw-01",

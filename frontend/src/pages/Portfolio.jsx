@@ -9,6 +9,7 @@ import {
   services,
   skills,
   visualDiary,
+  productStudies,
   motionWorks,
   workExperience,
   howIThink,
