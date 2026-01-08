@@ -525,6 +525,7 @@ export const productStudies = [
       format: "Menu hero",
       lighting: "Warm, high-contrast",
       focus: "Texture + plating",
+      deliverables: ["Menu hero", "Social post", "Banner crop"],
     },
   },
   {
@@ -537,6 +538,7 @@ export const productStudies = [
       format: "Top-down",
       lighting: "Neutral",
       focus: "Shape + crispness",
+      deliverables: ["Menu tile", "Story post", "Web hero"],
     },
   },
   {
@@ -549,6 +551,7 @@ export const productStudies = [
       format: "Product close-up",
       lighting: "Balanced",
       focus: "Detail richness",
+      deliverables: ["Campaign visual", "Poster crop", "Feed post"],
     },
   },
   {
@@ -561,6 +564,7 @@ export const productStudies = [
       format: "Grid / repetition",
       lighting: "Soft",
       focus: "Precision",
+      deliverables: ["Product grid", "Packaging mock", "Carousel"],
     },
   },
   {
@@ -573,6 +577,7 @@ export const productStudies = [
       format: "Editorial",
       lighting: "Warm",
       focus: "Creamy textures",
+      deliverables: ["Editorial cut", "Story post", "Web feature"],
     },
   },
 ];
