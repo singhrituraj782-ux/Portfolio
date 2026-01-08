@@ -442,7 +442,7 @@ function BlogGrid() {
 function VisualDiaryGrid() {
   return (
     <div className="grid gap-4 md:grid-cols-12">
-      {visualDiary.map((item, idx) => {
+      {(visualDiary || []).map((item, idx) => {
         const span = idx === 0 ? "md:col-span-7" : "md:col-span-5";
         return (
           <Dialog key={item.id}>
