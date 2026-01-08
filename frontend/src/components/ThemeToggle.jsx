@@ -22,6 +22,12 @@ export default function ThemeToggle({ variant = "ghost", className = "" }) {
     window.localStorage.setItem("theme", theme);
   }, [theme]);
 
+  // Ensure we apply the default theme on first mount.
+  React.useEffect(() => {
+    const initial = getInitialTheme();
+    setTheme(initial);
+  }, []);
+
   const isDark = theme === "dark";
 
   return (
