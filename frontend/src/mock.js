@@ -59,14 +59,30 @@ export const services = [
 ];
 
 export const skills = {
-  highlights: [
-    "Market research & customer insights",
-    "Brand positioning & messaging",
-    "Excel + Tableau KPI tracking",
-    "Figma, Canva, Adobe Creative Suite",
-    "Python (basic), R (basic)",
-  ],
-  languages: ["English (Fluent)", "Hindi (Native)", "French (A1)"] ,
+  groups: {
+    "Marketing & Branding": [
+      "Brand positioning & messaging",
+      "Market research & customer insights",
+      "Campaign planning & go-to-market",
+    ],
+    "Analytics & Data": [
+      "Marketing analytics & measurement",
+      "Regression thinking & experimentation",
+      "Excel + Tableau KPI tracking",
+      "Python/R basics for analysis",
+    ],
+    "Sales & Business": [
+      "Lead qualification & pipeline discipline",
+      "Negotiation and client communication",
+      "Business decision-making under pressure",
+    ],
+    "Creative & Communication": [
+      "Storytelling & content strategy",
+      "Visual communication (Figma/Canva/Adobe)",
+      "Clear writing and structured narratives",
+    ],
+  },
+  languages: ["English (Fluent)", "Hindi (Native)", "French (A1)"],
 };
 
 export const work = [
