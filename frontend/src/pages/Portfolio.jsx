@@ -951,7 +951,7 @@ export default function Portfolio() {
           />
 
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {services.map((s) => (
+            {(services || []).map((s) => (
               <Card key={s.title} className="h-full">
                 <CardHeader>
                   <CardTitle className="font-display text-2xl">
