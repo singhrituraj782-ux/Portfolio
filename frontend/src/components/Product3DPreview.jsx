@@ -24,7 +24,8 @@ export default function Product3DPreview({ imageUrl, accent = "#A8E36F" }) {
     const scene = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 50);
-    camera.position.set(0, 0.08, 3.0);
+    const defaultZ = 3.0;
+    camera.position.set(0, 0.08, defaultZ);
 
     const ambient = new THREE.AmbientLight(0xffffff, 0.65);
     scene.add(ambient);
@@ -113,9 +114,11 @@ export default function Product3DPreview({ imageUrl, accent = "#A8E36F" }) {
     const ro = new ResizeObserver(() => setSize());
     ro.observe(canvas);
 
-    // Interaction (drag + hover)
+    // Interaction (drag + hover + zoom)
     const targetRot = new THREE.Vector2(0, 0);
     const rot = new THREE.Vector2(0, 0);
+    let zoomTarget = defaultZ;
+    let zoom = defaultZ;
     let isDown = false;
     let lastX = 0;
     let lastY = 0;
