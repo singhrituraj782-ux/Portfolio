@@ -563,6 +563,7 @@ export const productStudies = [
     caption: "Repetition and sharp edges — premium minimal dessert styling.",
     url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/li94p09k_kaju%20katli%20%2011.png",
     meta: {
+      client: "Personal (spec)",
       brand: "Food photography",
       format: "Grid / repetition",
       lighting: "Soft",
