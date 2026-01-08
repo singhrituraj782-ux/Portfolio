@@ -577,6 +577,7 @@ export const productStudies = [
     caption: "Soft highlights and warmth — a high-end dessert frame.",
     url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/hyf6p9tf_ras%20malai%202.png",
     meta: {
+      client: "Personal (spec)",
       brand: "Food photography",
       format: "Editorial",
       lighting: "Warm",
