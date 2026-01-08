@@ -68,6 +68,263 @@ export const skills = {
     "Analytics & Data": [
       "Marketing analytics & measurement",
       "Regression thinking & experimentation",
+
+export const howIThink = {
+  title: "How I think",
+  paragraphs: [
+    "I start with the problem, not the output. Before I optimize a campaign or build a model, I ask: what decision are we trying to make — and what would ‘better’ actually change?",
+    "I like using data to validate direction, not to decorate it. Even lightweight analysis can reduce uncertainty: a simple regression, a clear KPI structure, or a controlled comparison can make decisions easier to defend.",
+    "Creativity is how I communicate strategy. A good insight is useless if it can’t travel — so I focus on framing, narrative, and clarity that helps teams execute.",
+  ],
+};
+
+export const education = [
+  {
+    id: "emlyon-mim",
+    title: "Master’s in Management — EM Lyon Business School",
+    duration: "2024–Present",
+    narrative:
+      "I’m pursuing a project-driven Masters in Management where learning happens through business cases and applied work — not just course lists. I’m intentionally building depth across strategy, analytics, and go-to-market execution.",
+    themes: [
+      {
+        title: "Marketing, Branding & Strategy",
+        items: ["Positioning", "Customer insight", "Go-to-market thinking"],
+      },
+      {
+        title: "Marketing Analytics & Data",
+        items: ["Measurement", "ROI thinking", "Regression-based analysis"],
+      },
+      {
+        title: "E-commerce & Consumer Experience",
+        items: ["Acquisition levers", "Conversion", "Customer journey"],
+      },
+      {
+        title: "Sales, Negotiation & Business Development",
+        items: ["Client communication", "Negotiation", "Pipeline thinking"],
+      },
+      {
+        title: "Finance, Strategy & Management",
+        items: ["Business trade-offs", "Strategy under constraints"],
+      },
+      {
+        title: "Sustainability & Responsibility",
+        items: ["Sustainable value creation", "Impact-oriented decision-making"],
+      },
+    ],
+  },
+  {
+    id: "amity-bjmc",
+    title: "Bachelor’s in Journalism & Mass Communication — Amity University",
+    duration: "2019–2022",
+    narrative:
+      "This degree gave me a creative foundation: how to research, tell stories, and communicate visually. Today that translates directly into brand work — because strategy is only effective when it’s expressed clearly.",
+    themes: [
+      {
+        title: "Creative foundations",
+        items: [
+          "Filmmaking & visual storytelling",
+          "Journalism & research",
+          "Storytelling & content creation",
+          "Photography",
+          "Event organization",
+        ],
+      },
+    ],
+  },
+];
+
+export const projects = [
+  {
+    id: "tableto-simbound",
+    title: "E-Commerce Marketing Simulation — Tableto",
+    subtitle: "Simbound • Email marketing lead in a 6-round team simulation",
+    year: "2024",
+    category: "Marketing & Strategy",
+    tags: ["Email marketing", "SEA support", "Pricing", "Keyword strategy"],
+    cover:
+      "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+    oneLiner:
+      "A simulation where every decision impacts profit — and the scoreboard doesn’t forgive weak execution.",
+    overview:
+      "In a 6-round Simbound simulation for a tablet brand, our team managed acquisition and conversion levers. I led email marketing and supported SEA keyword strategy and pricing decisions, aligning messaging with performance signals across rounds.",
+    goal:
+      "Maximize profit across rounds by balancing acquisition spend, conversion tactics, and pricing decisions.",
+    role:
+      "Email marketing lead. Owned campaign planning, segmentation logic, and performance iteration. Supported SEA keyword strategy and pricing decisions with performance insights.",
+    approach:
+      "Built a tight feedback loop: review round metrics → identify bottlenecks → adjust email frequency, targeting, and messaging → coordinate with SEA and pricing choices so channels reinforced each other.",
+    outcome:
+      "Top-performing team by profit at the end of the simulation, with improved conversion discipline and better alignment between messaging and demand signals.",
+    impact: "Top-performing team by profit (6-round simulation).",
+    metrics: ["#1 by profit", "6 rounds executed", "Cross-channel coordination"],
+    learnings:
+      "Speed matters. In a competitive environment, fast iteration beats perfect planning. The best results came from consistent measurement and decisive adjustments, not from one ‘big’ idea.",
+    links: [],
+  },
+  {
+    id: "xuris-mmm",
+    title: "Marketing Analytics — Detailing & Sampling for Xuris",
+    subtitle: "Marketing mix thinking • regression analysis • budget recommendations",
+    year: "2024",
+    category: "Analytics & Machine Learning",
+    tags: ["Marketing mix", "Regression", "ROI", "Budget allocation"],
+    cover:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+    oneLiner:
+      "Turned channel activity into ROI comparisons to guide budget decisions.",
+    overview:
+      "I analyzed marketing performance to compare the ROI of detailing versus sampling. Using regression analysis, I connected spend/activity signals to outcomes and translated results into practical budget guidance.",
+    goal:
+      "Identify which channel (detailing vs sampling) drives stronger ROI and propose data-driven allocation.",
+    role:
+      "Analytics lead: structured the dataset, ran regression-based comparisons, and summarized decision-ready recommendations.",
+    approach:
+      "Defined outcome metrics, cleaned and structured activity inputs, ran regression to estimate impact, then compared ROI under realistic budget constraints.",
+    outcome:
+      "Produced a clear recommendation on budget allocation grounded in measured impact rather than intuition.",
+    impact: "Data-driven budget recommendations based on channel ROI.",
+    metrics: ["Regression-based ROI comparison", "Decision-ready budget guidance"],
+    learnings:
+      "The value of analytics is clarity. The best model is the one that helps stakeholders confidently decide what to do next.",
+    links: [],
+  },
+  {
+    id: "fraud-detection",
+    title: "Machine Learning — Fraud Detection (Banking)",
+    subtitle: "Classification model to detect fraudulent bank accounts",
+    year: "2025",
+    category: "Analytics & Machine Learning",
+    tags: ["Risk", "Classification", "Fraud prevention"],
+    cover:
+      "https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+    oneLiner:
+      "Built a fraud detection approach framed around risk reduction and operational decision-making.",
+    overview:
+      "I built a classification approach to flag potentially fraudulent accounts early. The goal wasn’t ‘perfect prediction’ — it was reducing financial risk while keeping false positives manageable for operations.",
+    goal:
+      "Detect higher-risk accounts early to reduce downstream loss and investigation cost.",
+    role:
+      "Built the model and translated outputs into business-relevant trade-offs (precision/recall) for decision-making.",
+    approach:
+      "Framed the problem as triage: score accounts by risk, then define thresholds that balance missed fraud versus investigation load. Focused on interpretability and operational usability.",
+    outcome:
+      "A risk scoring approach that supports earlier detection and clearer decision thresholds for review workflows.",
+    impact: "Financial risk reduction through earlier fraud flagging.",
+    metrics: ["Risk scoring", "Operational thresholds", "Reduced exposure"],
+    learnings:
+      "Models succeed when they fit workflows. A slightly less accurate model can be more valuable if teams trust it and act on it.",
+    links: [],
+  },
+  {
+    id: "car-price",
+    title: "Machine Learning — Car Price Prediction",
+    subtitle: "Predictive pricing model + feature impact analysis",
+    year: "2025",
+    category: "Analytics & Machine Learning",
+    tags: ["Pricing", "Regression", "Feature impact"],
+    cover:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+    oneLiner:
+      "Explained what drives price — not just what the prediction is.",
+    overview:
+      "I built a predictive pricing model to estimate car prices and then focused on explaining which features drive value. The aim was to turn the model into insight, not just a number.",
+    goal:
+      "Support pricing decisions by predicting price ranges and identifying value drivers.",
+    role:
+      "Built the regression model and analyzed feature impact to translate outputs into practical pricing insights.",
+    approach:
+      "Prepared data, trained a regression model, then used feature impact analysis to explain how factors like age, mileage, and specifications move price.",
+    outcome:
+      "A pricing insight summary that highlights which variables matter most and how they influence expected price.",
+    impact: "Regression-based insights for pricing decisions.",
+    metrics: ["Feature impact analysis", "Decision-oriented insights"],
+    learnings:
+      "Interpretability matters: people trust pricing guidance more when they can see the logic behind it.",
+    links: [],
+  },
+  {
+    id: "cowlor-brand",
+    title: "Brand & Strategy Project — Cowlor",
+    subtitle: "Sustainable paint brand: research, positioning, and go-to-market",
+    year: "2024",
+    category: "Marketing & Strategy",
+    tags: ["Market research", "Positioning", "Go-to-market"],
+    cover:
+      "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+    oneLiner:
+      "Built a clearer positioning story in a crowded ‘sustainable’ category.",
+    overview:
+      "Cowlor is a sustainable paint brand. I focused on market research, competitor mapping, and positioning to define a go-to-market direction that feels distinct and actionable.",
+    goal:
+      "Create a differentiated positioning and launch narrative that is easy to execute.",
+    role:
+      "Led research synthesis and positioning work; translated insights into messaging pillars and launch guidance.",
+    approach:
+      "Mapped competitors, defined audience hypotheses, and stress-tested messaging directions to land on a simple, defensible positioning.",
+    outcome:
+      "A positioning statement, messaging pillars, and launch checklist that improved clarity and execution readiness.",
+    impact: "Improved launch readiness by ~20–25%.",
+    metrics: ["Differentiated positioning", "Launch narrative", "~20–25% readiness lift"],
+    learnings:
+      "A good positioning is a decision filter. When it’s clear, everything else becomes easier: messaging, design choices, and campaign trade-offs.",
+    links: [],
+  },
+  {
+    id: "lamaison-community",
+    title: "Community Project — La Maison Upcycling",
+    subtitle: "Textile upcycling workshops and sustainability education",
+    year: "2025",
+    category: "Sustainability & Community",
+    tags: ["Workshops", "Sustainability", "Facilitation"],
+    cover:
+      "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+    oneLiner:
+      "Sustainability is practical: it lives in skills, habits, and community learning.",
+    overview:
+      "A community-focused project supporting upcycling workshops. The work required facilitation, clarity, and responsibility — helping participants feel confident while reinforcing the sustainability message.",
+    goal:
+      "Educate and enable participants to practice textile upcycling through guided workshops.",
+    role:
+      "Workshop support and facilitation: guided participants, explained sustainability principles, and helped sessions run smoothly.",
+    approach:
+      "Prioritized inclusive instruction: break down tasks, demonstrate steps, offer help at the right moment, and keep a steady workshop rhythm.",
+    outcome:
+      "Successful workshops with participants producing upcycled items and stronger awareness of reuse practices.",
+    impact: "50 hours of volunteering supporting sustainability education.",
+    metrics: ["50 hours volunteered", "Multi-age facilitation", "Hands-on learning"],
+    learnings:
+      "Communication is impact. In community settings, clarity and patience determine whether people feel empowered to act.",
+    links: [],
+  },
+  {
+    id: "inside-sales-project",
+    title: "Business & Sales — Lead Qualification & Conversion",
+    subtitle: "Pipeline discipline, communication, and negotiation",
+    year: "2024",
+    category: "Business & Sales",
+    tags: ["Lead qualification", "Conversion", "Negotiation"],
+    cover:
+      "https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+    oneLiner:
+      "Sales is decision-making under pressure: qualify, prioritize, and move fast.",
+    overview:
+      "A business development / inside sales experience focused on handling leads, qualifying fit, and guiding prospects through structured next steps.",
+    goal:
+      "Increase conversion by improving speed-to-lead, qualification quality, and clarity in communication.",
+    role:
+      "Handled leads end-to-end: first response, qualification, follow-ups, and negotiation support.",
+    approach:
+      "Kept a disciplined pipeline: clear qualification questions, consistent follow-up rhythm, and decision-focused communication.",
+    outcome:
+      "Improved conversion discipline and stronger outcomes through fast, structured lead handling.",
+    impact: "Revenue and conversion focus through pipeline discipline.",
+    metrics: ["Lead qualification", "Conversion focus", "Negotiation support"],
+    learnings:
+      "The best sales conversations are consultative: clarity on needs, next steps, and real decision criteria.",
+    links: [],
+  },
+];
+
       "Excel + Tableau KPI tracking",
       "Python/R basics for analysis",
     ],
