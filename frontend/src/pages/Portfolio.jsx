@@ -52,7 +52,8 @@ import {
 
 import ThreeBackdrop from "@/components/ThreeBackdrop";
 
-const ACCENT = "#b7ff5a";
+const ACCENT = "#7AAE5E"; // subtle sage for UI accents
+const FIRE_ACCENT = "#b7ff5a"; // brighter for fireflies
 
 function useFilteredWork(query) {
   return useMemo(() => {

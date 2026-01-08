@@ -1,7 +1,7 @@
 /* Intentionally minimal: Tailwind handles most styling. */
 
 ::selection {
-    background: rgba(183, 255, 90, 0.35);
+    background: rgba(122, 174, 94, 0.28);
 }
 
 /* Subtle grain overlay for a premium print-like feel */
