@@ -155,7 +155,7 @@ export default function WorkDetail() {
           ) : null}
           {next ? (
             <Link to={`/work/${next.id}`}>
-              <Button className="rounded-full" style={{ backgroundColor: "#101114", color: "#f7f7f2" }}>
+              <Button className="rounded-full" style={{ backgroundColor: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}>
                 {next.title} <ArrowUpRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
