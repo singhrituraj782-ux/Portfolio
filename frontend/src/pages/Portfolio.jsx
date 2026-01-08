@@ -519,8 +519,20 @@ function ProductStudiesGrid() {
                   <div className="mt-2 text-sm text-white/80">
                     {item.caption}
                   </div>
-                  <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs text-white backdrop-blur">
-                    Product studies
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                    <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs text-white backdrop-blur">
+                      Product study
+                    </span>
+                    {item.meta?.format ? (
+                      <span className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs text-white/90 backdrop-blur">
+                        {item.meta.format}
+                      </span>
+                    ) : null}
+                    {item.meta?.lighting ? (
+                      <span className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs text-white/90 backdrop-blur">
+                        {item.meta.lighting}
+                      </span>
+                    ) : null}
                   </div>
                 </div>
               </button>
