@@ -597,7 +597,7 @@ function ContactSection() {
             <Button
               type="submit"
               className="rounded-full"
-              style={{ backgroundColor: "#101114", color: "#f7f7f2" }}
+              style={{ backgroundColor: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
               disabled={loading}
             >
               {loading ? "Sending…" : "Send"}
@@ -856,7 +856,7 @@ export default function Portfolio() {
 
                   <div className="flex flex-wrap gap-2">
                     <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
-                      <Button className="rounded-full" style={{ backgroundColor: "#101114", color: "#f7f7f2" }}>
+                      <Button className="rounded-full" style={{ backgroundColor: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}>
                         View full resume <ArrowUpRight className="ml-2 h-4 w-4" />
                       </Button>
                     </a>
