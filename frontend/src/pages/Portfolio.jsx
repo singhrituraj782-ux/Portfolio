@@ -564,65 +564,109 @@ function ContactSection() {
   };
 
   return (
-    <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
-      <Card>
-        <CardHeader>
-          <CardTitle className="font-display">Send a message</CardTitle>
-          <CardDescription>
-            This form is connected to Formspree (frontend-only).
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={onSubmit} className="space-y-4">
-            <div className="grid gap-2">
-              <label className="text-sm font-medium">Your email</label>
-              <Input
-                name="email"
-                type="email"
-                placeholder="you@domain.com"
-                required
-              />
-            </div>
-            <div className="grid gap-2">
-              <label className="text-sm font-medium">Message</label>
-              <Textarea
-                name="message"
-                placeholder="What are you building? What do you need?"
-                className="min-h-32"
-                required
-              />
-            </div>
-            <Button
-              type="submit"
-              className="rounded-full"
-              style={{ backgroundColor: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
-              disabled={loading}
-            >
-              {loading ? "Sending…" : "Send"}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+    <div className="grid gap-10 md:grid-cols-[1fr_0.9fr]">
+      <div>
+        <div className="inline-flex items-center rounded-full border bg-background/50 px-3 py-1 text-xs tracking-[0.22em] uppercase text-muted-foreground backdrop-blur">
+          Get in touch
+        </div>
+
+        <h3 className="mt-5 font-display text-4xl leading-[0.95] tracking-tight md:text-5xl">
+          Let’s create <span className="text-[hsl(var(--accent))]">something amazing</span>
+        </h3>
+
+        <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground md:text-base">
+          I’m always interested in hearing about new projects, opportunities, or collaborations.
+          If you’d like to work together, send a message.
+        </p>
+
+        <Card className="mt-8 border bg-card/60 backdrop-blur">
+          <CardContent className="p-6">
+            <form onSubmit={onSubmit} className="space-y-5">
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="space-y-2">
+                  <label className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                    Your name
+                  </label>
+                  <Input name="name" placeholder="Rituraj" required />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                    Your email
+                  </label>
+                  <Input
+                    name="email"
+                    type="email"
+                    placeholder="you@domain.com"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                  Subject
+                </label>
+                <Input name="subject" placeholder="Brand strategy / research / collaboration" />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                  Message
+                </label>
+                <Textarea
+                  name="message"
+                  placeholder="Tell me a bit about what you need and your timeline."
+                  className="min-h-36"
+                  required
+                />
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3">
+                <Button
+                  type="submit"
+                  className="rounded-full"
+                  style={{
+                    backgroundColor: "hsl(var(--primary))",
+                    color: "hsl(var(--primary-foreground))",
+                  }}
+                  disabled={loading}
+                >
+                  {loading ? "Sending…" : "Send message"}
+                  <ArrowUpRight className="ml-2 h-4 w-4" />
+                </Button>
+
+                <a
+                  href={profile.social.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Prefer LinkedIn? Message me there →
+                </a>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
 
       <div className="space-y-4">
-        <Card className="bg-secondary/50">
+        <Card className="bg-secondary/35">
           <CardHeader>
-            <CardTitle className="font-display">Direct contact</CardTitle>
+            <CardTitle className="font-display">Direct</CardTitle>
             <CardDescription>For quick coordination.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3 text-sm">
             <div className="flex items-center justify-between gap-3">
               <span className="text-muted-foreground">Email</span>
-              <a
-                className="font-medium hover:underline"
-                href={profile.social.email}
-              >
+              <a className="font-medium hover:underline" href={profile.social.email}>
                 {profile.email}
               </a>
             </div>
             <div className="flex items-center justify-between gap-3">
-              <span className="text-muted-foreground">Phone</span>
-              <span className="font-medium">{profile.phone}</span>
+              <span className="text-muted-foreground">LinkedIn</span>
+              <a className="font-medium hover:underline" href={profile.social.linkedin} target="_blank" rel="noreferrer">
+                Open profile
+              </a>
             </div>
             <div className="flex items-start justify-between gap-3">
               <span className="text-muted-foreground">Location</span>
@@ -631,32 +675,24 @@ function ContactSection() {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="font-display">Resume snapshot</CardTitle>
-            <CardDescription>
-              Not a fancy resume page — just the essentials.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3 text-sm text-muted-foreground">
-            <div>
-              <div className="text-xs tracking-[0.22em] uppercase">Education</div>
-              <div className="mt-1 text-foreground">
-                EM-Lyon Business School — Masters in Management (2024–Present)
-              </div>
-              <div className="mt-1">
-                Amity University — Bachelor of Journalism and Mass Communication
-                (2019–2022)
-              </div>
+        <Card className="overflow-hidden">
+          <div
+            className="p-6"
+            style={{
+              background:
+                "radial-gradient(700px 320px at 20% 20%, rgba(168,227,111,0.12), transparent 60%), radial-gradient(700px 320px at 80% 10%, rgba(230,188,132,0.10), transparent 60%)",
+            }}
+          >
+            <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+              Availability
             </div>
-            <Separator />
-            <div>
-              <div className="text-xs tracking-[0.22em] uppercase">Tools</div>
-              <div className="mt-1">
-                Excel, Tableau, Figma, Canva, Adobe Creative Suite
-              </div>
+            <div className="mt-2 text-lg font-medium text-foreground">
+              {profile.availability}
             </div>
-          </CardContent>
+            <div className="mt-3 text-sm text-muted-foreground">
+              Best response time: within 24–48 hours.
+            </div>
+          </div>
         </Card>
       </div>
     </div>
