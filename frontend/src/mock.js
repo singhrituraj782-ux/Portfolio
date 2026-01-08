@@ -533,7 +533,7 @@ export const productStudies = [
     id: "ps-02",
     title: "Dosa",
     caption: "Clean composition with strong geometry and negative space.",
-    url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/71d2kj8v_Dosa_.png",
+    url: "/products/dosa.png",
     meta: {
       client: "Personal (spec)",
       brand: "Food photography",
@@ -547,7 +547,7 @@ export const productStudies = [
     id: "ps-03",
     title: "Raj Kachori",
     caption: "Layered ingredients and center framing — built for attention.",
-    url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/uii24vmv_Haldiram%20Raj%20kachori%202.png",
+    url: "/products/raj-kachori.png",
     meta: {
       client: "Haldiram’s (spec)",
       brand: "Food photography",
@@ -561,7 +561,7 @@ export const productStudies = [
     id: "ps-04",
     title: "Kaju Katli",
     caption: "Repetition and sharp edges — premium minimal dessert styling.",
-    url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/li94p09k_kaju%20katli%20%2011.png",
+    url: "/products/kaju-katli.png",
     meta: {
       client: "Personal (spec)",
       brand: "Food photography",
@@ -575,7 +575,7 @@ export const productStudies = [
     id: "ps-05",
     title: "Ras Malai",
     caption: "Soft highlights and warmth — a high-end dessert frame.",
-    url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/hyf6p9tf_ras%20malai%202.png",
+    url: "/products/ras-malai.png",
     meta: {
       client: "Personal (spec)",
       brand: "Food photography",
