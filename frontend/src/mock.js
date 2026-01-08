@@ -519,7 +519,7 @@ export const productStudies = [
     id: "ps-01",
     title: "Chole Bhature",
     caption: "Comfort food, framed like a hero product shot.",
-    url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/5o3el7mi_Chole%20BHature.png",
+    url: "/products/chole-bhature.png",
     meta: {
       client: "Personal (spec)",
       brand: "Food photography",
