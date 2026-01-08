@@ -491,6 +491,64 @@ function VisualDiaryGrid() {
   );
 }
 
+function ProductStudiesGrid() {
+  return (
+    <div className="grid gap-4 md:grid-cols-12">
+      {(productStudies || []).map((item, idx) => {
+        const span = idx === 0 ? "md:col-span-8" : "md:col-span-4";
+        return (
+          <Dialog key={item.id}>
+            <DialogTrigger asChild>
+              <button
+                type="button"
+                className={`group relative overflow-hidden rounded-2xl border bg-card/60 ${span}`}
+              >
+                <div className="relative aspect-[4/3]">
+                  <img
+                    src={item.url}
+                    alt={item.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <div className="font-display text-2xl leading-none text-white">
+                    {item.title}
+                  </div>
+                  <div className="mt-2 text-sm text-white/80">
+                    {item.caption}
+                  </div>
+                  <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs text-white backdrop-blur">
+                    Product studies
+                  </div>
+                </div>
+              </button>
+            </DialogTrigger>
+
+            <DialogContent className="max-w-5xl">
+              <DialogHeader>
+                <DialogTitle className="font-display text-3xl">
+                  {item.title}
+                </DialogTitle>
+                <DialogDescription>{item.caption}</DialogDescription>
+              </DialogHeader>
+              <div className="mt-3 overflow-hidden rounded-2xl border bg-card/60">
+                <img
+                  src={item.url}
+                  alt={item.title}
+                  className="h-[60vh] w-full object-contain bg-black/30"
+                />
+              </div>
+            </DialogContent>
+          </Dialog>
+        );
+      })}
+    </div>
+  );
+}
+
+
 function MotionGrid() {
   return (
     <div className="grid gap-4 md:grid-cols-2">
