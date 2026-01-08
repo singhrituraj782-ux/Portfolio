@@ -29,7 +29,7 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
     camera.position.set(0, 0, 7.2);
 
     // Fireflies (green) — additive glowing particles via a tiny shader
-    const flyCount = 820;
+    const flyCount = 520;
     const positions = new Float32Array(flyCount * 3);
     const scales = new Float32Array(flyCount);
     const phases = new Float32Array(flyCount);
@@ -112,7 +112,7 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
           vec4 mvPosition = modelViewMatrix * vec4(p, 1.0);
           gl_Position = projectionMatrix * mvPosition;
 
-          float size = (14.0 + 22.0 * aScale) * uPixelRatio;
+          float size = (12.0 + 18.0 * aScale) * uPixelRatio;
           size *= (1.0 / -mvPosition.z);
           gl_PointSize = size;
         }

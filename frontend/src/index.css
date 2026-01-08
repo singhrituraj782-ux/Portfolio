@@ -19,35 +19,36 @@ code {
 
 @layer base {
     :root {
-        /* Warm paper background + charcoal ink */
-        --background: 34 38% 98%;
-        --foreground: 240 10% 12%;
+        /* Warm paper background + deep ink (subtle, not dull) */
+        --background: 32 45% 97%;
+        --foreground: 215 18% 14%;
 
-        --card: 34 40% 99%;
-        --card-foreground: 240 10% 12%;
+        --card: 34 48% 98.5%;
+        --card-foreground: 215 18% 14%;
 
-        --popover: 34 40% 99%;
-        --popover-foreground: 240 10% 12%;
+        --popover: 34 48% 98.5%;
+        --popover-foreground: 215 18% 14%;
 
-        --primary: 240 12% 12%;
-        --primary-foreground: 36 20% 98%;
+        /* Deep pine primary for premium contrast */
+        --primary: 156 20% 18%;
+        --primary-foreground: 34 40% 98%;
 
-        --secondary: 32 22% 94%;
-        --secondary-foreground: 240 10% 12%;
+        --secondary: 34 30% 92%;
+        --secondary-foreground: 215 18% 14%;
 
-        --muted: 32 20% 94%;
-        --muted-foreground: 240 6% 42%;
+        --muted: 34 28% 93%;
+        --muted-foreground: 215 10% 40%;
 
-        /* Subtle sage accent (UI). Fireflies keep a brighter green separately. */
-        --accent: 94 28% 54%;
-        --accent-foreground: 240 10% 12%;
+        /* Sage accent (UI). Fireflies use a separate softer chartreuse. */
+        --accent: 94 26% 44%;
+        --accent-foreground: 34 40% 98%;
 
-        --destructive: 0 62% 42%;
-        --destructive-foreground: 36 20% 98%;
+        --destructive: 0 58% 44%;
+        --destructive-foreground: 34 40% 98%;
 
-        --border: 34 14% 86%;
-        --input: 34 14% 86%;
-        --ring: 94 28% 54%;
+        --border: 34 14% 82%;
+        --input: 34 14% 82%;
+        --ring: 94 26% 44%;
 
         --chart-1: 20 62% 52%;
         --chart-2: 176 38% 38%;
