@@ -545,12 +545,40 @@ function ProductStudiesGrid() {
                 </DialogTitle>
                 <DialogDescription>{item.caption}</DialogDescription>
               </DialogHeader>
-              <div className="mt-3 overflow-hidden rounded-2xl border bg-card/60">
-                <img
-                  src={item.url}
-                  alt={item.title}
-                  className="h-[60vh] w-full object-contain bg-black/30"
-                />
+
+              <div className="mt-4 grid gap-4 md:grid-cols-[1.35fr_0.65fr]">
+                <div className="overflow-hidden rounded-2xl border bg-card/60">
+                  <img
+                    src={item.url}
+                    alt={item.title}
+                    className="h-[60vh] w-full object-contain bg-black/30"
+                  />
+                </div>
+
+                <Card className="bg-secondary/20">
+                  <CardHeader>
+                    <CardTitle className="font-display">Shot notes</CardTitle>
+                    <CardDescription>Commercial-style breakdown</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-3 text-sm">
+                    <div className="flex items-center justify-between gap-4 rounded-xl border bg-background/40 px-4 py-3">
+                      <span className="text-muted-foreground">Format</span>
+                      <span className="font-medium text-foreground">{item.meta?.format || "—"}</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-4 rounded-xl border bg-background/40 px-4 py-3">
+                      <span className="text-muted-foreground">Lighting</span>
+                      <span className="font-medium text-foreground">{item.meta?.lighting || "—"}</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-4 rounded-xl border bg-background/40 px-4 py-3">
+                      <span className="text-muted-foreground">Focus</span>
+                      <span className="font-medium text-foreground">{item.meta?.focus || "—"}</span>
+                    </div>
+
+                    <div className="rounded-xl border bg-background/40 px-4 py-3 text-muted-foreground">
+                      This is presented like a product asset: clear framing, intentional lighting, and a story you can use in a campaign.
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </DialogContent>
           </Dialog>
