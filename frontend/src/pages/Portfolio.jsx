@@ -562,6 +562,10 @@ function ProductStudiesGrid() {
                   </CardHeader>
                   <CardContent className="space-y-3 text-sm">
                     <div className="flex items-center justify-between gap-4 rounded-xl border bg-background/40 px-4 py-3">
+                      <span className="text-muted-foreground">Client</span>
+                      <span className="font-medium text-foreground">{item.meta?.client || "—"}</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-4 rounded-xl border bg-background/40 px-4 py-3">
                       <span className="text-muted-foreground">Format</span>
                       <span className="font-medium text-foreground">{item.meta?.format || "—"}</span>
                     </div>
