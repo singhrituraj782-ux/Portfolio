@@ -197,7 +197,7 @@ function Hero() {
               "radial-gradient(900px 420px at 20% 20%, rgba(183,255,90,0.22), transparent 60%), radial-gradient(600px 320px at 82% 8%, rgba(0,0,0,0.12), transparent 60%)",
           }}
         />
-        <ThreeBackdrop className="absolute inset-0" accent={ACCENT} />
+        <ThreeBackdrop className="absolute inset-0" accent={FIRE_ACCENT} />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-4 pt-8 pb-10 md:pt-10 md:pb-14">
