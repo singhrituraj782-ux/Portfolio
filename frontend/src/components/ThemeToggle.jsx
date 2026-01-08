@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 
 function getInitialTheme() {
-  if (typeof window === "undefined") return "light";
+  if (typeof window === "undefined") return "dark";
 
   const saved = window.localStorage.getItem("theme");
   if (saved === "dark" || saved === "light") return saved;
