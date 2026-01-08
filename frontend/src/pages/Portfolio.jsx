@@ -269,15 +269,18 @@ function Hero() {
                     Skills
                   </div>
                   <div className="mt-2 flex flex-wrap gap-2">
-                    {skills.highlights.slice(0, 6).map((s) => (
-                      <Badge
-                        key={s}
-                        variant="secondary"
-                        className="rounded-full"
-                      >
-                        {s}
-                      </Badge>
-                    ))}
+                    {Object.values(skills.groups)
+                      .flat()
+                      .slice(0, 8)
+                      .map((s) => (
+                        <Badge
+                          key={s}
+                          variant="secondary"
+                          className="rounded-full"
+                        >
+                          {s}
+                        </Badge>
+                      ))}
                   </div>
                 </div>
 
