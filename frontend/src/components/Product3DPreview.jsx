@@ -164,6 +164,27 @@ export default function Product3DPreview({ imageUrl, accent = "#A8E36F" }) {
       targetRot.y = THREE.MathUtils.clamp(targetRot.y + dx * 0.004, -0.75, 0.75);
     };
 
+    const onWheel = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const inside =
+        e.clientX >= rect.left &&
+        e.clientX <= rect.right &&
+        e.clientY >= rect.top &&
+        e.clientY <= rect.bottom;
+      if (!inside) return;
+
+      // prevent page scroll while zooming
+      e.preventDefault();
+
+      const dir = Math.sign(e.deltaY);
+      // Zoom by moving camera along Z
+      zoomTarget = THREE.MathUtils.clamp(zoomTarget + dir * 0.22, 1.85, 4.0);
+    };
+
+    // Wheel can't be passive if we call preventDefault
+    window.addEventListener("wheel", onWheel, { passive: false });
+
+
     window.addEventListener("pointerdown", onDown, { passive: true });
     window.addEventListener("pointerup", onUp, { passive: true });
     window.addEventListener("pointermove", onMove, { passive: true });
