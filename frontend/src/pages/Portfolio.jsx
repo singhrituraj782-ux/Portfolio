@@ -574,8 +574,19 @@ function ProductStudiesGrid() {
                       <span className="font-medium text-foreground">{item.meta?.focus || "—"}</span>
                     </div>
 
+                    <div className="rounded-xl border bg-background/40 px-4 py-3">
+                      <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">Deliverables</div>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {(item.meta?.deliverables || []).map((d) => (
+                          <Badge key={d} variant="secondary" className="rounded-full">
+                            {d}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
                     <div className="rounded-xl border bg-background/40 px-4 py-3 text-muted-foreground">
-                      This is presented like a product asset: clear framing, intentional lighting, and a story you can use in a campaign.
+                      Presented like a commercial asset: clear framing, intentional lighting, and crops that can ship into a campaign.
                     </div>
                   </CardContent>
                 </Card>
