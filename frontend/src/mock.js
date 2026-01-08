@@ -535,6 +535,7 @@ export const productStudies = [
     caption: "Clean composition with strong geometry and negative space.",
     url: "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/71d2kj8v_Dosa_.png",
     meta: {
+      client: "Personal (spec)",
       brand: "Food photography",
       format: "Top-down",
       lighting: "Neutral",
