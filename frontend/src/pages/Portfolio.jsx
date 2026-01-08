@@ -1149,11 +1149,24 @@ export default function Portfolio() {
           <SectionHeading
             kicker="Visual diary"
             title="Still work / photography"
-            description="A small gallery of visual observations. Placeholder images for now."
+            description="A small gallery of visual observations."
             icon={Camera}
           />
           <div className="mt-8">
             <VisualDiaryGrid />
+          </div>
+
+          <div className="mt-12">
+            <SectionHeading
+              kicker="Product studies"
+              title="Product storyboards"
+              description="Your product photography, styled like brand assets and treated with the same care as a campaign.
+              "
+              icon={Camera}
+            />
+            <div className="mt-8">
+              <ProductStudiesGrid />
+            </div>
           </div>
         </section>
 
