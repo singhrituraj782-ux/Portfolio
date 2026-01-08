@@ -892,7 +892,7 @@ export default function Portfolio() {
 
 
         <section
-          id="case-studies"
+          id="selected-work"
           className="border-y bg-secondary/30"
         >
           <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
