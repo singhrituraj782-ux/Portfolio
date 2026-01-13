@@ -15,26 +15,63 @@ import { Separator } from "@/components/ui/separator";
 
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 
-function SectionBlock({ title, body, children }) {
+function SectionBlock({ title, body, children, childrenClassName = "pt-4" }) {
   return (
     <section className="space-y-2">
       <h2 className="font-display text-2xl tracking-tight">{title}</h2>
-      <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
-        {body}
-      </p>
-      {children ? <div className="pt-4">{children}</div> : null}
+      {body ? (
+        <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
+          {body}
+        </p>
+      ) : null}
+      {children ? <div className={childrenClassName}>{children}</div> : null}
     </section>
   );
 }
 
-function InlineImage({ src, alt, caption }) {
+function InlineImage({
+  src,
+  alt,
+  caption,
+  maxWidthClass = "max-w-full",
+  captionClassName = "",
+}) {
   return (
-    <figure className="overflow-hidden rounded-2xl border bg-card/60">
+    <figure
+      className={`mx-auto w-full overflow-hidden rounded-2xl border bg-card/60 ${maxWidthClass}`}
+    >
       <img src={src} alt={alt} className="h-auto w-full" loading="lazy" />
-      <figcaption className="border-t bg-background/40 px-4 py-3 text-xs leading-relaxed text-muted-foreground">
+      <figcaption
+        className={`border-t bg-background/40 px-4 py-3 text-xs leading-relaxed text-muted-foreground ${captionClassName}`}
+      >
         {caption}
       </figcaption>
     </figure>
+  );
+}
+
+function EvidenceCard({ title, src, alt, children }) {
+  return (
+    <Card className="bg-card/60">
+      <CardHeader className="pb-3">
+        <CardTitle className="font-display">{title}</CardTitle>
+      </CardHeader>
+      <CardContent className="pt-0">
+        <div className="grid gap-4 md:grid-cols-[0.9fr_1.1fr] md:items-start">
+          <div className="overflow-hidden rounded-xl border bg-background/40 p-3">
+            <img
+              src={src}
+              alt={alt}
+              className="max-h-[420px] w-full object-contain"
+              loading="lazy"
+            />
+          </div>
+          <div className="text-sm leading-relaxed text-muted-foreground">
+            {children}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -43,6 +80,8 @@ export default function ProjectDetail() {
 
   const p = useMemo(() => projects.find((x) => x.id === id), [id]);
   const isSimbound = p?.id === "tableto-simbound";
+  const isXuris = p?.id === "xuris-mmm";
+  const isFraud = p?.id === "fraud-detection";
 
   if (!p) {
     return (
@@ -105,32 +144,109 @@ export default function ProjectDetail() {
         <img src={p.cover} alt={p.title} className="h-[42vh] w-full object-cover" />
       </div>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-[1.25fr_0.75fr]">
-        <Card className="bg-card/60">
-          <CardHeader>
-            <CardTitle className="font-display">Overview</CardTitle>
-            <CardDescription>{p.oneLiner}</CardDescription>
-          </CardHeader>
-          <CardContent className="text-sm leading-relaxed text-muted-foreground">
-            {p.overview}
-          </CardContent>
-        </Card>
+      {isXuris || isFraud ? (
+        <div className="mt-8 space-y-4">
+          <Card className="bg-card/60">
+            <CardHeader>
+              <CardTitle className="font-display">Overview</CardTitle>
+              <CardDescription>{p.oneLiner}</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm leading-relaxed text-muted-foreground">
+              {p.overview}
+            </CardContent>
+          </Card>
 
-        <Card className="bg-secondary/35">
-          <CardHeader>
-            <CardTitle className="font-display">Impact</CardTitle>
-            <CardDescription>What changed</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3 text-sm text-muted-foreground">
-            {(p.metrics || []).map((m) => (
-              <div key={m} className="rounded-xl border bg-background/40 px-3 py-3">
-                <div className="text-foreground">{m}</div>
-              </div>
-            ))}
-            {p.impact ? <div>{p.impact}</div> : null}
-          </CardContent>
-        </Card>
-      </div>
+          <Card className="bg-secondary/35">
+            <CardHeader>
+              <CardTitle className="font-display">Impact</CardTitle>
+              <CardDescription>What changed</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm text-muted-foreground">
+              {(p.metrics || []).map((m) => (
+                <div key={m} className="rounded-xl border bg-background/40 px-3 py-3">
+                  <div className="text-foreground">{m}</div>
+                </div>
+              ))}
+              {p.impact ? <div>{p.impact}</div> : null}
+            </CardContent>
+          </Card>
+        </div>
+      ) : (
+        <div className="mt-8 grid gap-4 md:grid-cols-[1.25fr_0.75fr]">
+          <Card className="bg-card/60">
+            <CardHeader>
+              <CardTitle className="font-display">Overview</CardTitle>
+              <CardDescription>{p.oneLiner}</CardDescription>
+            </CardHeader>
+            <CardContent className="text-sm leading-relaxed text-muted-foreground">
+              {p.overview}
+            </CardContent>
+          </Card>
+
+          <Card className="bg-secondary/35">
+            <CardHeader>
+              <CardTitle className="font-display">Impact</CardTitle>
+              <CardDescription>What changed</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3 text-sm text-muted-foreground">
+              {(p.metrics || []).map((m) => (
+                <div key={m} className="rounded-xl border bg-background/40 px-3 py-3">
+                  <div className="text-foreground">{m}</div>
+                </div>
+              ))}
+              {p.impact ? <div>{p.impact}</div> : null}
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {isFraud ? (
+        <div className="mt-10">
+          <SectionBlock title="Evidence / Analysis" body={null} childrenClassName="pt-3">
+            <div className="space-y-4">
+              <EvidenceCard
+                title="Class Imbalance"
+                src="/products/machine-learning/Fraud vs Non-Fraud distribution.png"
+                alt="Fraud vs Non-Fraud distribution"
+              >
+                Fraud accounts represent roughly 1% of cases. That makes accuracy a misleading
+                headline metric — the problem is better framed around recall, risk exposure, and
+                investigation cost.
+              </EvidenceCard>
+
+              <EvidenceCard
+                title="Feature Behavior"
+                src="/products/machine-learning/Feature comparison (boxplots).png"
+                alt="Feature comparison boxplots for fraud vs non-fraud"
+              >
+                Fraudulent accounts show higher variance and skew across signals like income,
+                credit risk score, proposed credit limit, and session length. The patterns point to
+                abnormal behavior profiles rather than random noise.
+              </EvidenceCard>
+
+              <EvidenceCard
+                title="Model Performance"
+                src="/products/machine-learning/Confusion Matrix (Logistic Regression).png"
+                alt="Confusion matrix for Logistic Regression"
+              >
+                The operating point is intentionally recall-heavy. We accept more false positives
+                because missing fraud is costlier than investigating a flagged account — especially
+                when the goal is early interception.
+              </EvidenceCard>
+
+              <EvidenceCard
+                title="Model Selection"
+                src="/products/machine-learning/Model comparison table (ROC-AUC : Recall : Precision).png"
+                alt="Model comparison table with ROC-AUC, Recall, and Precision"
+              >
+                Logistic Regression was selected for deployment because it delivered strong recall
+                and remained interpretable for operations. Random Forest required threshold tuning
+                to be competitive and was not suitable in its default form.
+              </EvidenceCard>
+            </div>
+          </SectionBlock>
+        </div>
+      ) : null}
 
       <Separator className="my-10" />
 
@@ -146,7 +262,7 @@ export default function ProjectDetail() {
             />
           </div>
         ) : (
-          <SectionBlock title="My role" body={p.role} />
+          <SectionBlock title={isFraud ? "My Role" : "My role"} body={p.role} />
         )}
 
         {isSimbound ? (
@@ -159,10 +275,48 @@ export default function ProjectDetail() {
             />
           </div>
         ) : (
-          <SectionBlock title="Strategy / approach" body={p.approach} />
+          <SectionBlock
+            title={isFraud ? "Strategy / Approach" : "Strategy / approach"}
+            body={p.approach}
+          />
         )}
 
-        <SectionBlock title="Outcome / impact" body={p.outcome}>
+        {isXuris ? (
+          <SectionBlock title="Evidence / Analysis" body={null} childrenClassName="pt-3">
+            <div className="space-y-3">
+              <InlineImage
+                src="/products/marketing-analytics/sampling-vs-prescriptions.png"
+                alt="Sampling vs new prescriptions (exploratory analysis)"
+                caption="Early exploratory view of sampling activity vs new prescriptions. The relationship suggested sampling could be a meaningful lever, motivating deeper modeling instead of relying on intuition."
+                maxWidthClass="max-w-3xl"
+                captionClassName="py-2"
+              />
+              <InlineImage
+                src="/products/marketing-analytics/detailing-vs-prescriptions.png"
+                alt="Detailing vs new prescriptions (exploratory analysis)"
+                caption="Early exploratory view of detailing activity vs new prescriptions. Helped compare response patterns across levers and reinforced the need to quantify impact before reallocating budget."
+                maxWidthClass="max-w-3xl"
+                captionClassName="py-2"
+              />
+              <InlineImage
+                src="/products/marketing-analytics/model-comparison-aic.png"
+                alt="Model comparison using AIC across candidate specifications"
+                caption="AIC comparison across candidate model specifications. We tested multiple functional forms to avoid overfitting and choose a realistic response curve; the log-log model had the best AIC, so we used it for final estimates."
+                maxWidthClass="max-w-3xl"
+                captionClassName="py-2"
+              />
+              <InlineImage
+                src="/products/marketing-analytics/marginal-effects-detailing-vs-sampling.png"
+                alt="Marginal effects comparing detailing vs sampling"
+                caption="Marginal effects from the selected model comparing detailing vs sampling. Shows the relative incremental impact on new prescriptions and directly informed the budget allocation recommendation."
+                maxWidthClass="max-w-3xl"
+                captionClassName="py-2"
+              />
+            </div>
+          </SectionBlock>
+        ) : null}
+
+        <SectionBlock title={isFraud ? "Outcome / Impact" : "Outcome / impact"} body={p.outcome}>
           {isSimbound ? (
             <InlineImage
               src="/products/simbound/download (2).png"
@@ -171,7 +325,7 @@ export default function ProjectDetail() {
             />
           ) : null}
         </SectionBlock>
-        <SectionBlock title="Key learnings" body={p.learnings} />
+        <SectionBlock title={isFraud ? "Key Learnings" : "Key learnings"} body={p.learnings} />
       </div>
 
       {p.links?.length ? (

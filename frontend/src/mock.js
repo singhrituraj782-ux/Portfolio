@@ -152,7 +152,7 @@ export const education = [
 export const projects = [
   {
     id: "tableto-simbound",
-    title: "E-Commerce Marketing Simulation — Tableto",
+    title: "Profit-First E-Commerce Strategy — Tableto",
     subtitle: "Simbound • Email marketing lead in a 6-round team simulation",
     year: "2024",
     category: "Marketing & Strategy",
@@ -187,21 +187,21 @@ export const projects = [
     cover:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&fm=jpg&w=1600&q=70",
     oneLiner:
-      "Turned channel activity into ROI comparisons to guide budget decisions.",
+      "Quantified incremental lift of detailing vs sampling to guide budget decisions.",
     overview:
-      "I analyzed marketing performance to compare the ROI of detailing versus sampling. Using regression analysis, I connected spend/activity signals to outcomes and translated results into practical budget guidance.",
+      "This case study evaluates marketing effectiveness for Xuris, a pharmaceutical brand. Using physician-month level data, I compared two core levers — detailing visits (sales rep interactions) and product sampling — as drivers of new prescriptions. The goal was to quantify incremental impact (not just observe correlations) and translate the findings into decision-ready budget allocation guidance under realistic constraints.",
     goal:
-      "Identify which channel (detailing vs sampling) drives stronger ROI and propose data-driven allocation.",
+      "Identify which channel (detailing vs sampling) delivers stronger ROI in new prescriptions, and produce a practical allocation recommendation that holds up under real-world budget and resource constraints.",
     role:
-      "Analytics lead: structured the dataset, ran regression-based comparisons, and summarized decision-ready recommendations.",
+      "Analytics Lead: owned dataset structuring, exploratory analysis, model selection, diagnostics, interpretation, and the final budget recommendation.",
     approach:
-      "Defined outcome metrics, cleaned and structured activity inputs, ran regression to estimate impact, then compared ROI under realistic budget constraints.",
+      "Data prep & QA: structured physician-month records and checked distributions, missing values, and outliers. Visual exploration: used scatter plots and binned relationships to surface non-linear patterns in how detailing and sampling relate to new prescriptions. Modeling: tested multiple specifications (OLS, Poisson, log-log) to match the data behavior and business question. Selection & validation: chose the final model using AIC and verified stability with residual checks, Q–Q plots, and leverage diagnostics. Interpretation: converted coefficients into marginal effects to compare incremental impact and identify diminishing returns, then translated results into budget guidance.",
     outcome:
-      "Produced a clear recommendation on budget allocation grounded in measured impact rather than intuition.",
-    impact: "Data-driven budget recommendations based on channel ROI.",
-    metrics: ["Regression-based ROI comparison", "Decision-ready budget guidance"],
+      "Key analytical findings: 1) Both detailing and sampling increased new prescriptions. 2) Detailing showed a stronger, more consistent marginal effect. 3) Sampling showed diminishing returns and worked best as a support lever. 4) The non-linear response justified the final log-log model. Recommendation: prioritize detailing investment while maintaining targeted sampling to support coverage — a directly actionable allocation plan based on measured marginal impact, not intuition.",
+    impact: "Actionable budget allocation guidance based on quantified incremental impact.",
+    metrics: ["Physician-month impact modeling", "AIC-based model selection (log-log)", "Marginal effects → budget guidance"],
     learnings:
-      "The value of analytics is clarity. The best model is the one that helps stakeholders confidently decide what to do next.",
+      "Model choice has to match data behavior: non-linear response and diminishing returns changed the conclusions. Visual exploration before modeling reduced false confidence early. Analytics creates the most value when it turns results into decision clarity — what to prioritize, what to keep, and what to stop.",
     links: [],
   },
   {
@@ -214,21 +214,26 @@ export const projects = [
     cover:
       "https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&fm=jpg&w=1600&q=70",
     oneLiner:
-      "Built a fraud detection approach framed around risk reduction and operational decision-making.",
+      "A recall-first fraud screening model built for operational triage.",
     overview:
-      "I built a classification approach to flag potentially fraudulent accounts early. The goal wasn’t ‘perfect prediction’ — it was reducing financial risk while keeping false positives manageable for operations.",
+      "Fraudulent account openings create outsized financial risk and downstream investigation work. This project builds a classification model to flag high-risk accounts early and treats the problem as a threshold decision — balancing missed fraud (risk exposure) against review capacity (false positives). Interpretability mattered because analysts need to understand why an account was flagged and act on it within a real workflow.",
     goal:
-      "Detect higher-risk accounts early to reduce downstream loss and investigation cost.",
+      "Detect higher-risk accounts early to reduce loss and risk exposure, while keeping the number of reviews manageable. The output needed to be deployable: a risk score, a recommended operating threshold, and decision-focused evaluation (recall/precision) rather than headline accuracy.",
     role:
-      "Built the model and translated outputs into business-relevant trade-offs (precision/recall) for decision-making.",
+      "Analytics Lead: structured the dataset, selected and prepared features, trained and compared models, and translated model outputs into an operating threshold aligned to investigation capacity. Owned evaluation, diagnostics, and the final recommendation for how the model should be used in practice.",
     approach:
-      "Framed the problem as triage: score accounts by risk, then define thresholds that balance missed fraud versus investigation load. Focused on interpretability and operational usability.",
+      "Structured the problem as triage: predict fraud risk at the account level, then choose a threshold that prioritizes recall. Addressed extreme class imbalance by focusing on recall/precision and reviewing performance through confusion matrices (not accuracy). Prepared features with lightweight preprocessing so results remained stable and explainable. Trained baseline and comparative models (Logistic Regression and Random Forest), evaluated ROC-AUC alongside recall and precision, and selected a recall-heavy operating point. Chose the final model based on both performance and interpretability so the output could be used and trusted by operations.",
     outcome:
-      "A risk scoring approach that supports earlier detection and clearer decision thresholds for review workflows.",
-    impact: "Financial risk reduction through earlier fraud flagging.",
-    metrics: ["Risk scoring", "Operational thresholds", "Reduced exposure"],
+      "Delivered an interpretable fraud risk scoring approach with a recommended threshold for review workflows. The final setup favors catching fraud early (higher recall), accepts false positives as a cost of risk reduction, and provides decision clarity on what happens when the model flags an account.",
+    impact:
+      "Improves risk reduction and operational decision-making by turning fraud detection into a clear, threshold-based review process.",
+    metrics: [
+      "Recall-first operating threshold",
+      "Interpretable Logistic Regression baseline",
+      "Decision-ready evaluation (ROC-AUC / recall / precision)",
+    ],
     learnings:
-      "Models succeed when they fit workflows. A slightly less accurate model can be more valuable if teams trust it and act on it.",
+      "In high-risk problems, trade-offs matter more than accuracy. Thresholds can matter more than algorithms. The best model is the one that fits the workflow — transparent enough to trust, and practical enough to act on.",
     links: [],
   },
   {
