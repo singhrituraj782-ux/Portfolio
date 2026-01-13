@@ -11,7 +11,8 @@ import {
   visualDiary,
   productStudies,
   motionWorks,
-  workExperience,
+  professionalExperience,
+  volunteeringExperience,
   howIThink,
   education,
   work,
@@ -105,6 +106,38 @@ function SectionHeading({ kicker, title, description, icon: Icon }) {
           <span>Currently: {profile.availability}</span>
         </span>
       </div>
+    </div>
+  );
+}
+
+function ExperienceGrid({ items }) {
+  return (
+    <div className="mt-4 grid gap-4 md:grid-cols-2">
+      {(items || []).map((r) => (
+        <Card key={r.id} className="bg-card/60">
+          <CardHeader>
+            <CardTitle className="font-display text-2xl">{r.role}</CardTitle>
+            <CardDescription>
+              {r.company} • {r.location} • {r.dates}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4 text-sm leading-relaxed">
+            {r.summary ? <p className="text-muted-foreground">{r.summary}</p> : null}
+
+            <ul className="space-y-2 text-muted-foreground">
+              {(r.highlights || []).map((h) => (
+                <li key={h} className="flex gap-3">
+                  <span
+                    className="mt-2 h-1.5 w-1.5 flex-none rounded-full"
+                    style={{ backgroundColor: ACCENT }}
+                  />
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      ))}
     </div>
   );
 }
@@ -947,23 +980,26 @@ export default function Portfolio() {
               icon={Wand2}
             />
 
-            <div className="mt-8 grid gap-4 md:grid-cols-2">
-              {(workExperience || []).map((r) => (
-                <Card key={r.id} className="bg-card/60">
-                  <CardHeader>
-                    <CardTitle className="font-display text-2xl">{r.title}</CardTitle>
-                    <CardDescription>
-                      {r.location} • {r.duration}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-3 text-sm leading-relaxed text-muted-foreground">
-                    <p>{r.narrative}</p>
-                    <div className="rounded-xl border bg-background/40 p-4 text-foreground">
-                      {r.impact}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="mt-8 space-y-10">
+              <div>
+                <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                  <h3 className="font-display text-2xl">Professional experience</h3>
+                  <div className="text-sm text-muted-foreground">
+                    Sales, business development, and client-facing roles.
+                  </div>
+                </div>
+                <ExperienceGrid items={professionalExperience} />
+              </div>
+
+              <div>
+                <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                  <h3 className="font-display text-2xl">Volunteering experience</h3>
+                  <div className="text-sm text-muted-foreground">
+                    Community work and sustainability education.
+                  </div>
+                </div>
+                <ExperienceGrid items={volunteeringExperience} />
+              </div>
             </div>
           </div>
         </section>

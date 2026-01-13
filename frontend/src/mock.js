@@ -15,8 +15,7 @@ export const profile = {
   // Assets
   photoUrl:
     "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/u841goea_ae278b49-c13b-4fa5-84c7-cbbca4ff075e.JPG",
-  resumeUrl:
-    "https://customer-assets.emergentagent.com/job_b9ee181e-369a-4019-80f3-ae9b35c0c8c9/artifacts/xvjziauj_BRANDIN%20CV_%20Rituraj%20Rituraj%202026.pdf",
+  resumeUrl: `${process.env.PUBLIC_URL}/RITURAJ_CV_2025_Sales_.pdf`,
 
   social: {
     email: "mailto:singhrituraj782@gmail.com",
@@ -26,7 +25,7 @@ export const profile = {
 };
 
 export const navigation = [
-  { label: "Work", href: "#work" },
+  { label: "Work", href: "#work-experience" },
   { label: "Projects", href: "#projects" },
   { label: "Services", href: "#services" },
   { label: "Resume", href: "#resume" },
@@ -342,26 +341,64 @@ export const projects = [
   },
 ];
 
-export const workExperience = [
+export const professionalExperience = [
   {
-    id: "inside-sales",
-    title: "Business Development / Inside Sales",
-    location: "Client-facing role",
-    duration: "Experience",
-    narrative:
-      "In a client-facing inside sales role, I worked at the point where interest becomes revenue. I handled inbound leads, qualified fit, and moved conversations forward through clear discovery, fast follow-ups, and structured next steps. The work demanded tight communication, negotiation, and comfort with real-world pressure — because speed and clarity directly impact conversion.",
-    impact:
-      "Focused on conversion discipline: lead qualification, pipeline hygiene, and outcome-driven communication.",
+    id: "granaura-promoters-bdr",
+    role: "Business Development Representative",
+    company: "Granaura Promoters",
+    location: "India",
+    dates: "Sep 2023 – Mar 2024",
+    summary:
+      "Owned end-to-end sales cycles with a consultative approach — from lead handling and discovery to follow-ups, negotiation, and closing.",
+    highlights: [
+      "Managed full sales cycle handling 150+ leads monthly with 25% conversion rate, consistently exceeding quarterly targets.",
+      "Boosted revenue by 10–15% through strategic prospecting and consultative selling approach.",
+      "Implemented retention strategies that increased client engagement by 15% and reduced churn.",
+    ],
   },
   {
+    id: "cur8-inside-sales",
+    role: "Inside Sales Specialist",
+    company: "Cur8",
+    location: "India",
+    dates: "May 2023 – Aug 2024",
+    summary:
+      "Drove prospecting, qualification, and closing in a high-volume environment, using CRM tracking and performance analytics to improve conversion.",
+    highlights: [
+      "Exceeded sales targets by 35% through effective prospecting, qualification, and closing techniques.",
+      "Executed high-volume outbound campaigns across phone, email, and social channels, increasing engagement by 25%.",
+      "Utilized CRM tools and analytics to track performance and optimize conversion rates.",
+    ],
+  },
+  {
+    id: "bedo-design-bda",
+    role: "Business Development Associate",
+    company: "Bedo Design",
+    location: "India",
+    dates: "Oct 2022 – Apr 2023",
+    summary:
+      "Expanded the client portfolio through B2B prospecting, relationship building, and key-account acquisition to support growth.",
+    highlights: [
+      "Expanded portfolio by 25% through strategic B2B prospecting and relationship development.",
+      "Secured key accounts contributing to 15% market growth and launched campaigns amplifying engagement by 30%.",
+    ],
+  },
+];
+
+export const volunteeringExperience = [
+  {
     id: "la-maison-upcycling",
-    title: "Community & Social Impact — La Maison Upcycling (Lyon)",
+    role: "Volunteer — Workshop Support & Facilitation",
+    company: "La Maison Upcycling",
     location: "Lyon, France",
-    duration: "50 hours volunteering",
-    narrative:
-      "Over 50 hours, I supported textile upcycling workshops and sustainability education sessions. I guided participants of different ages through hands-on making, explained the ‘why’ behind reuse, and helped keep workshops flowing smoothly. It’s a different kind of responsibility: facilitation, patience, and the ability to communicate simply — while ensuring people feel confident and included.",
-    impact:
-      "Strengthened facilitation, workshop leadership, and sustainability communication in real community settings.",
+    dates: "50 hours volunteering",
+    summary:
+      "Supported textile upcycling workshops and sustainability education sessions, helping participants feel confident while reinforcing the practical ‘why’ behind reuse.",
+    highlights: [
+      "Guided participants of different ages through hands-on making with clear, step-by-step facilitation.",
+      "Explained sustainability concepts in simple language and supported inclusive participation throughout sessions.",
+      "Helped keep workshops flowing smoothly with steady pacing, patience, and on-the-spot problem solving.",
+    ],
   },
 ];
 
