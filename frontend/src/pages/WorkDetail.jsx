@@ -40,8 +40,20 @@ export default function WorkDetail() {
   const next = idx < work.length - 1 ? work[idx + 1] : null;
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-10 md:py-14">
-      <header>
+    <div className="relative overflow-hidden">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute inset-0 opacity-85"
+          style={{
+            background:
+              "radial-gradient(900px 520px at 18% 18%, rgba(34,66,240,0.12), transparent 60%), radial-gradient(900px 520px at 86% 22%, rgba(255,70,190,0.10), transparent 60%), radial-gradient(900px 520px at 54% 92%, rgba(228,106,46,0.12), transparent 60%)",
+          }}
+        />
+        <div className="absolute inset-0 editorial-dots opacity-45" />
+      </div>
+
+      <div className="relative mx-auto max-w-4xl px-4 py-12 md:py-16">
+      <header data-reveal>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-3">
             <Link to="/" className="inline-flex">
@@ -71,16 +83,14 @@ export default function WorkDetail() {
         </p>
       </header>
 
-      <div className="mt-8 overflow-hidden rounded-2xl border bg-card">
-        <img
-          src={item.cover}
-          alt={item.title}
-          className="h-[44vh] w-full object-cover"
-        />
+      <div className="mt-8 overflow-hidden rounded-2xl border bg-card" data-reveal>
+        <div className="h-[44vh] w-full campaign-parallax" data-parallax="0.04">
+          <img src={item.cover} alt={item.title} className="h-full w-full object-cover" />
+        </div>
       </div>
 
       <div className="mt-8 grid gap-4 md:grid-cols-[1.3fr_0.7fr]">
-        <Card>
+        <Card data-reveal>
           <CardHeader>
             <CardTitle className="font-display">Overview</CardTitle>
             <CardDescription>{item.impact}</CardDescription>
@@ -97,7 +107,7 @@ export default function WorkDetail() {
           </CardContent>
         </Card>
 
-        <Card className="bg-secondary/40">
+        <Card className="bg-secondary/40" data-reveal>
           <CardHeader>
             <CardTitle className="font-display">Quick notes</CardTitle>
             <CardDescription>What I focused on</CardDescription>
@@ -119,7 +129,7 @@ export default function WorkDetail() {
 
       <div className="space-y-6">
         {item.sections.map((s) => (
-          <div key={s.heading} className="space-y-2">
+          <div key={s.heading} className="space-y-2" data-reveal>
             <h2 className="font-display text-2xl tracking-tight">{s.heading}</h2>
             <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
               {s.body}
@@ -132,12 +142,28 @@ export default function WorkDetail() {
         <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
           Gallery (placeholders)
         </div>
-        <div className="mt-4 grid gap-4 md:grid-cols-3">
-          {item.gallery.map((url) => (
-            <div key={url} className="overflow-hidden rounded-xl border">
-              <img src={url} alt="" className="h-48 w-full object-cover" />
-            </div>
-          ))}
+        <div className="mt-4 grid gap-4 md:grid-cols-12">
+          {item.gallery.map((url, index) => {
+            const span =
+              index === 0
+                ? "md:col-span-7"
+                : index === 1
+                  ? "md:col-span-5"
+                  : "md:col-span-12";
+            return (
+              <div
+                key={url}
+                className={`group overflow-hidden rounded-xl border ${span}`}
+                data-reveal
+              >
+                <img
+                  src={url}
+                  alt=""
+                  className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -163,6 +189,7 @@ export default function WorkDetail() {
           ) : null}
         </div>
       </div>
+    </div>
     </div>
   );
 }

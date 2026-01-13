@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   blogPosts,
@@ -48,10 +48,8 @@ import {
   Camera,
   FileText,
   Film,
-  Linkedin,
   Mail,
   MapPin,
-  Search,
   Sparkles,
   Wand2,
 } from "lucide-react";
@@ -60,39 +58,27 @@ import ThreeBackdrop from "@/components/ThreeBackdrop";
 import ThemeToggle from "@/components/ThemeToggle";
 import Product3DPreview from "@/components/Product3DPreview";
 
-const ACCENT = "#7AAE5E"; // subtle sage for UI accents
-const FIRE_ACCENT = "#A8E36F"; // softer chartreuse for fireflies (still visible, less neon)
-
-function useFilteredWork(query) {
-  return useMemo(() => {
-    const q = (query || "").trim().toLowerCase();
-    if (!q) return work;
-    return work.filter((w) => {
-      const hay = [w.title, w.subtitle, w.category, ...(w.tags || [])]
-        .join(" ")
-        .toLowerCase();
-      return hay.includes(q);
-    });
-  }, [query]);
-}
+const ACCENT = "#E46A2E"; // single brand accent (used sparingly)
+const FIRE_ACCENT = "#E46A2E"; // keep motion accents aligned to the same brand color
 
 function SectionHeading({ kicker, title, description, icon: Icon }) {
   return (
     <div className="flex items-end justify-between gap-6">
       <div className="max-w-2xl">
-        <div className="flex items-center gap-2 text-xs tracking-[0.22em] uppercase text-muted-foreground">
+        <div className="flex items-center gap-2 text-xs tracking-[0.22em] uppercase text-accent">
           {Icon ? (
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border bg-background">
-              <Icon className="h-4 w-4" />
+            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-border/60 bg-background/40">
+              <Icon className="h-4 w-4 text-accent" />
             </span>
           ) : null}
           <span>{kicker}</span>
+          <span className="hidden h-[2px] w-10 rounded-full bg-accent/80 md:inline-block" aria-hidden />
         </div>
-        <h2 className="mt-3 font-display text-3xl leading-[1.05] tracking-tight md:text-4xl">
+        <h2 className="mt-4 font-display text-4xl leading-[0.92] tracking-tight md:text-5xl lg:text-6xl">
           {title}
         </h2>
         {description ? (
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+          <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
             {description}
           </p>
         ) : null}
@@ -111,17 +97,24 @@ function SectionHeading({ kicker, title, description, icon: Icon }) {
 }
 
 function ExperienceGrid({ items }) {
+  const cols =
+    (items || []).length > 1 ? "md:grid-cols-2" : "md:grid-cols-1";
+
   return (
-    <div className="mt-4 grid gap-4 md:grid-cols-2">
+    <div className={`mt-6 grid gap-4 ${cols}`}>
       {(items || []).map((r) => (
-        <Card key={r.id} className="bg-card/60">
-          <CardHeader>
+        <Card key={r.id} className="relative overflow-hidden bg-card/60">
+          <div
+            aria-hidden
+            className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-accent via-accent/40 to-transparent"
+          />
+          <CardHeader className="relative pl-7">
             <CardTitle className="font-display text-2xl">{r.role}</CardTitle>
             <CardDescription>
               {r.company} • {r.location} • {r.dates}
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4 text-sm leading-relaxed">
+          <CardContent className="relative space-y-4 pl-7 text-sm leading-relaxed">
             {r.summary ? <p className="text-muted-foreground">{r.summary}</p> : null}
 
             <ul className="space-y-2 text-muted-foreground">
@@ -135,6 +128,49 @@ function ExperienceGrid({ items }) {
                 </li>
               ))}
             </ul>
+
+            <div className="rounded-xl border bg-background/40 p-4">
+              <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                Skills &amp; Impact
+              </div>
+
+              <div className="mt-4 space-y-4">
+                <div>
+                  <div className="text-sm font-medium text-foreground">
+                    Skills I built
+                  </div>
+                  <ul className="mt-2 space-y-2 text-muted-foreground">
+                    {(r.skillsImpact?.skillsBuilt || []).map((s) => (
+                      <li key={s} className="flex gap-3">
+                        <span
+                          className="mt-2 h-1.5 w-1.5 flex-none rounded-full"
+                          style={{ backgroundColor: ACCENT }}
+                        />
+                        <span>{s}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <div className="text-sm font-medium text-foreground">
+                    How I applied them
+                  </div>
+                  <p className="mt-2 text-muted-foreground">
+                    {r.skillsImpact?.howApplied}
+                  </p>
+                </div>
+
+                <div>
+                  <div className="text-sm font-medium text-foreground">
+                    Results / Impact
+                  </div>
+                  <p className="mt-2 text-muted-foreground">
+                    {r.skillsImpact?.resultsImpact}
+                  </p>
+                </div>
+              </div>
+            </div>
           </CardContent>
         </Card>
       ))}
@@ -153,7 +189,7 @@ function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/75 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-40 border-b bg-background/75 backdrop-blur supports-[backdrop-filter]:bg-background/60 relative after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gradient-to-r after:from-transparent after:via-accent/35 after:to-transparent">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Link to="/" className="group inline-flex items-baseline gap-2">
           <span className="font-display text-lg tracking-tight">
@@ -170,7 +206,7 @@ function SiteHeader() {
               key={item.href}
               type="button"
               onClick={() => jump(item.href)}
-              className="rounded-full px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="relative rounded-full px-3 py-2 text-sm text-foreground/70 transition-colors hover:text-foreground after:absolute after:left-3 after:right-3 after:-bottom-0.5 after:h-[2px] after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:after:scale-x-100"
             >
               {item.label}
             </button>
@@ -228,31 +264,43 @@ function Hero() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
         <div
-          className="absolute inset-0 opacity-[0.55]"
+          className="absolute inset-0 opacity-[0.8]"
           style={{
             background:
-              "radial-gradient(900px 420px at 18% 18%, rgba(230,188,132,0.14), transparent 62%), radial-gradient(900px 520px at 26% 30%, rgba(122,174,94,0.14), transparent 62%), radial-gradient(650px 320px at 82% 10%, rgba(0,0,0,0.08), transparent 60%)",
+              "radial-gradient(900px 420px at 18% 18%, rgba(34,66,240,0.22), transparent 62%), radial-gradient(900px 520px at 26% 30%, rgba(255,70,190,0.16), transparent 62%), radial-gradient(650px 320px at 82% 10%, rgba(228,106,46,0.20), transparent 60%)",
           }}
         />
+        <div className="campaign-orb campaign-orb--a" />
+        <div className="campaign-orb campaign-orb--b" />
+        <div className="campaign-orb campaign-orb--c" />
         <ThreeBackdrop className="absolute inset-0" accent={FIRE_ACCENT} />
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-4 pt-8 pb-10 md:pt-10 md:pb-14">
-        <div className="grid gap-10 md:grid-cols-[1.12fr_0.88fr] md:items-start">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border bg-background/80 px-3 py-1 text-xs tracking-[0.22em] uppercase text-muted-foreground backdrop-blur">
+      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl items-center px-4 py-14 md:py-16">
+        <div className="grid w-full gap-10 md:grid-cols-[1.05fr_0.95fr] md:items-end">
+          <div className="space-y-6">
+            <div
+              className="inline-flex items-center gap-2 rounded-full border bg-background/70 px-4 py-2 text-xs tracking-[0.22em] uppercase text-muted-foreground backdrop-blur"
+              data-reveal
+            >
               <Sparkles className="h-4 w-4" />
               <span>Brand strategy + marketing analytics</span>
             </div>
 
-            <h1 className="mt-1 font-display text-5xl leading-[0.95] tracking-tight md:text-7xl">
+            <h1
+              className="font-display text-6xl leading-[0.88] tracking-tight md:text-8xl lg:text-9xl"
+              data-reveal
+            >
               {profile.name}
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            <p
+              className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
+              data-reveal
+            >
               {profile.summary}
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3" data-reveal>
               <Button
                 variant="outline"
                 className="rounded-full"
@@ -270,8 +318,7 @@ function Hero() {
               </span>
             </div>
 
-            {/* Move Snapshot into the empty space under the CTA (no photo here) */}
-            <Card className="mt-8 bg-background/80 backdrop-blur">
+            <Card className="bg-background/70 backdrop-blur" data-reveal>
               <CardHeader>
                 <CardTitle className="font-display text-xl">Snapshot</CardTitle>
                 <CardDescription>Fast facts + skills.</CardDescription>
@@ -335,43 +382,54 @@ function Hero() {
             </Card>
           </div>
 
-          {/* Portrait card (reduced ~1.5x) */}
-          <Card className="bg-background/80 backdrop-blur overflow-hidden md:mt-2 md:ml-auto md:max-w-[360px]">
-            <div className="relative aspect-[3/4]">
-              <img
-                src={profile.photoUrl}
-                alt={profile.name}
-                className="h-full w-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <div className="text-xs tracking-[0.22em] uppercase text-white/70">
-                  {profile.roleTagline}
-                </div>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
-                    <Button
-                      size="sm"
-                      className="rounded-full"
-                      style={{ backgroundColor: "rgba(16,17,20,0.88)", color: "#f7f7f2" }}
-                    >
-                      Resume <ArrowUpRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </a>
-                  <a href={profile.social.linkedin} target="_blank" rel="noreferrer">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="rounded-full bg-white/10 text-white border-white/30 hover:bg-white/15"
-                    >
-                      LinkedIn <ArrowUpRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </Card>
+	          <div className="relative md:ml-auto md:max-w-[420px]" data-reveal>
+	            <div className="campaign-frame" aria-hidden />
+	            <Card className="relative overflow-hidden bg-background/70 backdrop-blur md:mt-2">
+	              <div className="relative aspect-[3/4] overflow-hidden">
+	                <div className="campaign-photo" data-parallax="0.08">
+	                  <img
+	                    src={profile.photoUrl}
+	                    alt={profile.name}
+	                    className="h-full w-full object-cover"
+	                    loading="lazy"
+	                  />
+	                </div>
+	                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+	                <div className="absolute bottom-4 left-4 right-4">
+	                  <div className="text-xs tracking-[0.22em] uppercase text-white/70">
+	                    {profile.roleTagline}
+	                  </div>
+	                  <div className="mt-2 flex flex-wrap gap-2">
+	                    <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
+	                      <Button
+	                        size="sm"
+	                        className="rounded-full"
+	                        style={{
+	                          backgroundColor: "rgba(16,17,20,0.88)",
+	                          color: "#f7f7f2",
+	                        }}
+	                      >
+	                        Resume <ArrowUpRight className="ml-2 h-4 w-4" />
+	                      </Button>
+	                    </a>
+	                    <a
+	                      href={profile.social.linkedin}
+	                      target="_blank"
+	                      rel="noreferrer"
+	                    >
+	                      <Button
+	                        size="sm"
+	                        variant="outline"
+	                        className="rounded-full bg-white/10 text-white border-white/30 hover:bg-white/15"
+	                      >
+	                        LinkedIn <ArrowUpRight className="ml-2 h-4 w-4" />
+	                      </Button>
+	                    </a>
+	                  </div>
+	                </div>
+	              </div>
+	            </Card>
+	          </div>
         </div>
       </div>
     </section>
@@ -382,7 +440,7 @@ function WorkGrid({ items }) {
   return (
     <div className="grid gap-4 md:grid-cols-2">
       {items.map((w) => (
-        <Link key={w.id} to={`/work/${w.id}`} className="group">
+        <Link key={w.id} to={`/work/${w.id}`} className="group" data-reveal>
           <Card className="h-full overflow-hidden transition-shadow hover:shadow-lg">
             <div className="relative aspect-[16/9] overflow-hidden">
               <img
@@ -438,7 +496,7 @@ function BlogGrid() {
   return (
     <div className="grid gap-4 md:grid-cols-2">
       {(blogPosts || []).map((p) => (
-        <Link key={p.slug} to={`/blog/${p.slug}`} className="group">
+        <Link key={p.slug} to={`/blog/${p.slug}`} className="group" data-reveal>
           <Card className="h-full overflow-hidden transition-shadow hover:shadow-lg">
             <div className="relative aspect-[16/9] overflow-hidden">
               <img
@@ -485,6 +543,7 @@ function VisualDiaryGrid() {
               <button
                 type="button"
                 className={`group relative overflow-hidden rounded-xl border bg-card ${span}`}
+                data-reveal
               >
                 <div className="relative aspect-[16/10]">
                   <img
@@ -536,6 +595,7 @@ function ProductStudiesGrid() {
               <button
                 type="button"
                 className={`group relative overflow-hidden rounded-2xl border bg-card/60 ${span}`}
+                data-reveal
               >
                 <div className="relative aspect-[4/3]">
                   <img
@@ -667,37 +727,40 @@ function ProductStudiesGrid() {
 
 function MotionGrid() {
   return (
-    <div className="grid gap-4 md:grid-cols-2">
-      {(motionWorks || []).map((m) => (
-        <Card key={m.id} className="overflow-hidden">
-          <div className="relative aspect-[16/9] overflow-hidden">
-            <img
-              src={m.cover}
-              alt={m.title}
-              className="h-full w-full object-cover"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-black/0" />
-            <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3">
-              <div>
-                <div className="font-display text-xl text-white">{m.title}</div>
-                <div className="mt-1 text-sm text-white/80">{m.description}</div>
+    <div className="grid gap-4 md:grid-cols-12">
+      {(motionWorks || []).map((m, idx) => {
+        const span = idx % 2 === 0 ? "md:col-span-7" : "md:col-span-5";
+        return (
+          <Card key={m.id} className={`group overflow-hidden ${span}`} data-reveal>
+            <div className="relative aspect-[16/9] overflow-hidden">
+              <img
+                src={m.cover}
+                alt={m.title}
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/0" />
+              <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3">
+                <div>
+                  <div className="font-display text-xl text-white">{m.title}</div>
+                  <div className="mt-1 text-sm text-white/80">{m.description}</div>
+                </div>
+                <span className="rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs text-white backdrop-blur">
+                  {m.duration}
+                </span>
               </div>
-              <span className="rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs text-white backdrop-blur">
-                {m.duration}
-              </span>
             </div>
-          </div>
-          <CardContent className="flex items-center justify-between gap-3 p-5">
-            <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-              Replace with video link later
-            </div>
-            <Button variant="outline" className="rounded-full" disabled>
-              View
-            </Button>
-          </CardContent>
-        </Card>
-      ))}
+            <CardContent className="flex items-center justify-between gap-3 p-5">
+              <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                Replace with video link later
+              </div>
+              <Button variant="outline" className="rounded-full" disabled>
+                View
+              </Button>
+            </CardContent>
+          </Card>
+        );
+      })}
     </div>
   );
 }
@@ -862,7 +925,7 @@ function ContactSection() {
             className="p-6"
             style={{
               background:
-                "radial-gradient(700px 320px at 20% 20%, rgba(168,227,111,0.12), transparent 60%), radial-gradient(700px 320px at 80% 10%, rgba(230,188,132,0.10), transparent 60%)",
+                "radial-gradient(700px 320px at 20% 20%, rgba(228,106,46,0.16), transparent 60%), radial-gradient(700px 320px at 80% 10%, rgba(228,106,46,0.10), transparent 60%)",
             }}
           >
             <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
@@ -882,149 +945,216 @@ function ContactSection() {
 }
 
 export default function Portfolio() {
-  const [query, setQuery] = useState("");
-  const filtered = useFilteredWork(query);
-
-  const byCategory = useMemo(() => {
-    const groups = {
-      All: filtered,
-      "Brand Strategy": filtered.filter((w) => w.category === "Brand Strategy"),
-      "Marketing Analytics": filtered.filter(
-        (w) => w.category === "Marketing Analytics"
-      ),
-      "Product Research": filtered.filter((w) => w.category === "Product Research"),
-      "Motion Design": filtered.filter((w) => w.category === "Motion Design"),
-    };
-    return groups;
-  }, [filtered]);
-
   return (
     <div className="min-h-screen portfolio-grain">
       <SiteHeader />
-      <main>
+      <main className="flex flex-col">
         <Hero />
 
-        <section id="work" className="mx-auto max-w-6xl px-4 py-14 md:py-20">
-          <SectionHeading
-            kicker="What I bring"
-            title="Brand and marketing, built for execution"
-            description="I start with the decision, validate direction with KPIs in Excel/Tableau dashboards, and deliver messaging and campaigns teams can launch, measure, and improve."
-            icon={Briefcase}
-          />
-
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            <Card className="bg-card/60">
-              <CardHeader>
-                <CardTitle className="font-display text-2xl">Problem-first brand decisions</CardTitle>
-                <CardDescription>
-                  Audience, positioning, message, or channel.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                I define the goal and trade-offs early so teams align and execution stays focused.
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/60">
-              <CardHeader>
-                <CardTitle className="font-display text-2xl">Validate with analytics</CardTitle>
-                <CardDescription>
-                  KPI tracking in Excel and Tableau dashboards.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                I use funnel and campaign data to identify drivers, choose changes, and track impact.
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/60">
-              <CardHeader>
-                <CardTitle className="font-display text-2xl">Storytelling built to launch</CardTitle>
-                <CardDescription>
-                  Journalism, filmmaking, ad creation, and visual design.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                I turn insights into a clear narrative, messaging, and creative assets that teams can brief and launch.
-              </CardContent>
-            </Card>
+        <section id="work" data-reveal className="order-2 relative overflow-hidden">
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div
+              className="absolute inset-0 opacity-90"
+              style={{
+                background:
+                  "radial-gradient(900px 520px at 14% 18%, rgba(34,66,240,0.14), transparent 60%), radial-gradient(900px 520px at 86% 22%, rgba(255,70,190,0.12), transparent 60%), radial-gradient(900px 520px at 60% 86%, rgba(228,106,46,0.14), transparent 60%)",
+              }}
+            />
+            <div className="absolute inset-0 editorial-dots opacity-60" />
+            <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
           </div>
 
-          <div className="mt-10 rounded-2xl border bg-secondary/25 p-5 md:p-6">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div className="text-sm text-muted-foreground">
-                Want the full case-study view?
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <Link to="/projects">
-                  <Button className="rounded-full">
-                    Browse projects <ArrowUpRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-                <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
-                  <Button variant="outline" className="rounded-full">
-                    Resume <ArrowUpRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </a>
+          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
+            <SectionHeading
+              kicker="What I bring"
+              title="Brand and marketing, built for execution"
+              description="I start with the decision, validate direction with KPIs in Excel/Tableau dashboards, and deliver messaging and campaigns teams can launch, measure, and improve."
+              icon={Briefcase}
+            />
+
+            <div className="mt-10 grid gap-4 md:grid-cols-12">
+              <Card className="group overflow-hidden bg-card/60 md:col-span-7">
+                <CardHeader>
+                  <CardTitle className="font-display text-2xl">Problem-first brand decisions</CardTitle>
+                  <CardDescription>
+                    Audience, positioning, message, or channel.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="text-sm text-muted-foreground">
+                  I define the goal and trade-offs early so teams align and execution stays focused.
+                </CardContent>
+              </Card>
+
+              <Card className="group overflow-hidden bg-card/60 md:col-span-5">
+                <CardHeader>
+                  <CardTitle className="font-display text-2xl">Validate with analytics</CardTitle>
+                  <CardDescription>
+                    KPI tracking in Excel and Tableau dashboards.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="text-sm text-muted-foreground">
+                  I use funnel and campaign data to identify drivers, choose changes, and track impact.
+                </CardContent>
+              </Card>
+
+              <Card className="group overflow-hidden bg-card/60 md:col-span-12">
+                <CardHeader>
+                  <CardTitle className="font-display text-2xl">Storytelling built to launch</CardTitle>
+                  <CardDescription>
+                    Journalism, filmmaking, ad creation, and visual design.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="text-sm text-muted-foreground">
+                  I turn insights into a clear narrative, messaging, and creative assets that teams can brief and launch.
+                </CardContent>
+              </Card>
+            </div>
+
+            <div
+              className="mt-10 overflow-hidden rounded-2xl border bg-secondary/25 p-5 md:p-6"
+              style={{
+                background:
+                  "radial-gradient(900px 420px at 12% 20%, rgba(34,66,240,0.10), transparent 60%), radial-gradient(900px 420px at 85% 15%, rgba(255,70,190,0.10), transparent 60%), radial-gradient(900px 420px at 65% 85%, rgba(228,106,46,0.12), transparent 60%)",
+              }}
+            >
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div className="text-sm text-muted-foreground">
+                  Want the full case-study view?
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Link to="/projects">
+                    <Button className="rounded-full">
+                      Browse projects <ArrowUpRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
+                    <Button variant="outline" className="rounded-full">
+                      Resume <ArrowUpRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="work-experience" className="border-y bg-secondary/20">
-          <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+        <section
+          id="work-experience"
+          data-reveal
+          className="order-6 relative overflow-hidden border-y"
+        >
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div
+              className="absolute inset-0 opacity-90"
+              style={{
+                background:
+                  "radial-gradient(900px 520px at 18% 10%, rgba(228,106,46,0.14), transparent 60%), radial-gradient(900px 520px at 78% 14%, rgba(34,66,240,0.12), transparent 60%), radial-gradient(900px 520px at 62% 92%, rgba(255,70,190,0.12), transparent 60%)",
+              }}
+            />
+            <div className="absolute inset-0 editorial-dots opacity-60" />
+            <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/35 to-transparent" />
+            <div className="absolute left-0 right-0 bottom-0 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent" />
+          </div>
+
+          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
+            <div className="grid gap-10 md:grid-cols-12">
+              <div className="md:col-span-4 md:sticky md:top-24 self-start">
+                <SectionHeading
+                  kicker="Work experience"
+                  title="Work Experience"
+                  description="Narratives from roles where decisions, communication, and outcomes mattered."
+                  icon={Wand2}
+                />
+              </div>
+
+              <div className="md:col-span-8 space-y-12">
+                <div>
+                  <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                    <h3 className="font-display text-2xl">Professional experience</h3>
+                    <div className="text-sm text-muted-foreground">
+                      Sales, business development, and client-facing roles.
+                    </div>
+                  </div>
+                  <ExperienceGrid items={professionalExperience} />
+                </div>
+
+                <div>
+                  <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                    <h3 className="font-display text-2xl">Volunteering experience</h3>
+                    <div className="text-sm text-muted-foreground">
+                      Community work and sustainability education.
+                    </div>
+                  </div>
+                  <ExperienceGrid items={volunteeringExperience} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="how-i-think"
+          data-reveal
+          className="order-7 relative overflow-hidden"
+        >
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div
+              className="absolute inset-0 opacity-85"
+              style={{
+                background:
+                  "radial-gradient(900px 520px at 8% 40%, rgba(34,66,240,0.12), transparent 60%), radial-gradient(900px 520px at 92% 30%, rgba(228,106,46,0.12), transparent 60%), radial-gradient(900px 520px at 50% 95%, rgba(255,70,190,0.10), transparent 60%)",
+              }}
+            />
+            <div className="absolute inset-0 editorial-dots opacity-55" />
+          </div>
+
+          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
             <SectionHeading
-              kicker="Work experience"
-              title="Work Experience"
-              description="Narratives from roles where decisions, communication, and outcomes mattered."
+              kicker="How I think"
+              title={howIThink.title}
+              description="The principles I return to when the work gets complex."
               icon={Wand2}
             />
 
-            <div className="mt-8 space-y-10">
-              <div>
-                <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-                  <h3 className="font-display text-2xl">Professional experience</h3>
-                  <div className="text-sm text-muted-foreground">
-                    Sales, business development, and client-facing roles.
-                  </div>
-                </div>
-                <ExperienceGrid items={professionalExperience} />
-              </div>
+            <div className="mt-10 grid gap-4 md:grid-cols-12">
+              {(howIThink?.paragraphs || []).map((p, idx) => {
+                const span =
+                  idx === 0
+                    ? "md:col-span-7"
+                    : idx === 1
+                      ? "md:col-span-5"
+                      : "md:col-span-12";
 
-              <div>
-                <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-                  <h3 className="font-display text-2xl">Volunteering experience</h3>
-                  <div className="text-sm text-muted-foreground">
-                    Community work and sustainability education.
-                  </div>
-                </div>
-                <ExperienceGrid items={volunteeringExperience} />
-              </div>
+                const tone =
+                  idx === 2
+                    ? "bg-secondary/25"
+                    : "bg-card/60";
+
+                return (
+                  <Card key={idx} className={`overflow-hidden ${tone} ${span}`}>
+                    <CardContent className="p-6 text-sm leading-relaxed text-muted-foreground md:text-base">
+                      {p}
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        <section id="how-i-think" className="mx-auto max-w-6xl px-4 py-14 md:py-20">
-          <SectionHeading
-            kicker="How I think"
-            title={howIThink.title}
-            description="The principles I return to when the work gets complex."
-            icon={Wand2}
-          />
-
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {(howIThink?.paragraphs || []).map((p, idx) => (
-              <Card key={idx} className="bg-card/60">
-                <CardContent className="p-6 text-sm leading-relaxed text-muted-foreground">
-                  {p}
-                </CardContent>
-              </Card>
-            ))}
+        <section id="projects" data-reveal className="order-4 relative overflow-hidden border-y">
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div
+              className="absolute inset-0 opacity-80"
+              style={{
+                background:
+                  "radial-gradient(900px 520px at 16% 10%, rgba(255,70,190,0.10), transparent 60%), radial-gradient(900px 520px at 84% 14%, rgba(34,66,240,0.10), transparent 60%), radial-gradient(900px 520px at 50% 90%, rgba(228,106,46,0.12), transparent 60%)",
+              }}
+            />
+            <div className="absolute inset-0 editorial-dots opacity-45" />
           </div>
-        </section>
 
-        <section id="projects" className="border-y bg-secondary/20">
-          <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
             <SectionHeading
               kicker="Projects"
               title="Projects"
@@ -1032,25 +1162,54 @@ export default function Portfolio() {
               icon={Sparkles}
             />
 
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
-              <Card className="bg-card/60">
-                <CardHeader>
-                  <CardTitle className="font-display text-2xl">Marketing & Strategy</CardTitle>
-                  <CardDescription>Brand, messaging, go-to-market</CardDescription>
-                </CardHeader>
-              </Card>
-              <Card className="bg-card/60">
-                <CardHeader>
-                  <CardTitle className="font-display text-2xl">Analytics & ML</CardTitle>
-                  <CardDescription>Measurement, modeling, insights</CardDescription>
-                </CardHeader>
-              </Card>
-              <Card className="bg-card/60">
-                <CardHeader>
-                  <CardTitle className="font-display text-2xl">Business & Sales</CardTitle>
-                  <CardDescription>Conversion, negotiation, pipeline</CardDescription>
-                </CardHeader>
-              </Card>
+            <div className="mt-10 grid gap-4 md:grid-cols-3">
+              <Link to="/projects" className="group block">
+                <Card className="relative overflow-hidden bg-card/60 transition-transform hover:-translate-y-1 hover:shadow-[0_18px_40px_-28px_rgba(0,0,0,0.35)]">
+                  <div
+                    className="pointer-events-none absolute inset-0 opacity-80"
+                    style={{
+                      background:
+                        "radial-gradient(520px 300px at 15% 25%, rgba(228,106,46,0.22), transparent 60%), radial-gradient(520px 320px at 85% 20%, rgba(255,70,190,0.18), transparent 60%)",
+                    }}
+                  />
+                  <CardHeader className="relative">
+                    <CardTitle className="font-display text-2xl">Marketing & Strategy</CardTitle>
+                    <CardDescription>Brand, messaging, go-to-market</CardDescription>
+                  </CardHeader>
+                </Card>
+              </Link>
+
+              <Link to="/projects" className="group block">
+                <Card className="relative overflow-hidden bg-card/60 transition-transform hover:-translate-y-1 hover:shadow-[0_18px_40px_-28px_rgba(0,0,0,0.35)]">
+                  <div
+                    className="pointer-events-none absolute inset-0 opacity-80"
+                    style={{
+                      background:
+                        "radial-gradient(520px 320px at 20% 25%, rgba(34,66,240,0.22), transparent 60%), radial-gradient(520px 320px at 85% 25%, rgba(168,227,111,0.18), transparent 60%)",
+                    }}
+                  />
+                  <CardHeader className="relative">
+                    <CardTitle className="font-display text-2xl">Analytics & ML</CardTitle>
+                    <CardDescription>Measurement, modeling, insights</CardDescription>
+                  </CardHeader>
+                </Card>
+              </Link>
+
+              <Link to="/projects" className="group block">
+                <Card className="relative overflow-hidden bg-card/60 transition-transform hover:-translate-y-1 hover:shadow-[0_18px_40px_-28px_rgba(0,0,0,0.35)]">
+                  <div
+                    className="pointer-events-none absolute inset-0 opacity-80"
+                    style={{
+                      background:
+                        "radial-gradient(520px 320px at 20% 25%, rgba(255,70,190,0.18), transparent 60%), radial-gradient(520px 320px at 85% 25%, rgba(34,66,240,0.18), transparent 60%), radial-gradient(520px 320px at 40% 80%, rgba(228,106,46,0.18), transparent 60%)",
+                    }}
+                  />
+                  <CardHeader className="relative">
+                    <CardTitle className="font-display text-2xl">Business & Sales</CardTitle>
+                    <CardDescription>Conversion, negotiation, pipeline</CardDescription>
+                  </CardHeader>
+                </Card>
+              </Link>
             </div>
 
             <div className="mt-6 rounded-2xl border bg-card/60 p-6">
@@ -1074,9 +1233,22 @@ export default function Portfolio() {
 
         <section
           id="selected-work"
-          className="border-y bg-secondary/30"
+          data-reveal
+          className="order-3 relative overflow-hidden border-y"
         >
-          <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div
+              className="absolute inset-0 opacity-85"
+              style={{
+                background:
+                  "radial-gradient(900px 520px at 14% 22%, rgba(255,70,190,0.12), transparent 60%), radial-gradient(900px 520px at 86% 18%, rgba(34,66,240,0.12), transparent 60%), radial-gradient(900px 520px at 50% 92%, rgba(228,106,46,0.14), transparent 60%)",
+              }}
+            />
+            <div className="absolute inset-0 editorial-dots opacity-50" />
+            <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/35 to-transparent" />
+          </div>
+
+          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
             <SectionHeading
               kicker="Selected work"
               title="From insight to execution"
@@ -1084,31 +1256,39 @@ export default function Portfolio() {
               icon={Sparkles}
             />
 
-            <div className="mt-8 grid gap-4 md:grid-cols-3">
+            <div className="mt-10 space-y-6">
               {work.slice(0, 3).map((w) => (
-                <Link key={w.id} to={`/work/${w.id}`} className="group">
-                  <Card className="h-full transition-shadow hover:shadow-lg">
-                    <CardHeader>
-                      <CardTitle className="font-display text-2xl">
-                        {w.title}
-                      </CardTitle>
-                      <CardDescription>{w.subtitle}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
+                <Link key={w.id} to={`/work/${w.id}`} className="group block" data-reveal>
+                  <Card className="overflow-hidden transition-transform hover:-translate-y-1 hover:shadow-[0_18px_40px_-28px_rgba(0,0,0,0.35)]">
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <div className="absolute inset-0 campaign-parallax" data-parallax="0.06">
+                        <img
+                          src={w.cover}
+                          alt={w.title}
+                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10" />
+                      <div className="absolute bottom-5 left-5 right-5">
+                        <div className="font-display text-4xl leading-[0.95] tracking-tight text-white md:text-5xl">
+                          {w.title}
+                        </div>
+                        <div className="mt-2 text-sm text-white/80 md:text-base">
+                          {w.subtitle}
+                        </div>
+                      </div>
+                    </div>
+
+                    <CardContent className="space-y-4 p-6">
                       <div className="flex flex-wrap gap-2">
                         {w.tags.slice(0, 3).map((t) => (
-                          <Badge
-                            key={t}
-                            variant="secondary"
-                            className="rounded-full"
-                          >
+                          <Badge key={t} variant="secondary" className="rounded-full">
                             {t}
                           </Badge>
                         ))}
                       </div>
-                      <div className="text-sm text-muted-foreground">
-                        {w.impact}
-                      </div>
+                      <div className="text-sm text-muted-foreground">{w.impact}</div>
                       <div className="pt-1 text-sm font-medium text-foreground transition-colors group-hover:text-muted-foreground">
                         Open case study <ArrowUpRight className="inline h-4 w-4" />
                       </div>
@@ -1120,46 +1300,100 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section id="services" className="mx-auto max-w-6xl px-4 py-14 md:py-20">
-          <SectionHeading
-            kicker="Services"
-            title="Where I can help"
-            description="Strategy-first, with the right amount of analysis and craft."
-            icon={Sparkles}
-          />
+        <section
+          id="services"
+          data-reveal
+          className="order-5 relative overflow-hidden"
+        >
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div
+              className="absolute inset-0 opacity-85"
+              style={{
+                background:
+                  "radial-gradient(900px 520px at 18% 22%, rgba(34,66,240,0.10), transparent 60%), radial-gradient(900px 520px at 86% 26%, rgba(228,106,46,0.12), transparent 60%), radial-gradient(900px 520px at 54% 92%, rgba(255,70,190,0.10), transparent 60%)",
+              }}
+            />
+            <div className="absolute inset-0 editorial-dots opacity-40" />
+          </div>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {(services || []).map((s) => (
-              <Card key={s.title} className="h-full">
-                <CardHeader>
-                  <CardTitle className="font-display text-2xl">
-                    {s.title}
-                  </CardTitle>
-                  <CardDescription>{s.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    {s.bullets.map((b) => (
-                      <li
-                        key={b}
-                        className="flex items-center justify-between gap-3 rounded-lg border bg-background px-3 py-2"
-                      >
-                        <span>{b}</span>
-                        <span
-                          className="h-2 w-2 rounded-full"
-                          style={{ backgroundColor: ACCENT }}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
+            <SectionHeading
+              kicker="Services"
+              title="Where I can help"
+              description="Strategy-first, with the right amount of analysis and craft."
+              icon={Sparkles}
+            />
+
+            <div className="mt-10 grid gap-4 md:grid-cols-12">
+              {(services || []).map((s, idx) => {
+                const span =
+                  idx === 0
+                    ? "md:col-span-7"
+                    : idx === 1
+                      ? "md:col-span-5"
+                      : "md:col-span-12";
+
+                const wash =
+                  idx === 0
+                    ? "radial-gradient(520px 300px at 18% 22%, rgba(34,66,240,0.14), transparent 60%), radial-gradient(520px 320px at 88% 18%, rgba(255,70,190,0.12), transparent 60%)"
+                    : idx === 1
+                      ? "radial-gradient(520px 320px at 22% 20%, rgba(228,106,46,0.16), transparent 62%), radial-gradient(520px 320px at 88% 28%, rgba(34,66,240,0.12), transparent 60%)"
+                      : "radial-gradient(720px 360px at 18% 30%, rgba(255,70,190,0.10), transparent 60%), radial-gradient(720px 360px at 82% 26%, rgba(228,106,46,0.12), transparent 60%)";
+
+                return (
+                  <Card
+                    key={s.title}
+                    className={`group relative h-full overflow-hidden ${span}`}
+                  >
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 opacity-80"
+                      style={{ background: wash }}
+                    />
+                    <CardHeader className="relative">
+                      <CardTitle className="font-display text-2xl">
+                        {s.title}
+                      </CardTitle>
+                      <CardDescription>{s.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="relative">
+                      <ul className="space-y-2 text-sm text-muted-foreground">
+                        {s.bullets.map((b) => (
+                          <li
+                            key={b}
+                            className="flex items-center justify-between gap-3 rounded-lg border bg-background/60 px-3 py-2 backdrop-blur transition-colors group-hover:bg-background/75"
+                          >
+                            <span>{b}</span>
+                            <span
+                              className="h-2 w-2 rounded-full"
+                              style={{ backgroundColor: ACCENT }}
+                            />
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
           </div>
         </section>
 
-        <section id="resume" className="border-y bg-secondary/30">
-          <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+        <section id="resume" data-reveal className="order-8 relative overflow-hidden border-y">
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div
+              className="absolute inset-0 opacity-90"
+              style={{
+                background:
+                  "radial-gradient(900px 520px at 14% 18%, rgba(228,106,46,0.14), transparent 60%), radial-gradient(900px 520px at 86% 22%, rgba(34,66,240,0.12), transparent 60%), radial-gradient(900px 520px at 58% 92%, rgba(255,70,190,0.10), transparent 60%)",
+              }}
+            />
+            <div className="absolute inset-0 editorial-dots opacity-55" />
+            <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/35 to-transparent" />
+            <div className="absolute left-0 right-0 bottom-0 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent" />
+          </div>
+
+          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
             <SectionHeading
               kicker="Resume"
               title="A simple, readable snapshot"
@@ -1167,13 +1401,21 @@ export default function Portfolio() {
               icon={FileText}
             />
 
-            <div className="mt-8 grid gap-4 md:grid-cols-[1.1fr_0.9fr]">
-              <Card>
-                <CardHeader>
+            <div className="mt-10 grid gap-4 md:grid-cols-12">
+              <Card className="relative overflow-hidden md:col-span-7 md:-rotate-[0.6deg]">
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 opacity-80"
+                  style={{
+                    background:
+                      "radial-gradient(520px 320px at 22% 20%, rgba(34,66,240,0.12), transparent 60%), radial-gradient(520px 320px at 88% 24%, rgba(228,106,46,0.12), transparent 60%)",
+                  }}
+                />
+                <CardHeader className="relative">
                   <CardTitle className="font-display">Highlights</CardTitle>
                   <CardDescription>Quick overview.</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4 text-sm text-muted-foreground">
+                <CardContent className="relative space-y-4 text-sm text-muted-foreground">
                   <div className="rounded-xl border bg-background p-4">
                     <div className="text-xs tracking-[0.22em] uppercase">Profile</div>
                     <div className="mt-2 text-foreground">{profile.summary}</div>
@@ -1209,12 +1451,20 @@ export default function Portfolio() {
                 </CardContent>
               </Card>
 
-              <Card>
-                <CardHeader>
+              <Card className="relative overflow-hidden md:col-span-5 md:rotate-[0.6deg]">
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 opacity-75"
+                  style={{
+                    background:
+                      "radial-gradient(520px 320px at 18% 18%, rgba(255,70,190,0.10), transparent 60%), radial-gradient(520px 320px at 82% 30%, rgba(34,66,240,0.10), transparent 60%)",
+                  }}
+                />
+                <CardHeader className="relative">
                   <CardTitle className="font-display">Details</CardTitle>
                   <CardDescription>Kept minimal on purpose.</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-3 text-sm text-muted-foreground">
+                <CardContent className="relative space-y-3 text-sm text-muted-foreground">
                   <div className="rounded-xl border bg-background p-4">
                     <div className="text-xs tracking-[0.22em] uppercase">Education</div>
                     <div className="mt-2 text-foreground">
@@ -1246,8 +1496,19 @@ export default function Portfolio() {
           </div>
         </section>
 
-        <section id="blog" className="border-y bg-secondary/30">
-          <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+        <section id="blog" data-reveal className="order-12 relative overflow-hidden border-y">
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div
+              className="absolute inset-0 opacity-85"
+              style={{
+                background:
+                  "radial-gradient(900px 520px at 12% 22%, rgba(34,66,240,0.10), transparent 60%), radial-gradient(900px 520px at 86% 16%, rgba(255,70,190,0.10), transparent 60%), radial-gradient(900px 520px at 52% 92%, rgba(228,106,46,0.12), transparent 60%)",
+              }}
+            />
+            <div className="absolute inset-0 editorial-dots opacity-45" />
+          </div>
+
+          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
             <SectionHeading
               kicker="Blog"
               title="Notes on research, brand, and clarity"
@@ -1263,33 +1524,58 @@ export default function Portfolio() {
 
         <section
           id="visual-diary"
-          className="mx-auto max-w-6xl px-4 py-14 md:py-20"
+          data-reveal
+          className="order-9 relative overflow-hidden"
         >
-          <SectionHeading
-            kicker="Visual diary"
-            title="Still work / photography"
-            description="A small gallery of visual observations."
-            icon={Camera}
-          />
-          <div className="mt-8">
-            <VisualDiaryGrid />
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div
+              className="absolute inset-0 opacity-80"
+              style={{
+                background:
+                  "radial-gradient(900px 520px at 18% 18%, rgba(255,70,190,0.10), transparent 60%), radial-gradient(900px 520px at 82% 22%, rgba(34,66,240,0.10), transparent 60%), radial-gradient(900px 520px at 54% 92%, rgba(228,106,46,0.12), transparent 60%)",
+              }}
+            />
+            <div className="absolute inset-0 editorial-dots opacity-45" />
           </div>
 
-          <div className="mt-12">
+          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
             <SectionHeading
-              kicker="Product studies"
-              title="Product storyboards"
-              description="Your product photography, styled like brand assets and treated with the same care as a campaign."
+              kicker="Visual diary"
+              title="Still work / photography"
+              description="A small gallery of visual observations."
               icon={Camera}
             />
             <div className="mt-8">
-              <ProductStudiesGrid />
+              <VisualDiaryGrid />
+            </div>
+
+            <div className="mt-12">
+              <SectionHeading
+                kicker="Product studies"
+                title="Product storyboards"
+                description="Your product photography, styled like brand assets and treated with the same care as a campaign."
+                icon={Camera}
+              />
+              <div className="mt-8">
+                <ProductStudiesGrid />
+              </div>
             </div>
           </div>
         </section>
 
-        <section id="motion" className="border-y bg-secondary/30">
-          <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+        <section id="motion" data-reveal className="order-10 relative overflow-hidden border-y">
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div
+              className="absolute inset-0 opacity-85"
+              style={{
+                background:
+                  "radial-gradient(900px 520px at 12% 22%, rgba(228,106,46,0.14), transparent 60%), radial-gradient(900px 520px at 84% 16%, rgba(34,66,240,0.12), transparent 60%), radial-gradient(900px 520px at 52% 92%, rgba(255,70,190,0.10), transparent 60%)",
+              }}
+            />
+            <div className="absolute inset-0 editorial-dots opacity-45" />
+          </div>
+
+          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
             <SectionHeading
               kicker="Motion design"
               title="Editing + rhythm"
@@ -1304,31 +1590,70 @@ export default function Portfolio() {
 
         <section
           id="interests"
-          className="mx-auto max-w-6xl px-4 py-14 md:py-20"
+          data-reveal
+          className="order-11 relative overflow-hidden"
         >
-          <SectionHeading
-            kicker="Interests"
-            title="What I pay attention to"
-            description="The details that shape taste and strategy decisions."
-            icon={Sparkles}
-          />
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div
+              className="absolute inset-0 opacity-80"
+              style={{
+                background:
+                  "radial-gradient(900px 520px at 18% 18%, rgba(34,66,240,0.10), transparent 60%), radial-gradient(900px 520px at 82% 22%, rgba(255,70,190,0.10), transparent 60%), radial-gradient(900px 520px at 54% 92%, rgba(228,106,46,0.12), transparent 60%)",
+              }}
+            />
+            <div className="absolute inset-0 editorial-dots opacity-45" />
+          </div>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {(interests || []).map((i) => (
-              <Card key={i.title} className="h-full">
-                <CardHeader>
-                  <CardTitle className="font-display text-2xl">
-                    {i.title}
-                  </CardTitle>
-                  <CardDescription>{i.description}</CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
+          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
+            <SectionHeading
+              kicker="Interests"
+              title="What I pay attention to"
+              description="The details that shape taste and strategy decisions."
+              icon={Sparkles}
+            />
+
+            <div className="mt-10 grid gap-4 md:grid-cols-12">
+              {(interests || []).map((i, idx) => {
+                const span =
+                  idx === 0
+                    ? "md:col-span-5"
+                    : idx === 1
+                      ? "md:col-span-7"
+                      : "md:col-span-12";
+
+                const tone =
+                  idx === 2
+                    ? "bg-secondary/25"
+                    : "";
+
+                return (
+                  <Card key={i.title} className={`h-full ${span} ${tone}`}>
+                    <CardHeader>
+                      <CardTitle className="font-display text-2xl">
+                        {i.title}
+                      </CardTitle>
+                      <CardDescription>{i.description}</CardDescription>
+                    </CardHeader>
+                  </Card>
+                );
+              })}
+            </div>
           </div>
         </section>
 
-        <section id="contact" className="border-t">
-          <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
+        <section id="contact" data-reveal className="order-13 relative overflow-hidden border-t">
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div
+              className="absolute inset-0 opacity-90"
+              style={{
+                background:
+                  "radial-gradient(900px 520px at 12% 26%, rgba(228,106,46,0.16), transparent 60%), radial-gradient(900px 520px at 86% 18%, rgba(34,66,240,0.12), transparent 60%), radial-gradient(900px 520px at 55% 92%, rgba(255,70,190,0.10), transparent 60%)",
+              }}
+            />
+            <div className="absolute inset-0 editorial-dots opacity-50" />
+          </div>
+
+          <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
             <SectionHeading
               kicker="Contact"
               title="Let’s make the next decision clearer"
@@ -1350,7 +1675,7 @@ export default function Portfolio() {
               className="absolute inset-0 opacity-70"
               style={{
                 background:
-                  "radial-gradient(900px 520px at 12% 20%, rgba(168,227,111,0.12), transparent 60%), radial-gradient(900px 520px at 85% 15%, rgba(230,188,132,0.12), transparent 60%)",
+                  "radial-gradient(900px 520px at 12% 20%, rgba(228,106,46,0.14), transparent 60%), radial-gradient(900px 520px at 85% 15%, rgba(228,106,46,0.10), transparent 60%)",
               }}
             />
             <div className="relative">

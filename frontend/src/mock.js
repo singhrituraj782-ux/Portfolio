@@ -373,6 +373,19 @@ export const professionalExperience = [
       "Boosted revenue by 10–15% through strategic prospecting and consultative selling approach.",
       "Implemented retention strategies that increased client engagement by 15% and reduced churn.",
     ],
+    skillsImpact: {
+      skillsBuilt: [
+        "Lead qualification and discovery call structure",
+        "Follow-up cadence management and pipeline discipline",
+        "Negotiation, objection handling, and closing",
+        "CRM hygiene and stage-based reporting",
+        "Target tracking and revenue forecasting basics",
+      ],
+      howApplied:
+        "Worked daily across inbound lead handling and outbound prospecting: qualified needs and intent, ran discovery, managed follow-ups, and coordinated offers and next steps while keeping CRM stages clean for visibility.",
+      resultsImpact:
+        "Sustained a high-volume pipeline (150+ leads/month) with ~25% conversion by tightening qualification and follow-up. The same discipline supported 10–15% revenue lift and stronger retention touchpoints that improved engagement (+15%) and reduced churn.",
+    },
   },
   {
     id: "cur8-inside-sales",
@@ -387,6 +400,19 @@ export const professionalExperience = [
       "Executed high-volume outbound campaigns across phone, email, and social channels, increasing engagement by 25%.",
       "Utilized CRM tools and analytics to track performance and optimize conversion rates.",
     ],
+    skillsImpact: {
+      skillsBuilt: [
+        "Outbound sequencing across phone, email, and social",
+        "Qualification frameworks and handoff readiness",
+        "CRM reporting and performance tracking",
+        "Messaging and objection handling for conversion",
+        "Pipeline management across stages and follow-ups",
+      ],
+      howApplied:
+        "Ran structured outreach sequences, qualified leads through consistent discovery questions, and used CRM performance signals to adjust prioritization and messaging. Kept pipeline stages current to ensure follow-ups and next actions were executed on time.",
+      resultsImpact:
+        "The process translated into stronger conversion and target delivery: exceeded targets by 35% and increased engagement by 25% through coordinated multi-channel outbound, supported by CRM-based tracking and iteration.",
+    },
   },
   {
     id: "bedo-design-bda",
@@ -400,6 +426,19 @@ export const professionalExperience = [
       "Expanded portfolio by 25% through strategic B2B prospecting and relationship development.",
       "Secured key accounts contributing to 15% market growth and launched campaigns amplifying engagement by 30%.",
     ],
+    skillsImpact: {
+      skillsBuilt: [
+        "B2B prospect research and targeted outreach",
+        "Relationship management and account follow-through",
+        "Proposal framing and stakeholder communication",
+        "Coordination with creative teams on campaign needs",
+        "Prioritization across accounts and opportunities",
+      ],
+      howApplied:
+        "Built a focused prospect list, ran outreach and follow-ups, and managed conversations through proposal and closing. Partnered with internal teams to translate client needs into clear briefs and practical next steps.",
+      resultsImpact:
+        "Helped expand the client portfolio by 25% and secured key accounts that supported 15% market growth. Campaign coordination and client alignment contributed to stronger engagement (+30%) across launched initiatives.",
+    },
   },
 ];
 
@@ -417,6 +456,19 @@ export const volunteeringExperience = [
       "Explained sustainability concepts in simple language and supported inclusive participation throughout sessions.",
       "Helped keep workshops flowing smoothly with steady pacing, patience, and on-the-spot problem solving.",
     ],
+    skillsImpact: {
+      skillsBuilt: [
+        "Workshop facilitation and participant support",
+        "Clear instruction and step-by-step guidance",
+        "Explaining sustainability concepts in plain language",
+        "Session logistics and materials coordination",
+        "Real-time problem solving in group settings",
+      ],
+      howApplied:
+        "Supported set-up and flow during workshops, guided participants through each step, and adjusted pacing based on the room. Answered questions, helped troubleshoot issues, and reinforced the sustainability purpose without overwhelming participants.",
+      resultsImpact:
+        "Contributed 50 hours of consistent on-the-ground support that helped sessions run smoothly and stay inclusive. The work strengthened participant confidence and kept attention on practical reuse outcomes rather than abstract sustainability messaging.",
+    },
   },
 ];
 

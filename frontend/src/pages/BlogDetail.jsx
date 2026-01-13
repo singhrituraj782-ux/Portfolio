@@ -29,15 +29,27 @@ export default function BlogDetail() {
   }
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-10 md:py-14">
-      <Link to="/" className="inline-flex">
-        <Button variant="outline" className="rounded-full">
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to portfolio
-        </Button>
-      </Link>
+    <div className="relative overflow-hidden">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div
+          className="absolute inset-0 opacity-85"
+          style={{
+            background:
+              "radial-gradient(900px 520px at 18% 18%, rgba(34,66,240,0.12), transparent 60%), radial-gradient(900px 520px at 86% 22%, rgba(255,70,190,0.10), transparent 60%), radial-gradient(900px 520px at 54% 92%, rgba(228,106,46,0.12), transparent 60%)",
+          }}
+        />
+        <div className="absolute inset-0 editorial-dots opacity-45" />
+      </div>
 
-      <header className="mt-10">
+      <article className="relative mx-auto max-w-3xl px-4 py-10 md:py-14">
+        <Link to="/" className="inline-flex" data-reveal>
+          <Button variant="outline" className="rounded-full">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to portfolio
+          </Button>
+        </Link>
+
+      <header className="mt-10" data-reveal>
         <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
           Blog
         </div>
@@ -58,19 +70,21 @@ export default function BlogDetail() {
         </div>
       </header>
 
-      <div className="mt-8 overflow-hidden rounded-2xl border">
-        <img src={post.cover} alt={post.title} className="h-[40vh] w-full object-cover" />
+      <div className="mt-8 overflow-hidden rounded-2xl border" data-reveal>
+        <div className="h-[40vh] w-full campaign-parallax" data-parallax="0.03">
+          <img src={post.cover} alt={post.title} className="h-full w-full object-cover" />
+        </div>
       </div>
 
       <Separator className="my-10" />
 
-      <div className="prose prose-neutral max-w-none">
+      <div className="prose prose-neutral max-w-none" data-reveal>
         <p className="text-lg text-muted-foreground">{post.excerpt}</p>
       </div>
 
       <div className="mt-8 space-y-8">
         {post.content.map((b) => (
-          <section key={b.h} className="space-y-3">
+          <section key={b.h} className="space-y-3" data-reveal>
             <h2 className="font-display text-2xl tracking-tight">{b.h}</h2>
             <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
               {b.p}
@@ -81,9 +95,10 @@ export default function BlogDetail() {
 
       <Separator className="my-10" />
 
-      <div className="text-sm text-muted-foreground">
-        Want more? New posts will appear here as you publish.
-      </div>
-    </article>
+        <div className="text-sm text-muted-foreground" data-reveal>
+          Want more? New posts will appear here as you publish.
+        </div>
+      </article>
+    </div>
   );
 }

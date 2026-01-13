@@ -5,7 +5,7 @@ import * as THREE from "three";
  * Vanilla Three.js 3D preview (no react-three-fiber).
  * Renders a textured "product card" with subtle bend + hover/drag rotation.
  */
-export default function Product3DPreview({ imageUrl, accent = "#A8E36F" }) {
+export default function Product3DPreview({ imageUrl, accent = "#E46A2E" }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {

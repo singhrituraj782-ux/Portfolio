@@ -6,7 +6,7 @@ import * as THREE from "three";
  * Emergent’s dev build injects debug props like `x-line-number` into JSX.
  * Those props break react-three-fiber because it interprets dashed prop names as nested setters.
  */
-export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
+export default function ThreeBackdrop({ className = "", accent = "#E46A2E" }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function ThreeBackdrop({ className = "", accent = "#b7ff5a" }) {
     const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 60);
     camera.position.set(0, 0, 7.2);
 
-    // Fireflies (green) — additive glowing particles via a tiny shader
+    // Fireflies — additive glowing particles via a tiny shader
     const flyCount = 520;
     const positions = new Float32Array(flyCount * 3);
     const scales = new Float32Array(flyCount);

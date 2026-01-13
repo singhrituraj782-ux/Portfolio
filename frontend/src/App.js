@@ -8,11 +8,13 @@ import BlogDetail from "@/pages/BlogDetail";
 import Projects from "@/pages/Projects";
 import ProjectDetail from "@/pages/ProjectDetail";
 import { Toaster } from "@/components/ui/toaster";
+import ScrollRevealManager from "@/components/ScrollRevealManager";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ScrollRevealManager />
         <Routes>
           <Route path="/" element={<Portfolio />} />
           <Route path="/work/:id" element={<WorkDetail />} />

@@ -28,20 +28,24 @@ const HIDDEN_PROJECT_IDS = new Set(["lamaison-community", "inside-sales-project"
 
 function ProjectCard({ p }) {
   return (
-    <Link to={`/projects/${p.id}`} className="group">
-      <Card className="h-full overflow-hidden transition-shadow hover:shadow-lg">
+    <Link to={`/projects/${p.id}`} className="group" data-reveal>
+      <Card className="h-full overflow-hidden transition-transform hover:-translate-y-1 hover:shadow-[0_18px_40px_-28px_rgba(0,0,0,0.35)]">
         <div className="relative aspect-[16/9] overflow-hidden">
-          <img
-            src={p.cover}
-            alt={p.title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
+          <div className="absolute inset-0 campaign-parallax" data-parallax="0.05">
+            <img
+              src={p.cover}
+              alt={p.title}
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              loading="lazy"
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
           <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3">
             <div className="min-w-0">
-              <div className="truncate font-display text-xl text-white">
-                {p.title}
+              <div className="truncate font-display text-2xl leading-none tracking-tight text-white md:text-3xl">
+                <span className="relative inline-block after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 group-hover:after:scale-x-100">
+                  {p.title}
+                </span>
               </div>
               <div className="truncate text-sm text-white/80">
                 {p.subtitle}
@@ -101,43 +105,56 @@ export default function Projects() {
 
   return (
     <div className="min-h-screen">
-      <div className="mx-auto max-w-6xl px-4 pt-10 pb-8 md:pt-14">
-	        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-	          <div>
-	            <div className="flex items-center gap-3">
-	              <Link to="/" className="inline-flex">
-	                <Button type="button" variant="outline" className="rounded-full">
-	                  Home
-	                </Button>
-	              </Link>
-	              <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-	                Projects
-	              </div>
-	            </div>
-	            <h1 className="mt-3 font-display text-5xl leading-[0.92] tracking-tight md:text-6xl">
-	              Case studies & builds
-	            </h1>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-              I don’t treat projects as “deliverables”. I treat them as decisions.
-              Each case study shows how I framed the problem, what I chose to do,
-              and what changed because of it.
-            </p>
+      <div className="mx-auto max-w-6xl px-4 pt-12 pb-10 md:pt-16">
+        <div
+          className="relative overflow-hidden rounded-3xl border bg-card/60 p-6 md:p-10"
+          data-reveal
+        >
+          <div
+            className="pointer-events-none absolute inset-0 opacity-80"
+            style={{
+              background:
+                "radial-gradient(900px 420px at 12% 20%, rgba(34,66,240,0.16), transparent 60%), radial-gradient(900px 420px at 85% 15%, rgba(255,70,190,0.14), transparent 60%), radial-gradient(900px 420px at 65% 90%, rgba(228,106,46,0.16), transparent 60%)",
+            }}
+          />
+          <div className="pointer-events-none absolute inset-0 editorial-dots opacity-55" />
+          <div className="relative flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <div className="flex items-center gap-3">
+                <Link to="/" className="inline-flex">
+                  <Button type="button" variant="outline" className="rounded-full">
+                    Home
+                  </Button>
+                </Link>
+                <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+                  Projects
+                </div>
+              </div>
+              <h1 className="mt-3 font-display text-5xl leading-[0.92] tracking-tight md:text-6xl">
+                Case studies & builds
+              </h1>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                I don’t treat projects as “deliverables”. I treat them as decisions.
+                Each case study shows how I framed the problem, what I chose to do,
+                and what changed because of it.
+              </p>
+            </div>
+
+            <div className="w-full max-w-md">
+              <div className="relative w-full">
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  className="pl-9"
+                  placeholder="Search projects (ROI, pricing, fraud, sustainability…)"
+                />
+              </div>
+            </div>
           </div>
+        </div>
 
-	          <div className="flex w-full max-w-md items-center">
-	            <div className="relative w-full">
-	              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-	              <Input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-	                className="pl-9"
-	                placeholder="Search projects (ROI, pricing, fraud, sustainability…)"
-	              />
-	            </div>
-	          </div>
-	        </div>
-
-        <Tabs defaultValue="All" className="mt-8">
+        <Tabs defaultValue="All" className="mt-10">
           <TabsList className="flex h-auto flex-wrap justify-start gap-2 bg-transparent p-0">
             {categories.map((c) => (
               <TabsTrigger
@@ -153,10 +170,16 @@ export default function Projects() {
 
           {categories.map((c) => (
             <TabsContent key={c} value={c} className="mt-6">
-              <div className="grid gap-4 md:grid-cols-2">
-                {grouped[c].map((p) => (
-                  <ProjectCard key={p.id} p={p} />
-                ))}
+              <div className="grid gap-4 md:grid-cols-12">
+                {grouped[c].map((p, idx) => {
+                  const span =
+                    idx === 0 ? "md:col-span-12" : idx % 3 === 1 ? "md:col-span-7" : "md:col-span-5";
+                  return (
+                    <div key={p.id} className={span}>
+                      <ProjectCard p={p} />
+                    </div>
+                  );
+                })}
               </div>
               {grouped[c].length === 0 ? (
                 <div className="mt-8 rounded-xl border bg-card/60 p-6 text-sm text-muted-foreground">
