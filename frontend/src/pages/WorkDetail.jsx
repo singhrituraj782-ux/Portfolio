@@ -41,26 +41,27 @@ export default function WorkDetail() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 md:py-14">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <Link to="/" className="inline-flex">
-          <Button variant="outline" className="rounded-full">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to portfolio
-          </Button>
-        </Link>
-        <div className="flex flex-wrap gap-2">
-          <Badge variant="secondary" className="rounded-full">
-            {item.category}
-          </Badge>
-          <Badge variant="outline" className="rounded-full">
-            {item.year}
-          </Badge>
-        </div>
-      </div>
-
-      <header className="mt-10">
-        <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-          Case Study
+      <header>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <Link to="/" className="inline-flex">
+              <Button variant="outline" className="rounded-full">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back
+              </Button>
+            </Link>
+            <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+              Case Study
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Badge variant="secondary" className="rounded-full">
+              {item.category}
+            </Badge>
+            <Badge variant="outline" className="rounded-full">
+              {item.year}
+            </Badge>
+          </div>
         </div>
         <h1 className="mt-3 font-display text-4xl leading-[1.05] tracking-tight md:text-5xl">
           {item.title}

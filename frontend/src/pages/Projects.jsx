@@ -95,14 +95,21 @@ export default function Projects() {
   return (
     <div className="min-h-screen">
       <div className="mx-auto max-w-6xl px-4 pt-10 pb-8 md:pt-14">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-              Projects
-            </div>
-            <h1 className="mt-3 font-display text-5xl leading-[0.92] tracking-tight md:text-6xl">
-              Case studies & builds
-            </h1>
+	        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+	          <div>
+	            <div className="flex items-center gap-3">
+	              <Link to="/" className="inline-flex">
+	                <Button type="button" variant="outline" className="rounded-full">
+	                  Home
+	                </Button>
+	              </Link>
+	              <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+	                Projects
+	              </div>
+	            </div>
+	            <h1 className="mt-3 font-display text-5xl leading-[0.92] tracking-tight md:text-6xl">
+	              Case studies & builds
+	            </h1>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
               I don’t treat projects as “deliverables”. I treat them as decisions.
               Each case study shows how I framed the problem, what I chose to do,
@@ -110,23 +117,18 @@ export default function Projects() {
             </p>
           </div>
 
-          <div className="flex w-full max-w-md items-center gap-2">
-            <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <Input
+	          <div className="flex w-full max-w-md items-center">
+	            <div className="relative w-full">
+	              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+	              <Input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="pl-9"
-                placeholder="Search projects (ROI, pricing, fraud, sustainability…)"
-              />
-            </div>
-            <Link to="/">
-              <Button variant="outline" className="rounded-full">
-                Home
-              </Button>
-            </Link>
-          </div>
-        </div>
+	                className="pl-9"
+	                placeholder="Search projects (ROI, pricing, fraud, sustainability…)"
+	              />
+	            </div>
+	          </div>
+	        </div>
 
         <Tabs defaultValue="All" className="mt-8">
           <TabsList className="flex h-auto flex-wrap justify-start gap-2 bg-transparent p-0">

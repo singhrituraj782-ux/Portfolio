@@ -82,6 +82,7 @@ export default function ProjectDetail() {
   const isSimbound = p?.id === "tableto-simbound";
   const isXuris = p?.id === "xuris-mmm";
   const isFraud = p?.id === "fraud-detection";
+  const isCowlor = p?.id === "cowlor-brand";
 
   if (!p) {
     return (
@@ -102,28 +103,29 @@ export default function ProjectDetail() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 md:py-14">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <Link to="/projects" className="inline-flex">
-          <Button variant="outline" className="rounded-full">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Projects
-          </Button>
-        </Link>
-        <div className="flex flex-wrap gap-2">
-          <Badge variant="secondary" className="rounded-full">
-            {p.category}
-          </Badge>
-          {p.year ? (
-            <Badge variant="outline" className="rounded-full">
-              {p.year}
+      <header>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <Link to="/projects" className="inline-flex">
+              <Button variant="outline" className="rounded-full">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back
+              </Button>
+            </Link>
+            <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+              Case study
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Badge variant="secondary" className="rounded-full">
+              {p.category}
             </Badge>
-          ) : null}
-        </div>
-      </div>
-
-      <header className="mt-10">
-        <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-          Case study
+            {p.year ? (
+              <Badge variant="outline" className="rounded-full">
+                {p.year}
+              </Badge>
+            ) : null}
+          </div>
         </div>
         <h1 className="mt-3 font-display text-4xl leading-[1.03] tracking-tight md:text-5xl">
           {p.title}
@@ -152,7 +154,15 @@ export default function ProjectDetail() {
               <CardDescription>{p.oneLiner}</CardDescription>
             </CardHeader>
             <CardContent className="text-sm leading-relaxed text-muted-foreground">
-              {p.overview}
+              {Array.isArray(p.overview) ? (
+                <div className="space-y-3">
+                  {p.overview.map((para) => (
+                    <p key={para}>{para}</p>
+                  ))}
+                </div>
+              ) : (
+                p.overview
+              )}
             </CardContent>
           </Card>
 
@@ -179,7 +189,15 @@ export default function ProjectDetail() {
               <CardDescription>{p.oneLiner}</CardDescription>
             </CardHeader>
             <CardContent className="text-sm leading-relaxed text-muted-foreground">
-              {p.overview}
+              {Array.isArray(p.overview) ? (
+                <div className="space-y-3">
+                  {p.overview.map((para) => (
+                    <p key={para}>{para}</p>
+                  ))}
+                </div>
+              ) : (
+                p.overview
+              )}
             </CardContent>
           </Card>
 
@@ -262,7 +280,10 @@ export default function ProjectDetail() {
             />
           </div>
         ) : (
-          <SectionBlock title={isFraud ? "My Role" : "My role"} body={p.role} />
+          <SectionBlock
+            title={isFraud || isCowlor ? "My Role" : "My role"}
+            body={p.role}
+          />
         )}
 
         {isSimbound ? (
@@ -276,10 +297,20 @@ export default function ProjectDetail() {
           </div>
         ) : (
           <SectionBlock
-            title={isFraud ? "Strategy / Approach" : "Strategy / approach"}
+            title={isFraud || isCowlor ? "Strategy / Approach" : "Strategy / approach"}
             body={p.approach}
           />
         )}
+
+        {isCowlor ? (
+          <SectionBlock title="Evidence / Analysis" body={null} childrenClassName="pt-3">
+            <div className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+              {(p.evidence || []).map((para) => (
+                <p key={para}>{para}</p>
+              ))}
+            </div>
+          </SectionBlock>
+        ) : null}
 
         {isXuris ? (
           <SectionBlock title="Evidence / Analysis" body={null} childrenClassName="pt-3">
@@ -316,7 +347,10 @@ export default function ProjectDetail() {
           </SectionBlock>
         ) : null}
 
-        <SectionBlock title={isFraud ? "Outcome / Impact" : "Outcome / impact"} body={p.outcome}>
+        <SectionBlock
+          title={isFraud || isCowlor ? "Outcome / Impact" : "Outcome / impact"}
+          body={p.outcome}
+        >
           {isSimbound ? (
             <InlineImage
               src="/products/simbound/download (2).png"
@@ -325,7 +359,20 @@ export default function ProjectDetail() {
             />
           ) : null}
         </SectionBlock>
-        <SectionBlock title={isFraud ? "Key Learnings" : "Key learnings"} body={p.learnings} />
+        {isCowlor ? (
+          <SectionBlock title="Key Learnings" body={p.learnings} childrenClassName="pt-3">
+            <a
+              href="/products/cowlor/PCE Final Pitch - Group 73-2.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground"
+            >
+              Download pitch deck (PDF)
+            </a>
+          </SectionBlock>
+        ) : (
+          <SectionBlock title={isFraud ? "Key Learnings" : "Key learnings"} body={p.learnings} />
+        )}
       </div>
 
       {p.links?.length ? (

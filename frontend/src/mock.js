@@ -271,23 +271,36 @@ export const projects = [
     category: "Marketing & Strategy",
     tags: ["Market research", "Positioning", "Go-to-market"],
     cover:
-      "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&fm=jpg&w=1600&q=70",
+      "/products/cowlor/cowlorcover.png",
     oneLiner:
       "Built a clearer positioning story in a crowded ‘sustainable’ category.",
     overview:
-      "Cowlor is a sustainable paint brand. I focused on market research, competitor mapping, and positioning to define a go-to-market direction that feels distinct and actionable.",
+      [
+        "Cowlor is a sustainable paint brand entering a crowded “eco-friendly” paint market where most competitors sound the same. Claims like low-VOC, non-toxic, and “green” were everywhere, creating an attention problem: sustainability was expected, but rarely differentiated.",
+        "The objective was to create a clear positioning, messaging pillars, and a practical go-to-market narrative that could be executed by a real team — not just a concept. The focus was on clarity that improves day-to-day decisions across messaging, channels, and campaign trade-offs.",
+      ],
     goal:
-      "Create a differentiated positioning and launch narrative that is easy to execute.",
+      "Create a differentiated positioning and launch narrative that simplifies decisions across messaging, channels, and campaign trade-offs.",
     role:
-      "Led research synthesis and positioning work; translated insights into messaging pillars and launch guidance.",
+      "Led end-to-end research synthesis; conducted competitor analysis and positioning mapping; defined target audience hypotheses; and translated insights into messaging pillars and launch guidance.",
     approach:
-      "Mapped competitors, defined audience hypotheses, and stress-tested messaging directions to land on a simple, defensible positioning.",
+      "1) Market + competitor audit to map sustainability claims, price cues, and brand language to identify where “eco” messaging overlapped. 2) Audience segmentation and hypothesis development to clarify who we’re for and which jobs-to-be-done mattered most. 3) Stress-tested multiple positioning directions against real trade-offs (credibility, distinctiveness, and execution feasibility). 4) Selected a simple, defensible positioning with clear messaging pillars that could guide creative, channels, and launch sequencing.",
+    evidence: [
+      "The competitive set clustered around the same sustainability vocabulary, which made brand differences hard to perceive at a glance. When every brand claims “safe,” “green,” and “low-VOC,” the buyer is left comparing price and aesthetics — not meaning.",
+      "That overlap made “sustainable” an entry ticket, not a differentiator. The work focused on defining a sharper angle that could be expressed in plain language and supported consistently across touchpoints.",
+      "Positioning options were evaluated through trade-offs, not preferences: would it stay credible without sounding generic, avoid being premium-only, and give the team a practical decision rule for what to say, show, and prioritize at launch?",
+    ],
     outcome:
-      "A positioning statement, messaging pillars, and launch checklist that improved clarity and execution readiness.",
-    impact: "Improved launch readiness by ~20–25%.",
-    metrics: ["Differentiated positioning", "Launch narrative", "~20–25% readiness lift"],
+      "Delivered a final positioning statement, a set of messaging pillars, and a launch checklist designed to keep execution consistent. The output aligned marketing, product, and launch decisions around one story — making it easier to brief creative, choose channels, and keep campaigns coherent.",
+    impact:
+      "Clarity reduced decision friction across messaging, channel choices, and launch planning.",
+    metrics: [
+      "Differentiated positioning in a saturated sustainability market",
+      "Clear launch narrative and messaging framework",
+      "~20–25% improvement in internal launch readiness and clarity",
+    ],
     learnings:
-      "A good positioning is a decision filter. When it’s clear, everything else becomes easier: messaging, design choices, and campaign trade-offs.",
+      "A strong positioning acts as a decision filter. When it’s clear, messaging, design, and campaign choices become faster and more consistent.",
     links: [],
   },
   {
