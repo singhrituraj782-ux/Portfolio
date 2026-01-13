@@ -24,6 +24,8 @@ const categories = [
   "Sustainability & Community",
 ];
 
+const HIDDEN_PROJECT_IDS = new Set(["lamaison-community", "inside-sales-project"]);
+
 function ProjectCard({ p }) {
   return (
     <Link to={`/projects/${p.id}`} className="group">
@@ -73,16 +75,21 @@ function ProjectCard({ p }) {
 export default function Projects() {
   const [query, setQuery] = useState("");
 
+  const visibleProjects = useMemo(
+    () => projects.filter((p) => !HIDDEN_PROJECT_IDS.has(p.id)),
+    []
+  );
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return projects;
-    return projects.filter((p) => {
+    if (!q) return visibleProjects;
+    return visibleProjects.filter((p) => {
       const hay = [p.title, p.subtitle, p.category, ...(p.tags || [])]
         .join(" ")
         .toLowerCase();
       return hay.includes(q);
     });
-  }, [query]);
+  }, [query, visibleProjects]);
 
   const grouped = useMemo(() => {
     const map = {};
