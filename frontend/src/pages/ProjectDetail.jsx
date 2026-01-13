@@ -15,14 +15,26 @@ import { Separator } from "@/components/ui/separator";
 
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 
-function SectionBlock({ title, body }) {
+function SectionBlock({ title, body, children }) {
   return (
     <section className="space-y-2">
       <h2 className="font-display text-2xl tracking-tight">{title}</h2>
       <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
         {body}
       </p>
+      {children ? <div className="pt-4">{children}</div> : null}
     </section>
+  );
+}
+
+function InlineImage({ src, alt, caption }) {
+  return (
+    <figure className="overflow-hidden rounded-2xl border bg-card/60">
+      <img src={src} alt={alt} className="h-auto w-full" loading="lazy" />
+      <figcaption className="border-t bg-background/40 px-4 py-3 text-xs leading-relaxed text-muted-foreground">
+        {caption}
+      </figcaption>
+    </figure>
   );
 }
 
@@ -30,6 +42,7 @@ export default function ProjectDetail() {
   const { id } = useParams();
 
   const p = useMemo(() => projects.find((x) => x.id === id), [id]);
+  const isSimbound = p?.id === "tableto-simbound";
 
   if (!p) {
     return (
@@ -123,9 +136,41 @@ export default function ProjectDetail() {
 
       <div className="space-y-8">
         <SectionBlock title="Goal" body={p.goal} />
-        <SectionBlock title="My role" body={p.role} />
-        <SectionBlock title="Strategy / approach" body={p.approach} />
-        <SectionBlock title="Outcome / impact" body={p.outcome} />
+        {isSimbound ? (
+          <div className="space-y-4">
+            <SectionBlock title="Execution / Email" body={p.role} />
+            <InlineImage
+              src="/products/simbound/download (1).png"
+              alt="Email performance results (Simbound simulation, Round 6)"
+              caption="Email results in Round 6 (opens, CTR, conversions, value). Guided frequency/targeting tweaks based on what was driving clicks and conversions, strengthening conversion performance into the final #1 profit result."
+            />
+          </div>
+        ) : (
+          <SectionBlock title="My role" body={p.role} />
+        )}
+
+        {isSimbound ? (
+          <div className="space-y-4">
+            <SectionBlock title="Strategy / approach" body={p.approach} />
+            <InlineImage
+              src="/products/simbound/download.png"
+              alt="SEA results snapshot (Simbound simulation, Round 6)"
+              caption="SEA traffic and results in Round 6 (conversions, ROAS, CPA by team). Informed keyword/bid and spend shifts to keep acquisition efficient, supporting the final #1 profit outcome."
+            />
+          </div>
+        ) : (
+          <SectionBlock title="Strategy / approach" body={p.approach} />
+        )}
+
+        <SectionBlock title="Outcome / impact" body={p.outcome}>
+          {isSimbound ? (
+            <InlineImage
+              src="/products/simbound/download (2).png"
+              alt="Overall ranks showing Team Yellow ranked #1"
+              caption="Final overall ranking: Team Yellow finished #1 with €380,509.49 net profit. Confirms that KPI-led iteration across SEA and email translated into the top result."
+            />
+          ) : null}
+        </SectionBlock>
         <SectionBlock title="Key learnings" body={p.learnings} />
       </div>
 

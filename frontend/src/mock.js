@@ -160,19 +160,19 @@ export const projects = [
     cover:
       "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&fm=jpg&w=1600&q=70",
     oneLiner:
-      "A simulation where every decision impacts profit — and the scoreboard doesn’t forgive weak execution.",
+      "A 6-round e-commerce simulation where decisions are judged on net profit.",
     overview:
-      "In a 6-round Simbound simulation for a tablet brand, our team managed acquisition and conversion levers. I led email marketing and supported SEA keyword strategy and pricing decisions, aligning messaging with performance signals across rounds.",
+      "Tableto is a simulated online retailer selling tablets from manufacturers like Apple, HP, Acer, and Samsung across the US and UK. In Simbound, teams compete across six rounds — making trade-offs on acquisition (SEA), pricing, and on-site levers — and the scoreboard is total net profit. As Team Yellow, we focused on early profitability and then iterated each round toward qualified demand and better conversion efficiency, not just higher traffic.",
     goal:
-      "Maximize profit across rounds by balancing acquisition spend, conversion tactics, and pricing decisions.",
+      "Maximize total net profit across six rounds by balancing acquisition efficiency (SEA), on-site conversion levers, and pricing across the US and UK markets.",
     role:
-      "Email marketing lead. Owned campaign planning, segmentation logic, and performance iteration. Supported SEA keyword strategy and pricing decisions with performance insights.",
+      "Led email marketing for Team Yellow: planned campaigns, set targeting and cadence, wrote messaging, and reviewed results each round. Used email to bring back qualified visitors and support conversion, then iterated using open rate, CTR, conversions, value, and unsubscribe signals. Shared learnings to inform SEA keyword focus and on-site alignment.",
     approach:
-      "Built a tight feedback loop: review round metrics → identify bottlenecks → adjust email frequency, targeting, and messaging → coordinate with SEA and pricing choices so channels reinforced each other.",
+      "Optimized for profit early: kept acquisition spend disciplined, prioritized high-intent keywords, and avoided chasing low-quality traffic. Each round we reviewed the profit equation (traffic × conversion rate × margin) to find the bottleneck, then adjusted the right lever — website settings available in the simulation, SEA budgets/keywords, or pricing. Email acted as a conversion lever: targeted sends reinforced the value proposition, supported current offers, and pushed qualified users back to the site. The loop was consistent: measure → decide → ship changes → validate in the next round.",
     outcome:
-      "Top-performing team by profit at the end of the simulation, with improved conversion discipline and better alignment between messaging and demand signals.",
-    impact: "Top-performing team by profit (6-round simulation).",
-    metrics: ["#1 by profit", "6 rounds executed", "Cross-channel coordination"],
+      "Team Yellow finished #1 overall with €380,509.49 total net profit. The result came from disciplined acquisition and steady conversion improvements — aligning email, SEA, and on-site decisions around what was actually converting, not what looked good on traffic charts.",
+    impact: "Ranked #1 overall with €380,509.49 total net profit (Team Yellow).",
+    metrics: ["Ranked #1 overall (Team Yellow)", "€380,509.49 total net profit", "6 rounds across US + UK"],
     learnings:
       "Speed matters. In a competitive environment, fast iteration beats perfect planning. The best results came from consistent measurement and decisive adjustments, not from one ‘big’ idea.",
     links: [],

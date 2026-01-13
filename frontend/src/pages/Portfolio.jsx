@@ -907,45 +907,45 @@ export default function Portfolio() {
         <section id="work" className="mx-auto max-w-6xl px-4 py-14 md:py-20">
           <SectionHeading
             kicker="What I bring"
-            title="Clarity, creativity, and a bias for outcomes"
-            description="I combine insight, analysis, and storytelling to help teams make better decisions — and execute them with confidence."
+            title="Brand and marketing, built for execution"
+            description="I start with the decision, validate direction with KPIs in Excel/Tableau dashboards, and deliver messaging and campaigns teams can launch, measure, and improve."
             icon={Briefcase}
           />
 
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             <Card className="bg-card/60">
               <CardHeader>
-                <CardTitle className="font-display text-2xl">Problem-first</CardTitle>
+                <CardTitle className="font-display text-2xl">Problem-first brand decisions</CardTitle>
                 <CardDescription>
-                  I start with the decision: what are we trying to choose and what changes if we’re right?
+                  Audience, positioning, message, or channel.
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                Strong strategy is a filter. It reduces noise, creates alignment, and keeps execution focused.
+                I define the goal and trade-offs early so teams align and execution stays focused.
               </CardContent>
             </Card>
 
             <Card className="bg-card/60">
               <CardHeader>
-                <CardTitle className="font-display text-2xl">Data to validate</CardTitle>
+                <CardTitle className="font-display text-2xl">Validate with analytics</CardTitle>
                 <CardDescription>
-                  Enough analysis to reduce uncertainty — without turning work into dashboards for their own sake.
+                  KPI tracking in Excel and Tableau dashboards.
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                I use practical measurement, simple models, and structured KPIs to support confident decisions.
+                I use funnel and campaign data to identify drivers, choose changes, and track impact.
               </CardContent>
             </Card>
 
             <Card className="bg-card/60">
               <CardHeader>
-                <CardTitle className="font-display text-2xl">Storytelling to move teams</CardTitle>
+                <CardTitle className="font-display text-2xl">Storytelling built to launch</CardTitle>
                 <CardDescription>
-                  Insights only matter when they travel: clear narrative, crisp messaging, and execution-ready outputs.
+                  Journalism, filmmaking, ad creation, and visual design.
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                My background in communication helps strategy land across stakeholders.
+                I turn insights into a clear narrative, messaging, and creative assets that teams can brief and launch.
               </CardContent>
             </Card>
           </div>
