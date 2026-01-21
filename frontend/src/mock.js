@@ -15,7 +15,7 @@ export const profile = {
   // Assets
   photoUrl:
     "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/u841goea_ae278b49-c13b-4fa5-84c7-cbbca4ff075e.JPG",
-  resumeUrl: `${process.env.PUBLIC_URL}/RITURAJ_CV_2025_Sales_.pdf`,
+  resumeUrl: `${process.env.PUBLIC_URL}/products/cv/BRANDIN CV_ Rituraj Rituraj 2026 (2).pdf`,
 
   social: {
     email: "mailto:singhrituraj782@gmail.com",

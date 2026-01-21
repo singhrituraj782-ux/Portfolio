@@ -864,7 +864,7 @@ function Hero() {
 	                    {profile.roleTagline}
 	                  </div>
 	                  <div className="mt-2 flex flex-wrap gap-2">
-	                    <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
+		                    <a href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
 	                      <Button
 	                        size="sm"
 	                        className="rounded-full"
@@ -1722,7 +1722,7 @@ export default function Portfolio() {
                       Browse projects <ArrowUpRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
-                  <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
+	                  <a href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
                     <Button variant="outline" className="rounded-full">
                       Resume <ArrowUpRight className="ml-2 h-4 w-4" />
                     </Button>
@@ -2046,7 +2046,7 @@ export default function Portfolio() {
                   </div>
 
                   <div className="flex flex-wrap gap-2">
-                    <a href={profile.resumeUrl} target="_blank" rel="noreferrer">
+	                    <a href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
                       <Button className="rounded-full" style={{ backgroundColor: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}>
                         View full resume <ArrowUpRight className="ml-2 h-4 w-4" />
                       </Button>
@@ -2343,12 +2343,12 @@ export default function Portfolio() {
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  <a
-                    href={profile.resumeUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center rounded-full border bg-background/50 px-4 py-2 text-sm transition-colors hover:bg-secondary"
-                  >
+	                  <a
+	                    href={profile.resumeUrl}
+	                    target="_blank"
+	                    rel="noopener noreferrer"
+	                    className="inline-flex items-center justify-center rounded-full border bg-background/50 px-4 py-2 text-sm transition-colors hover:bg-secondary"
+	                  >
                     Resume <ArrowUpRight className="ml-2 h-4 w-4" />
                   </a>
                   <a
