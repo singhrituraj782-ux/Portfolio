@@ -2,15 +2,14 @@
 // Later, this can be swapped to backend APIs without touching UI logic.
 
 export const profile = {
-  name: "Rituraj Rituraj",
+  name: "Rituraj RITURAJ",
   roleTagline: "Branding & Marketing — Strategy, Research, and Creative Direction",
-  location: "Villeurbanne, France",
-  email: "singhrituraj782@gmail.com",
+  location: "Lyon, France",
+  email: "rituraj.rituraj@edu.em-lyon.com",
   phone: "+33-0672980260",
-  address: "4 Rue Burais, Villeurbanne",
+  address: "Lyon, France",
   summary:
-    "Master in Management student at emlyon business school with hands-on experience in brand strategy, consumer research, and data-driven marketing decisions. I translate customer insights into clear positioning, messaging, and execution.",
-  availability: "Internship (Branding / Brand Strategy) — Starting March",
+    "My strength lies in bridging insight and action. I can listen to consumers, analyse information, and translate it into clear recommendations that teams can actually use. With a background in communication and management, I am comfortable working with data, creative tools, and people and adapting quickly in fast-moving marketing contexts.",
 
   // Assets
   photoUrl:
@@ -18,7 +17,7 @@ export const profile = {
   resumeUrl: `${process.env.PUBLIC_URL}/products/cv/BRANDIN CV_ Rituraj Rituraj 2026 (2).pdf`,
 
   social: {
-    email: "mailto:singhrituraj782@gmail.com",
+    email: "mailto:rituraj.rituraj@edu.em-lyon.com",
     linkedin: "https://www.linkedin.com/in/rituraj-rituraj-352bba229/",
     behance: "#",
   },

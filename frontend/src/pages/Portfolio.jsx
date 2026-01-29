@@ -237,17 +237,6 @@ function SectionHeading({
           <p className={descriptionClasses}>{description}</p>
         ) : null}
       </div>
-      {!isCentered ? (
-        <div className="hidden md:block text-xs text-muted-foreground">
-          <span className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1">
-            <span
-              className="h-2 w-2 rounded-full"
-              style={{ backgroundColor: ACCENT }}
-            />
-            <span>Currently: {profile.availability}</span>
-          </span>
-        </div>
-      ) : null}
     </div>
   );
 }
@@ -812,7 +801,10 @@ function Hero() {
               data-reveal
             >
               <Sparkles className="h-4 w-4" />
-              <span>Brand strategy + marketing analytics</span>
+              <span>
+                Final-Year PGE Student Seeking a 6-Month Marketing Internship
+                Starting March 2026
+              </span>
             </div>
 
             <h1
@@ -1576,26 +1568,6 @@ function ContactSection() {
             </div>
           </CardContent>
         </Card>
-
-        <Card className="overflow-hidden">
-          <div
-            className="p-6"
-            style={{
-              background:
-                "radial-gradient(700px 320px at 20% 20%, rgba(228,106,46,0.16), transparent 60%), radial-gradient(700px 320px at 80% 10%, rgba(228,106,46,0.10), transparent 60%)",
-            }}
-          >
-            <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-              Availability
-            </div>
-            <div className="mt-2 text-lg font-medium text-foreground">
-              {profile.availability}
-            </div>
-            <div className="mt-3 text-sm text-muted-foreground">
-              Best response time: within 24–48 hours.
-            </div>
-          </div>
-        </Card>
       </div>
     </div>
   );
@@ -1668,19 +1640,7 @@ export default function Portfolio() {
             />
 
             <div className="mt-12 grid gap-6 md:grid-cols-12">
-              <Card className="group overflow-hidden bg-card/60 md:col-span-7">
-                <CardHeader>
-                  <CardTitle className="font-display text-2xl">Problem-first brand decisions</CardTitle>
-                  <CardDescription>
-                    Audience, positioning, message, or channel.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground">
-                  I define the goal and trade-offs early so teams align and execution stays focused.
-                </CardContent>
-              </Card>
-
-              <Card className="group overflow-hidden bg-card/60 md:col-span-5">
+              <Card className="group overflow-hidden bg-card/60 md:col-span-12">
                 <CardHeader>
                   <CardTitle className="font-display text-2xl">Validate with analytics</CardTitle>
                   <CardDescription>
