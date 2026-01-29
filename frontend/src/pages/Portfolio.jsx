@@ -53,7 +53,6 @@ import {
   Wand2,
 } from "lucide-react";
 
-import ThreeBackdrop from "@/components/ThreeBackdrop";
 import ThemeToggle from "@/components/ThemeToggle";
 import Product3DPreview from "@/components/Product3DPreview";
 
@@ -778,7 +777,7 @@ function SiteHeader() {
 
 function Hero() {
   return (
-    <section data-reveal className="relative overflow-hidden">
+    <section className="relative overflow-hidden">
       <div className="absolute inset-0">
         <div
           className="absolute inset-0 opacity-[0.8]"
@@ -787,40 +786,36 @@ function Hero() {
               "radial-gradient(900px 420px at 18% 18%, rgba(34,66,240,0.22), transparent 62%), radial-gradient(900px 520px at 26% 30%, rgba(255,70,190,0.16), transparent 62%), radial-gradient(650px 320px at 82% 10%, rgba(228,106,46,0.20), transparent 60%)",
           }}
         />
-        <div className="campaign-orb campaign-orb--a" />
-        <div className="campaign-orb campaign-orb--b" />
-        <div className="campaign-orb campaign-orb--c" />
-        <ThreeBackdrop className="absolute inset-0" accent={FIRE_ACCENT} />
       </div>
 
       <div className="relative site-container flex min-h-[calc(100svh-4rem)] items-center py-14 md:py-16">
         <div className="grid w-full gap-10 md:grid-cols-[1.05fr_0.95fr] md:items-start">
           <div className="space-y-6">
-            <div
-              className="inline-flex items-center gap-2 rounded-full border bg-background/70 px-4 py-2 text-xs tracking-[0.22em] uppercase text-muted-foreground backdrop-blur"
-              data-reveal
-            >
-              <Sparkles className="h-4 w-4" />
-              <span>
-                Final-Year PGE Student Seeking a 6-Month Marketing Internship
-                Starting March 2026
-              </span>
-            </div>
-
             <h1
               className="font-display text-6xl leading-[0.88] tracking-tight md:text-8xl lg:text-9xl"
-              data-reveal
             >
-              {profile.name}
+              I’m <span className="text-accent">Rituraj</span>.
             </h1>
-            <p
-              className="max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"
-              data-reveal
-            >
-              {profile.summary}
-            </p>
 
-            <div className="flex flex-wrap items-center gap-3" data-reveal>
+            <div
+              className="max-w-xl font-display text-3xl leading-[0.98] tracking-tight md:text-4xl"
+            >
+              I work around marketing and consumer insight.
+            </div>
+
+            <div className="max-w-xl space-y-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p>
+                Most days, my work starts with a simple question: why do people choose one thing and ignore another? I usually end up answering it by digging into research, looking at basic data, and asking a few follow-up questions that may or may not annoy people in meetings. Eventually, it turns into something useful, like a clearer message or a better marketing decision.
+              </p>
+              <p>
+                Over time, I’ve worked on projects, simulations, and customer-facing roles where I learned that ideas don’t really matter unless someone takes the time to organise them, test them, and explain them properly. That’s the part of the work I tend to enjoy most, quietly making things clearer while others move fast.
+              </p>
+              <p>
+                I come from a communication background, which means I care about how things are said and understood, not just what’s being said. I like structured work, straightforward feedback, and teams that don’t take themselves too seriously. If there’s messy information lying around and someone needs to make sense of it, I’m usually happy to step in.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3">
               <Button
                 variant="outline"
                 className="rounded-full"
@@ -838,46 +833,31 @@ function Hero() {
 	            </div>
 	          </div>
 
-	          <div className="relative md:ml-auto md:max-w-[420px]" data-reveal>
+	          <div className="relative md:ml-auto md:max-w-[380px] md:justify-self-end">
 	            <div className="campaign-frame" aria-hidden />
-	            <Card className="relative overflow-hidden bg-background/70 backdrop-blur md:mt-2">
-	              <div className="relative aspect-[3/4] overflow-hidden">
-	                <div className="campaign-photo" data-parallax="0.08">
+	            <Card className="relative overflow-hidden bg-background/80 md:mt-2">
+	              <div className="p-5">
+	                <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border bg-background">
 	                  <img
 	                    src={profile.photoUrl}
 	                    alt={profile.name}
 	                    className="h-full w-full object-cover"
-	                    loading="lazy"
+	                    style={{ objectPosition: "50% 18%" }}
+	                    loading="eager"
 	                  />
 	                </div>
-	                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-	                <div className="absolute bottom-4 left-4 right-4">
-	                  <div className="text-xs tracking-[0.22em] uppercase text-white/70">
+	                <div className="mt-4">
+	                  <div className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
 	                    {profile.roleTagline}
 	                  </div>
-	                  <div className="mt-2 flex flex-wrap gap-2">
-		                    <a href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
-	                      <Button
-	                        size="sm"
-	                        className="rounded-full"
-	                        style={{
-	                          backgroundColor: "rgba(16,17,20,0.88)",
-	                          color: "#f7f7f2",
-	                        }}
-	                      >
+	                  <div className="mt-3 flex flex-wrap gap-2">
+	                    <a href={profile.resumeUrl} target="_blank" rel="noopener noreferrer">
+	                      <Button size="sm" className="rounded-full">
 	                        Resume <ArrowUpRight className="ml-2 h-4 w-4" />
 	                      </Button>
 	                    </a>
-	                    <a
-	                      href={profile.social.linkedin}
-	                      target="_blank"
-	                      rel="noreferrer"
-	                    >
-	                      <Button
-	                        size="sm"
-	                        variant="outline"
-	                        className="rounded-full bg-white/10 text-white border-white/30 hover:bg-white/15"
-	                      >
+	                    <a href={profile.social.linkedin} target="_blank" rel="noreferrer">
+	                      <Button size="sm" variant="outline" className="rounded-full">
 	                        LinkedIn <ArrowUpRight className="ml-2 h-4 w-4" />
 	                      </Button>
 	                    </a>

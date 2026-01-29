@@ -12,8 +12,9 @@ export const profile = {
     "My strength lies in bridging insight and action. I can listen to consumers, analyse information, and translate it into clear recommendations that teams can actually use. With a background in communication and management, I am comfortable working with data, creative tools, and people and adapting quickly in fast-moving marketing contexts.",
 
   // Assets
-  photoUrl:
-    "https://customer-assets.emergentagent.com/job_artfolio-118/artifacts/u841goea_ae278b49-c13b-4fa5-84c7-cbbca4ff075e.JPG",
+  photoUrl: `${process.env.PUBLIC_URL}${encodeURI(
+    "/products/profile picture/ChatGPT Image Jan 29, 2026, 05_58_44 PM.jpg"
+  )}`,
   resumeUrl: `${process.env.PUBLIC_URL}/products/cv/BRANDIN CV_ Rituraj Rituraj 2026 (2).pdf`,
 
   social: {
