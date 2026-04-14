@@ -15,7 +15,9 @@ export const profile = {
   photoUrl: `${process.env.PUBLIC_URL}${encodeURI(
     "/products/profile picture/ChatGPT Image Jan 29, 2026, 05_58_44 PM.jpg"
   )}`,
-  resumeUrl: `${process.env.PUBLIC_URL}/products/cv/brand_cv.pdf`,
+  resumeUrl: `${process.env.PUBLIC_URL}${encodeURI(
+    "/products/cv/Rituraj Marketing CV 2026.pdf"
+  )}`,
 
   social: {
     email: "mailto:rituraj.rituraj@edu.em-lyon.com",
